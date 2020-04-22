@@ -1,0 +1,121 @@
+/* =Loader
+-------------------------------------------------------------- */
+
+.preloader {
+	display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: white;
+    text-align: center;
+}
+.loading {
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	margin-top: -12px;
+	left: 50%;
+	margin-left: -50px;
+	width: 100px;
+	height: 24px;
+}
+
+.progress {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	overflow: hidden;
+	width: 100px;
+	height: 1px;
+	left: -102px;
+	background-color: #00d9ec;
+	-webkit-animation: loader-anim 1s 0s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: loader-anim 1s 0s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: loader-anim 1s 0s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86)
+}
+
+@-webkit-keyframes loader-anim {
+    0% {
+        left: -102px
+    }
+
+    100% {
+        left: 102px
+    }
+}
+
+@-moz-keyframes loader-anim {
+    0% {
+        left: -102px
+    }
+
+    100% {
+        left: 102px
+    }
+}
+
+@keyframes loader-anim {
+    0% {
+        left: -102px
+    }
+
+    100% {
+        left: 102px
+    }
+}
+
+
+/* 气球动画特效 */
+.body {
+    margin: 0;
+  }
+  
+  #balloon-container {
+    height: 100vh;
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+  
+  .balloon {
+    height: 125px;
+    width: 105px;
+    border-radius: 75% 75% 70% 70%;
+    position: relative;
+  }
+  
+  .balloon:before {
+    content: "";
+    height: 75px;
+    width: 1px;
+    padding: 1px;
+    background-color: #FDFD96;
+    display: block;
+    position: absolute;
+    top: 125px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  .balloon:after {
+      content: "▲";
+      text-align: center;
+      display: block;
+      position: absolute;
+      color: inherit;
+      top: 120px;
+      left: 0;
+      right: 0;
+      margin: auto;
+  }
+  
+  @keyframes float {
+    from {transform: translateY(100vh);
+    opacity: 1;}
+    to {transform: translateY(-300vh);
+    opacity: 0;}
+  }
