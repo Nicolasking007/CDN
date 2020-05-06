@@ -107,3 +107,10 @@ body {
 .container .card:hover .imgBx,.container .card:hover .contentBx {
 	transform:scale(0.98);
 }
+.foot {
+    text-align: center;
+    line-height: 25px;
+    margin: 0px auto;
+    letter-spacing:2px;
+    width: 90%;
+  }
