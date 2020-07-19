@@ -1,3 +1,17 @@
+/*
+<!--
+* author:Nicolas-kings
+* date:2020/07/19
+* 详尽信息请看：https://nkupp.com
+* Copyright by Nicolas-kings 版权所有
+*
+* 请尊重原创，未经允许请勿转载。
+* 在保留版权的前提下可应用于个人或商业用途
+
+-->
+*/
+
+
 window.onload=function(){
     var box =  document.getElementById('box');
  var divList = document.getElementById('divList');
