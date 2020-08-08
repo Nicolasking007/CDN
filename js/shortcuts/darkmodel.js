@@ -1,4 +1,15 @@
+/*
+<!--
+* author:Nicolas-kings
+* date:2020/08/08
+* 详尽信息请看：https://nkupp.com
+* Copyright by Nicolas-kings 版权所有
+*
+* 请尊重原创，未经允许请勿转载。
+* 在保留版权的前提下可应用于个人或商业用途
 
+-->
+*/
 	const themes = {
 		deep: {
 			background: 'rgb(30,30,60,1)',
@@ -48,4 +59,10 @@
 		root.style.setProperty('--text-clicked', theme.textClicked);
 		currentTheme = nextTheme;
     }
-    
+    function blog () {
+		window.location.href="https://nkupp.com/messageboard/"
+	}
+
+	function pay () {
+		window.location.href="https://nkupp.com/tuc/pay.html"
+	}
