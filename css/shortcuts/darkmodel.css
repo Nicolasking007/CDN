@@ -1,0 +1,90 @@
+html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-weight: 200; */
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+:root {
+    --background: rgb(20, 20, 50);
+    --content: rgb(50, 50, 80);
+    --border-light: rgb(40, 40, 80);
+    --border-dark: rgb(10, 10, 30);
+    --text: rgb(255, 255, 255);
+    --text-clicked: rgb(200, 200, 200);
+}
+
+body {
+    background: var(--background);
+    color: var(--text)
+}
+
+.neumorphism {
+    outline: none;
+    border: none;
+    background-color: var(--background);
+    color: var(--text);
+    box-shadow: 5px 5px 10px var(--border-dark),
+        -5px -5px 10px var(--border-light),
+        0 0 0 var(--border-dark) inset,
+        0 0 0 var(--border-light) inset;
+    border-radius: 15px;
+    transition: box-shadow .2s;
+    margin: 15px;
+    padding: 1rem;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 1.05rem;
+    margin: 0 0 .5rem 0;
+    text-shadow: 5px 5px 10px var(--border-dark),
+        -5px -5px 10px var(--border-light);
+    color: var(--text-clicked);
+}
+
+button.neumorphism {
+    font-size: 1rem;
+    /* padding-top: .25rem;
+    padding-bottom: .25rem; */
+    display: flex;
+    justify-content: flex-end;
+    float: left;
+    border-radius: 50%;
+
+}
+
+button.neumorphism:active {
+    outline: none;
+    box-shadow: 0 0 0 var(--border-dark),
+        0 0 0 var(--border-light),
+        5px 5px 10px var(--border-dark) inset,
+        -5px -5px 10px var(--border-light) inset;
+    color: var(--text-clicked);
+}
+
+.video {
+    position: relative;
+    text-align: center;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video iframe,
+.video object,
+.video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.foot {
+    text-align: center;
+    line-height: 25px;
+    margin: 0px auto;
+    width: 90%;
+    font-size: 0.2rem;
+}
