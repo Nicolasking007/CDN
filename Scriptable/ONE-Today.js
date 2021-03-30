@@ -434,7 +434,7 @@
  }
  
  async function updateCheck(version) {
-   let updateCheck = new Request('https://cdn.jsdelivr.net/gh/Nicolasking007/CDN/Scriptable/UPDATE.json')
+   let updateCheck = new Request('https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json')
    let uC = await updateCheck.loadJSON()
  
    log('[+]' + uC['ONE-Today'].version)
