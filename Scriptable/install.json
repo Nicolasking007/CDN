@@ -45,7 +45,7 @@
             "images":["https://shop.io.mi-img.com/app/shop/img?id=shop_9c96a5f405165fe3a4b3c59df3a1d363.png"]
         },
         {
-            "version": "1.0",
+            "version": "1.1",
             "author": "Nicolas-kings",
             "description": "简单的倒计时小组件",
             "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-cuntdown/ONE-cuntdown.js",
