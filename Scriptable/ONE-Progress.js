@@ -46,7 +46,7 @@ const COLOR_BAR_BACKGROUND = Color.dynamic(COLOR_LIGHT_GRAY, COLOR_DARK_GRAY);
 
 
 const versionData = await getversion()
-let needUpdated = await updateCheck(1.0)
+let needUpdated = await updateCheck(1.1)
 //渐变色  #3B82F6,#10B981,#FBBF24,#EF4444
 const DEFAULT_Color = new LinearGradient()
 DEFAULT_Color.colors = [new Color('#3B82F6'), new Color('#FBBF24'), new Color('#10B981'),]
