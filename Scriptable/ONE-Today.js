@@ -32,11 +32,11 @@ let bigsize = 85 // 今天字体大小
 
 // 获取农历信息
 let date = new Date()
+const versionData = await getversion()
+let needUpdated = await updateCheck(1.3)
 const lunarInfo = await getLunar(date.getDate() - 1)
 let lunarJoinInfo = "农历" + lunarInfo.infoLunarText + "·" + lunarInfo.lunarYearText + " " + lunarInfo.holidayText
 const honeyData = await gethoney()// 
-const versionData = await getversion()
-let needUpdated = await updateCheck(1.3)
 const str = date.getFullYear() + "年" + (date.getMonth() + 1) + "月"
 let day = new Date().getDate().toString()
 let stamp = new Date().getTime() - 60 * 60 * 24 * 1000
@@ -173,11 +173,7 @@ if (previewSize == "Large") {
 
 async function createWidget() {
   let widget = new ListWidget()
-  let full = widget.addText(str + '·' + `${lunarJoinInfo}`)
-  full.font = new Font('Menlo', 14)
-  full.lineLimit = 1
-  full.centerAlignText()
-  full.textColor = new Color("#ffffff")
+
 
   if (previewSize === "Small" || config.widgetFamily === "small") {
     //   const widget = new ListWidget();
@@ -205,31 +201,36 @@ async function createWidget() {
     widget.backgroundColor = COLOR_BAR_BACKGROUND
 
   } else {
+    let full = widget.addText(str + '·' + `${lunarJoinInfo}`)
+    full.font = new Font('Menlo', 14)
+    full.lineLimit = 1
+    full.centerAlignText()
+    full.textColor = new Color("#ffffff")
 
-  let body = widget.addStack()
-  body.bottomAlignContent()
+    let body = widget.addStack()
+    body.bottomAlignContent()
 
-  addDate(
-    prev,
-    smallsize,
-    body)
-  body.addSpacer()
-  addDate(
-    day,
-    bigsize,
-    body)
-  body.addSpacer()
-  addDate(
-    next,
-    smallsize,
-    body)
+    addDate(
+      prev,
+      smallsize,
+      body)
+    body.addSpacer()
+    addDate(
+      day,
+      bigsize,
+      body)
+    body.addSpacer()
+    addDate(
+      next,
+      smallsize,
+      body)
 
-  let honey = widget.addText(`${honeyData.tts}`)
-  honey.textColor = new Color('#ffffff')
-  honey.font = new Font('Menlo', 11)
-  honey.centerAlignText()
-  honey.lineLimit = 1
-}
+    let honey = widget.addText(`${honeyData.tts}`)
+    honey.textColor = new Color('#ffffff')
+    honey.font = new Font('Menlo', 11)
+    honey.centerAlignText()
+    honey.lineLimit = 1
+  }
   return widget
 }
 
