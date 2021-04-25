@@ -54,7 +54,7 @@ const district = areaData.result.address_component.district
 const lunarInfo = await getLunar(currentDate.getDate() - 1)
 let lunarJoinInfo = "农历" + lunarInfo.infoLunarText + "·" + lunarInfo.lunarYearText + " " + lunarInfo.holidayText
 const versionData = await getversion()
-let needUpdated = await updateCheck(1.3)
+let needUpdated = await updateCheck(1.4)
 const weatherData = await getWeather()
 const honeyData = await gethoney()
 
