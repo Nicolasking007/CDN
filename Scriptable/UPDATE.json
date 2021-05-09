@@ -34,7 +34,7 @@
         "Updated": "2021-03-28 13:00"
     },
     "ONE-NBA": {
-        "version": "1.3",
+        "version": "1.4",
         "author": "Nicolas-kings",
         "description": "关注喜爱NBA球队赛事结果小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-NBA/ONE-NBA.js",
@@ -45,8 +45,8 @@
         "images": [
             "https://i.loli.net/2021/03/27/yEZAWRdraFKMpJB.jpg"
         ],
-        "notes": "更新内容：\n- 修复文件未定义的bug\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-04-22 11:00",
-        "Updated": "2021-04-22 11:00"
+        "notes": "更新内容：\n- 适配透明背景设置、图片背景高斯模糊等配置 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-05-09 14:30",
+        "Updated": "2021-05-09 14:30"
     },
     "ONE-Friday": {
         "version": "1.0",
