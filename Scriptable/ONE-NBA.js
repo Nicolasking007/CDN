@@ -7,11 +7,12 @@
 
 /********************************************************
  * script     : ONE-NBA.js
- * version    : 1.4
+ * version    : 1.5
  * author     : thisisevanfox & Nicolas-kings
  * date       : 2021-05-09
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  :  v1.4 - 适配透明背景设置、图片背景高斯模糊等
+ * Changelog  :  v1.5 - 优化背景图片缓存处理
+                 v1.4 - 适配透明背景设置、图片背景高斯模糊等
                  v1.3 - 修复bug
                  v1.2 - 支持版本更新、脚本远程下载
                  v1.1 - api接口数据增加缓存，应对无网络情况下也能使用小组件
@@ -33,7 +34,7 @@ const blurStyle = "dark" // 高斯样式：light/dark
  ********************用户设置 *********************
  ************请在首次运行之前进行修改************
  ***********************************************************/
-const MY_NBA_TEAM = "LAL"; ///在此处输入您的NBA球队的缩写。
+const MY_NBA_TEAM = "LAL"; ///在此处输入你喜欢的NBA球队的缩写。
 
 
 const padding = {
@@ -44,7 +45,7 @@ const padding = {
 }
 const DARK_MODE = Device.isUsingDarkAppearance();
 const versionData = await getversion()
-let needUpdated = await updateCheck(1.4)
+let needUpdated = await updateCheck(1.5)
 
 //指示是否应显示实时得分。
 //如果您不想被破坏，请将其设置为false。
@@ -167,11 +168,12 @@ if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
 if (colorMode) {
   widget.backgroundColor = bgColor
 } else if (ImageMode) {
-  const url = "https://area.sinaapp.com/bingImg/"   //使用必应壁纸作为背景时，请注释下面
+  // const url = "https://area.sinaapp.com/bingImg/"   //使用必应壁纸作为背景时，请注释下面
   // const url = hotcommentsData.data.picurl   //使用歌曲封面作为背景，，请注释上面
   // const url = "http://p1.music.126.net/uarVFKgUlrI9Z1nr-50cAw==/109951162843608471.jpg"     //固定一张图片,这里我选用城南花已开的封面,图片不能太大，容易崩溃
-  const i = await new Request(url);
-  const bgImgs = await i.loadImage();
+  // const i = await new Request(url);
+  // const bgImgs = await i.loadImage();
+  const bgImgs = await getImageByUrl(hotcommentsData.data.picurl, `ONE-NBA-bg`)
   bgImg = await blurImage(bgImgs, blurStyle, 40)
   widget.backgroundImage = bgImg
   // widget.backgroundImage = await shadowImage(img)
@@ -1538,6 +1540,34 @@ async function blurImage(img, style, blur = 100) {
   // return cropImage(imageFromData)
   return imageFromData
 }
+
+async function getImageByUrl(url, cacheKey, useCache = true) {
+  const cacheFile = FileManager.local().joinPath(FileManager.local().temporaryDirectory(), cacheKey)
+  const exists = FileManager.local().fileExists(cacheFile)
+  // 判断是否有缓存
+  if (useCache && exists) {
+      return Image.fromFile(cacheFile)
+  }
+  try {
+      const req = new Request(url)
+      const img = await req.loadImage()
+      // 存储到缓存
+      FileManager.local().writeImage(cacheFile, img)
+      return img
+  } catch (e) {
+      console.error(`图片加载失败：${e}`)
+      if (exists) {
+          return Image.fromFile(cacheFile)
+      }
+      // 没有缓存+失败情况下，返回黑色背景
+      let ctx = new DrawContext()
+      ctx.size = new Size(100, 100)
+      ctx.setFillColor(Color.black())
+      ctx.fillRect(new Rect(0, 0, 100, 100))
+      return await ctx.getImage()
+  }
+}
+
 
 // Pixel sizes and positions for widgets on all supported phones.
 function phoneSizes() {
