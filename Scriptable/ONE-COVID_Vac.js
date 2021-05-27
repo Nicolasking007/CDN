@@ -115,7 +115,7 @@ async function createWidget(){
             
         widget.addSpacer(15)
             
-        const deviceLine = widget.addText(uC['ONE-COVID_Vac'].notice)
+        const deviceLine = widget.addText(versionData['ONE-COVID_Vac'].notice)
         deviceLine.font = Font.mediumSystemFont(8)
         deviceLine.textColor = Color.white()
               
