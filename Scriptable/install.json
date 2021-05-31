@@ -25,7 +25,7 @@
             "images":["https://i.loli.net/2021/03/27/pz7i8DsA3WkGaTU.jpg"]
         },
         {
-            "version": "1.5",
+            "version": "1.6",
             "author": "Nicolas-kings",
             "description": "关注喜爱NBA球队赛事结果小组件",
             "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-NBA/ONE-NBA.js",
@@ -105,7 +105,7 @@
             "images":["https://i.loli.net/2021/04/25/yJx4jGIMCRKodqg.jpg"]
         },
         {
-            "version": "1.1",
+            "version": "1.2",
             "author": "Nicolas-kings",
             "description": "中国/全球疫苗接种数据",
             "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/COVID-19/ONE-COVID_Vac.js",

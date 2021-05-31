@@ -2,13 +2,18 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: red; icon-glyph: code;
 /********************************************************
+ ************* MAKE SURE TO COPY EVERYTHING *************
+ *******************************************************
+ ************ © 2021 Copyright Nicolas-kings ************/
+/********************************************************
  * script     : ONE-oilprice.js
- * version    : 1.4
+ * version    : 1.5
  * author     : Nicolas-kings
  * date       : 2021-03-31
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
  * github     : https://github.com/Nicolasking007/Scriptable
- *Changelog   : v1.4 - 部分UI细节调整
+ *Changelog   : v1.5 - 细节优化、字体调整
+                v1.4 - 部分UI细节调整
                 v1.3 - 优化背景图片缓存处理
                 v1.2 - 支持版本更新、脚本远程下载
                 v1.1 - api接口数据增加缓存，应对无网络情况下也能使用小组件
@@ -23,7 +28,7 @@
  const path = files.joinPath(files.documentsDirectory(), filename)
  const changePicBg = false  //选择true时，使用透明背景 
  const ImageMode = true   //选择true时，使用必应壁纸
- const previewSize = "Small"  //预览大小  Small/Medium
+ const previewSize = (config.runsInWidget ? config.widgetFamily : "medium");// medium、small、large 预览大小
  const colorMode = false // 是否使用纯色背景
  const bgColor = new Color("000000") // 小组件背景色
  
@@ -32,10 +37,8 @@
  const api_key = '请在这里输入apikey'   //前往天行数据申请apikey https://www.tianapi.com/apiview/104
  //  ***********************************************************/
  
- 
- const size = previewSize
  const versionData = await getversion()
- let needUpdated = await updateCheck(1.4)
+ let needUpdated = await updateCheck(1.5)
  let data = await fetchData()
  
 
@@ -177,17 +180,23 @@
  // 设置边距(上，左，下，右)
  widget.setPadding(padding.top, padding.left, padding.bottom, padding.right)
  // 设置组件
- Script.setWidget(widget)
- // 完成脚本
- Script.complete()
- // 预览
- if (previewSize == "Large") {
-   widget.presentLarge()
- } else if (previewSize == "Medium") {
-   widget.presentMedium()
- } else {
-   widget.presentSmall()
- }
+ if (!config.runsInWidget) {
+  switch (previewSize) {
+    case "small":
+      await widget.presentSmall();
+      break;
+    case "medium":
+      await widget.presentMedium();
+      break;
+    case "large":
+      await widget.presentLarge();
+      break;
+  }
+}
+Script.setWidget(widget)
+// 完成脚本
+Script.complete()
+// 预览
  
  // if (config.runsInWidget) {
  //   const size = config.widgetFamily;
@@ -218,7 +227,7 @@
    // widget.backgroundColor = colors.bgColor;
  
    // small size
-   if (size == 'Small') {
+   if (previewSize == 'small') {
      // widget.setPadding(5, 5, 15, 2);
      let titleStack = widget.addStack()
      titleStack.layoutHorizontally();
@@ -259,7 +268,7 @@
        `${data.newslist[0].p89}`,
  
        leftColumn,
-       size
+       previewSize
      );
      leftColumn.addSpacer();
      addItem(oilprice92IconPath,
@@ -267,7 +276,7 @@
        `${data.newslist[0].p92}`,
  
        leftColumn,
-       size
+       previewSize
      );
  
      // right column
@@ -277,7 +286,7 @@
        `${data.newslist[0].p95}`,
  
        rightColumn,
-       size
+       previewSize
      );
  
      rightColumn.addSpacer();
@@ -288,11 +297,11 @@
        `${data.newslist[0].p98}`,
  
        rightColumn,
-       size
+       previewSize
      );
    }
    // medium size
-   else if (size == 'Medium') {
+   else if (previewSize == 'medium') {
      // widget.setPadding(5, 5, 15, 0);
      let titleStack = widget.addStack()
      titleStack.layoutHorizontally();
@@ -321,7 +330,7 @@
        '',
        `${data.newslist[0].p89}`,
        contentStack,
-       size
+       previewSize
      );
  
      contentStack.addSpacer(30);
@@ -331,7 +340,7 @@
        '',
        `${data.newslist[0].p92}`,
        contentStack,
-       size
+       previewSize
      );
  
      contentStack.addSpacer(30);
@@ -341,7 +350,7 @@
        '',
        `${data.newslist[0].p95}`,
        contentStack,
-       size
+       previewSize
      );
  
      contentStack.addSpacer(30);
@@ -351,7 +360,7 @@
        '',
        `${data.newslist[0].p98}`,
        contentStack,
-       size
+       previewSize
      );
  
      contentStack.addSpacer(8);
@@ -379,10 +388,10 @@
    return widget;
  }
  
- function addItem(img, description, count, stack, size) {
+ function addItem(img, description, count, stack, previewSize) {
    const colors = colorConfig();
    // small size
-   if (size == 'Small') {
+   if (previewSize == 'small') {
      const line = stack.addStack();
      line.layoutVertically();
      // line.url = link;
@@ -393,11 +402,11 @@
  
      line.addSpacer(3);
      const wname = line.addText(count);
-     wname.font = Font.boldSystemFont(20);
+     wname.font = new Font("Chalkduster",20);
      wname.textColor = colors.textColor;
    }
    // medium size
-   else if (size == 'Medium') {
+   else if (previewSize == 'medium') {
      const item = stack.addStack();
      item.layoutVertically();
      // item.url = link;
@@ -412,7 +421,7 @@
      item.addSpacer(3);
  
      const wname = item.addText(count);
-     wname.font = Font.boldSystemFont(22);
+     wname.font = new Font("Chalkduster",22);
      wname.textColor = colors.textColor;
    }
  }
@@ -660,7 +669,7 @@
  async function updateCheck(version) {
  
    const uC = versionData
-   log('[+]' + uC['ONE-oilprice'].version)
+   log('[+]最新版本：' + uC['ONE-oilprice'].version)
    let needUpdate = false
    if (uC['ONE-oilprice'].version != version) {
      needUpdate = true
@@ -692,3 +701,8 @@
  
    return needUpdate
  }
+
+/********************************************************
+ ************* MAKE SURE TO COPY EVERYTHING *************
+ *******************************************************
+ ************ © 2021 Copyright Nicolas-kings ************/

@@ -1,76 +1,82 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
-// icon-color: deep-blue; icon-glyph: magic;
-
+// icon-color: deep-green; icon-glyph: user-shield;
+/********************************************************
+ ************* MAKE SURE TO COPY EVERYTHING *************
+ *******************************************************
+ ************ © 2021 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-COVID_Vac.js
- * version    : 1.1
+ * version    : 1.2
  * author     : Nicolas-kings
  * date       : 2021-05-23
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  :  v1.1 - 部分UI细节调整
+ * Changelog  :  v1.2 - 修复小尺寸无数据的问题、部分细节优化
+ *               v1.1 - 部分UI细节调整
  *               v1.0 - 首次发布
  *******************************************************/
  const filename = `${Script.name()}.jpg`
  const files = FileManager.local()
  const path = files.joinPath(files.documentsDirectory(), filename)
- const previewSize = "Medium"  // Medium、Small 预览大小
- const COLORS = {
-     blynk : '#2edbad',
-     bg1 : '#29323c',
-     bg2 : '#1c1c1c'
- }
- const type = args.widgetParameter || '中国'    //中国、全球
+ const previewSize = (config.runsInWidget ? config.widgetFamily : "medium");// medium、small、large 预览大小
+ const type = args.widgetParameter || '中国'    // 选项：中国、全球   在此修改或桌面组件Parameter处 默认展示中国数据
+ const COLORS = {blynk: '#2edbad',bg1: '#29323c',bg2: '#1c1c1c'} //背景颜色
  const versionData = await getversion()
- let needUpdated = await updateCheck(1.1) 
+ let needUpdated = await updateCheck(1.2)
  const CVTData = await getVcT_TopData()
  const Tol_cvt = (Math.floor(CVTData.total_vaccinations / 10000) / 10000).toFixed(1)
- const New_cvt = Math.floor( CVTData.new_vaccinations / 100) / 100           
+ const New_cvt = Math.floor(CVTData.new_vaccinations / 100) / 100
  let widget = await createWidget()
- //config.widgetFamily = config.widgetFamily || 'medium'
  
+ if (!config.runsInWidget) {
+     switch (previewSize) {
+       case "small":
+         await widget.presentSmall();
+         break;
+       case "medium":
+         await widget.presentMedium();
+         break;
+       case "large":
+         await widget.presentLarge();
+         break;
+     }
+   }
  Script.setWidget(widget)
  // 完成脚本
  Script.complete()
  // 预览
- if (previewSize == "Large") {
-     widget.presentLarge()
- } else if (previewSize == "Medium") {
-     widget.presentMedium()
- } else {
-     widget.presentSmall()
- }
  
- async function createWidget(){
+ 
+ async function createWidget() {
      const widget = new ListWidget()
-     if(previewSize == 'Medium' || config.widgetFamily === "medium"){
-        
-         widget.setPadding(10,15,10,15)
+     if (previewSize == 'medium') {
+ 
+         widget.setPadding(10, 15, 10, 15)
          const bgColor = new LinearGradient()
          bgColor.colors = [new Color(COLORS.bg1), new Color(COLORS.bg2)]
          bgColor.locations = [0.0, 1.0]
          widget.backgroundGradient = bgColor;
-             
+ 
          const timeFormatter = new DateFormatter();
          timeFormatter.locale = "en";
          timeFormatter.useNoDateStyle();
          timeFormatter.useShortTimeStyle();
  
-         let titleRow = widget.addStack() 
+         let titleRow = widget.addStack()
          titleRow.centerAlignContent()
          const title = titleRow.addText(`实时疫苗接种数据 · ${type}`)
-         title.font = Font.boldSystemFont(16)
+         title.font = Font.lightSystemFont(16)
          title.textColor = new Color(COLORS.blynk)
          titleRow.addSpacer()
-             
+ 
          const dateLine = titleRow.addText(`↻ ${timeFormatter.string(new Date())}`);
-         dateLine.font = Font.boldSystemFont(10)
+         dateLine.font = new Font("Chalkduster", 10)
          dateLine.textColor = Color.white();
          dateLine.textOpacity = 0.7;
-             
+ 
          widget.addSpacer(25)
  
-         let row = widget.addStack() 
+         let row = widget.addStack()
  
          batteryColumn = row.addStack()
          batteryColumn.layoutVertically()
@@ -81,7 +87,7 @@
          batteryLine.textColor = Color.white()
  
          const batteryLabel = batteryColumn.addText(`${Tol_cvt}`)
-         batteryLabel.font = Font.regularSystemFont(20)
+         batteryLabel.font = new Font("Arialroundedmtbold", 20)
          batteryLabel.textColor = Color.white()
  
          row.addSpacer()
@@ -93,14 +99,14 @@
  
          const tempLine = tempColumn.addText(`较上日新增`)
          tempLine.font = Font.lightSystemFont(12)
-             tempLine.textColor = Color.white()
+         tempLine.textColor = Color.white()
  
          const tempLabel = tempColumn.addText(`${New_cvt}w`)
-         tempLabel.font = Font.regularSystemFont(20)
+         tempLabel.font = new Font("Arialroundedmtbold", 20)
          tempLabel.textColor = Color.white()
  
-         row.addSpacer()    
-     //      Create humidity column & set its properties
+         row.addSpacer()
+         //      Create humidity column & set its properties
          humColumn = row.addStack()
          humColumn.layoutVertically()
          humColumn.centerAlignContent()
@@ -110,19 +116,19 @@
          humLine.textColor = Color.white()
  
          const humLabel = humColumn.addText(`${CVTData.total_vaccinations_per_hundred}`)
-         humLabel.font = Font.regularSystemFont(20)
+         humLabel.font = new Font("Arialroundedmtbold", 20)
          humLabel.textColor = Color.white()
          humLabel.leftAlignText()
-             
+ 
          widget.addSpacer(20)
-             
+ 
          const deviceLine = widget.addText(versionData['ONE-COVID_Vac'].notice)
          deviceLine.font = Font.mediumSystemFont(8)
          deviceLine.lineLimit = 4
          deviceLine.textColor = Color.white()
-               
-     }else if(previewSize == 'Small'|| config.widgetFamily === "small"){
-         const widget = new ListWidget()
+ 
+     } else if (previewSize == 'small') {
+         // const widget = new ListWidget()
          const bgColor = new LinearGradient()
          bgColor.colors = [new Color(COLORS.bg1), new Color(COLORS.bg2)]
          bgColor.locations = [0.0, 1.0]
@@ -134,7 +140,7 @@
          timeFormatter.useShortTimeStyle();
  
          const title = widget.addText(`实时疫苗接种数据 · ${type}`)
-         title.font = Font.boldSystemFont(14)
+         title.font = Font.boldSystemFont(10)
          title.textColor = new Color(COLORS.blynk)
          widget.addSpacer(10)
  
@@ -143,7 +149,7 @@
          batteryLine.textColor = Color.white()
  
          const batteryLabel = widget.addText(`${Tol_cvt}`)
-         batteryLabel.font = Font.regularSystemFont(14)
+         batteryLabel.font = new Font("Arialroundedmtbold", 14)
          batteryLabel.textColor = Color.white()
  
          widget.addSpacer(5)
@@ -153,7 +159,7 @@
          tempLine.textColor = Color.white()
  
          const tempLabel = widget.addText(`${New_cvt}w`)
-         tempLabel.font = Font.regularSystemFont(14)
+         tempLabel.font = new Font("Arialroundedmtbold", 14)
          tempLabel.textColor = Color.white()
  
          widget.addSpacer(5)
@@ -163,16 +169,16 @@
          deviceLine.textColor = Color.white()
  
          const connectionLine = widget.addText(`${CVTData.total_vaccinations_per_hundred}`)
-         connectionLine.font = Font.regularSystemFont(14)
+         connectionLine.font = new Font("Arialroundedmtbold", 14)
          connectionLine.textColor = Color.white()
          widget.addSpacer(10)
          const dateLine = widget.addText(`↻  ${timeFormatter.string(new Date())}`);
-         dateLine.font = Font.boldSystemFont(10)
+         dateLine.font = new Font("Chalkduster", 10)
          dateLine.textColor = Color.white();
          // dateLine.rightAlignText();
          dateLine.textOpacity = 0.7;
-        
-     }else{
+ 
+     } else {
          const bgColor = new LinearGradient()
          bgColor.colors = [new Color(COLORS.bg1), new Color(COLORS.bg2)]
          bgColor.locations = [0.0, 1.0]
@@ -187,21 +193,21 @@
  }
  
  
-  async function getVcT_TopData() {
+ async function getVcT_TopData() {
      const VTDataCachePath = files.joinPath(files.documentsDirectory(), "VaccineTopData-NK")
      var VTData
      try {
-       VTData = await new Request("https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=VaccineTopData").loadJSON()
+         VTData = await new Request("https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=VaccineTopData").loadJSON()
          files.writeString(VTDataCachePath, JSON.stringify(VTData))
          log("[+]疫苗信息获取成功")
      } catch (e) {
-       VTData = JSON.parse(files.readString(VTDataCachePath))
+         VTData = JSON.parse(files.readString(VTDataCachePath))
          log("[+]获取疫苗信息失败，使用缓存数据")
      }
-   
+ 
      return VTData.data.VaccineTopData[type]
-   }
-   async function getversion() {
+ }
+ async function getversion() {
      const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
      var versionData
      try {
@@ -222,7 +228,7 @@
  async function updateCheck(version) {
  
      const uC = versionData
-     log('[+]当前版本：' + uC['ONE-COVID_Vac'].version)
+     log('[+]最新版本：' + uC['ONE-COVID_Vac'].version)
      let needUpdate = false
      if (uC['ONE-COVID_Vac'].version != version) {
          needUpdate = true
@@ -254,3 +260,8 @@
  
      return needUpdate
  }
+
+ /********************************************************
+ ************* MAKE SURE TO COPY EVERYTHING *************
+ *******************************************************
+ ************ © 2021 Copyright Nicolas-kings ************/
