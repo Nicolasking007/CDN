@@ -7,26 +7,24 @@
  ************ © 2021 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Today.js
- * version    : 1.4
+ * version    : 1.5
  * author     : Nicolas-kings
  * date       : 2021-04-04
  * github     : https://github.com/Nicolasking007/Scriptable
- *Changelog   : v1.4 - 优化背景图片缓存处理
+ * Changelog  : v1.5 - 优化背景逻辑
+ *              v1.4 - 优化背景图片缓存处理
                 v1.3 - 支持版本更新、脚本远程下载
                 v1.2 - api接口数据增加缓存，应对无网络情况下也能使用小组件
                 v1.1 - 替换api接口
                 v1.0 - 首次发布
 ----------------------------------------------- */
-/************************************************************
- ********************用户设置 *********************
- ************请在首次运行之前进行修改************
- ***********************************************************/
+//##############公共参数配置模块############## 
 const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
 const changePicBg = false  //选择true时，使用透明背景 
 const ImageMode = true   //选择true时，使用必应壁纸
-const previewSize = "Medium"  //预览大小
+const previewSize =  (config.runsInWidget ? config.widgetFamily : "medium");// medium、small、large 预览大小
 const colorMode = false // 是否是纯色背景
 const COLOR_LIGHT_GRAY = new Color('#E5E7EB', 1);
 const COLOR_DARK_GRAY = new Color('#374151', 1);
@@ -36,7 +34,7 @@ let bigsize = 85 // 今天字体大小
 
 // 获取农历信息
 const versionData = await getversion()
-let needUpdated = await updateCheck(1.4)
+let needUpdated = await updateCheck(1.5)
 let date = new Date()
 const lunarInfo = await getLunar(date.getDate() - 1)
 let lunarJoinInfo = "农历" + lunarInfo.infoLunarText + "·" + lunarInfo.lunarYearText + " " + lunarInfo.holidayText
@@ -55,25 +53,25 @@ const padding = {
   right: 0
 }
 let widget = await createWidget()
-/*
-****************************************************************************
-* 这里是图片逻辑，不用修改
-****************************************************************************
-*/
+
+//#####################背景模块-START#####################
+
 if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
   const okTips = "您的小部件背景已准备就绪"
   let message = "图片模式支持相册照片&背景透明"
-  let options = ["图片选择", "透明背景"]
-  let isTransparentMode = await generateAlert(message, options)
-  if (!isTransparentMode) {
-    let img = await Photos.fromLibrary()
-    message = okTips
-    const resultOptions = ["好的"]
-    await generateAlert(message, resultOptions)
-    files.writeImage(path, img)
-  } else {
-    message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
-    let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
+  let options = ["图片选择", "透明背景", "配置文档"]
+    let response = await generateAlert(message, options)
+    if (response == 0) {
+      let img = await Photos.fromLibrary()
+      message = okTips
+      const resultOptions = ["好的"]
+      await generateAlert(message, resultOptions)
+      files.writeImage(path, img)
+    } if (response == 2) {
+      Safari.open(versionData['ONE-Today'].wxurl);
+    } if (response == 1) {
+      message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
+      let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
 
     let shouldExit = await generateAlert(message, exitOptions)
     if (shouldExit) return
@@ -143,10 +141,8 @@ if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
 
 }
 
+//#####################背景模块-设置小组件的背景#####################
 
-//////////////////////////////////////
-// 组件End
-// 设置小组件的背景
 if (colorMode) {
   widget.backgroundColor = COLOR_BAR_BACKGROUND
 } else if (ImageMode) {
@@ -163,18 +159,25 @@ else {
 // 设置边距(上，左，下，右)
 widget.setPadding(padding.top, padding.left, padding.bottom, padding.right)
 // 设置组件
+if (!config.runsInWidget) {
+  switch (previewSize) {
+    case "small":
+      await widget.presentSmall();
+      break;
+    case "medium":
+      await widget.presentMedium();
+      break;
+    case "large":
+      await widget.presentLarge();
+      break;
+  }
+}
 Script.setWidget(widget)
 // 完成脚本
 Script.complete()
 // 预览
-if (previewSize == "Large") {
-  widget.presentLarge()
-} else if (previewSize == "Medium") {
-  widget.presentMedium()
-} else {
-  widget.presentSmall()
-}
 
+//#####################内容模块-创建小组件内容#####################
 
 async function createWidget() {
   let widget = new ListWidget()
@@ -184,7 +187,7 @@ async function createWidget() {
   full.centerAlignText()
   full.textColor = new Color("#ffffff")
 
-  if (previewSize === "Small" || config.widgetFamily === "small") {
+  if (previewSize === "small") {
     //   const widget = new ListWidget();
     const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
     error.font = Font.blackMonospacedSystemFont(12)
@@ -193,7 +196,7 @@ async function createWidget() {
 
     widget.backgroundColor = COLOR_BAR_BACKGROUND
 
-  } else if (previewSize == "Large" || config.widgetFamily == "large") {
+  } else if (previewSize == "large") {
     //   const widget = new ListWidget();
     const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
     error.font = Font.blackMonospacedSystemFont(16)
@@ -237,6 +240,8 @@ async function createWidget() {
   }
   return widget
 }
+
+//#####################事务逻辑处理模块#####################
 
 function addDate(name, size, r) {
   let stack = r.addStack()
@@ -299,8 +304,6 @@ async function getLunar(day) {
 
     // 节日数据  
     response = await webview.evaluateJavaScript(getData, false)
-    console.log(`[+]欢迎使用：ONE-Today小组件`);
-    console.log("[+]遇到问题，请前往公众号：曰坛 反馈");
     Keychain.set(cacheKey, JSON.stringify(response))
     console.log(`[+]农历输出：${JSON.stringify(response)}`);
   } catch (e) {
@@ -329,6 +332,7 @@ async function gethoney() {
   return poetryData
 }
 
+//#####################背景模块-逻辑处理部分#####################
 
 async function shadowImage(img) {
   let ctx = new DrawContext()
@@ -497,6 +501,8 @@ function phoneSizes() {
   }
   return phones
 }
+
+//#####################版本更新模块#####################
 
 async function getversion() {
   const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")

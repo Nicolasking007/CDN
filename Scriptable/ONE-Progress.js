@@ -7,37 +7,36 @@
  ************ © 2021 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Progress.js
- * version    : 1.2
+ * version    : 1.3
  * author     : Nicolas-kings
  * date       : 2021-03-06
  * github     : https://github.com/Nicolasking007/Scriptable
  * desc       : 具体配置，详见微信公众号-曰(读yue)坛
  * color      : #FFA400, #FF7500, #0AA344, #4B5CC4, #B25D25
- * Changelog  :  v1.2 - 优化背景图片缓存处理
+ * Changelog  :  v1.3 - 优化背景逻辑
+ *               v1.2 - 优化背景图片缓存处理
  *               v1.1 - 支持版本更新、脚本远程下载
  *               v1.0 - 首次发布
 ----------------------------------------------- */
-/************************************************************
- ********************用户设置 *********************
- ************请在首次运行之前进行修改************
- ***********************************************************/
-
+//##############公共参数配置模块############## 
 const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
 const changePicBg = true  //选择true时，使用透明背景 
 const ImageMode = false  //选择true时，使用必应壁纸
-const previewSize = "Medium"  //预览大小
+const previewSize = (config.runsInWidget ? config.widgetFamily : "medium");// medium、small、large 预览大小
 const colorMode = false // 是否是纯色背景
 const life_expectancy = 77.3  //采用2020年中国人均预期寿命77.3岁
 
-/************************************************************
- ********************用户设置 *********************
- ************请在首次运行之前进行修改************
- ***********************************************************/
-////////////////////////
+//##############用户自定义参数配置模块-开始##############
+//⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊
+//##############请在首次运行之前进行修改##############
+
 const LIFE_BIRTHDAY = '1995-09-30'; //在这里输入您的出生年月  
-////////////////////////
+
+//⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈
+//##############用户自定义参数配置模块-结束##############
+
 const FONT_SIZE = 16;
 const LINE_HEIGHT = 16;
 const LABEL_WIDTH = 100;
@@ -50,7 +49,7 @@ const COLOR_BAR_BACKGROUND = Color.dynamic(COLOR_LIGHT_GRAY, COLOR_DARK_GRAY);
 
 
 const versionData = await getversion()
-let needUpdated = await updateCheck(1.2)
+let needUpdated = await updateCheck(1.3)
 //渐变色  #3B82F6,#10B981,#FBBF24,#EF4444
 const DEFAULT_Color = new LinearGradient()
 DEFAULT_Color.colors = [new Color('#3B82F6'), new Color('#FBBF24'), new Color('#10B981'),]
@@ -222,26 +221,25 @@ const padding = {
 
 let widget = await createWidget()
 
-/*
-****************************************************************************
-* 这里是图片逻辑，不用修改
-****************************************************************************
-*/
+//#####################背景模块-设置小组件的背景#####################
+
 if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
   const okTips = "您的小部件背景已准备就绪"
   let message = "图片模式支持相册照片&背景透明"
-  let options = ["图片选择", "透明背景"]
-  let isTransparentMode = await generateAlert(message, options)
-  if (!isTransparentMode) {
-    let img = await Photos.fromLibrary()
-    message = okTips
-    const resultOptions = ["好的"]
-    await generateAlert(message, resultOptions)
-    files.writeImage(path, img)
-  } else {
-    message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
-    let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
-
+  let message = "图片模式支持相册照片&背景透明"
+  let options = ["图片选择", "透明背景", "配置文档"]
+    let response = await generateAlert(message, options)
+    if (response == 0) {
+      let img = await Photos.fromLibrary()
+      message = okTips
+      const resultOptions = ["好的"]
+      await generateAlert(message, resultOptions)
+      files.writeImage(path, img)
+    } if (response == 2) {
+      Safari.open(versionData['ONE-Progress'].wxurl);
+    } if (response == 1) {
+      message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
+      let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
     let shouldExit = await generateAlert(message, exitOptions)
     if (shouldExit) return
 
@@ -311,9 +309,9 @@ if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
 }
 
 
-//////////////////////////////////////
-// 组件End
-// 设置小组件的背景
+//#####################背景模块-设置小组件的背景#####################
+
+
 if (colorMode) {
   widget.backgroundColor = COLOR_BAR_BACKGROUND
 } else if (ImageMode) {
@@ -328,18 +326,29 @@ else {
 }
 // 设置边距(上，左，下，右)
 widget.setPadding(padding.top, padding.left, padding.bottom, padding.right)
+
 // 设置组件
+if (!config.runsInWidget) {
+  switch (previewSize) {
+    case "small":
+      await widget.presentSmall();
+      break;
+    case "medium":
+      await widget.presentMedium();
+      break;
+    case "large":
+      await widget.presentLarge();
+      break;
+  }
+}
 Script.setWidget(widget)
 // 完成脚本
 Script.complete()
 // 预览
-if (previewSize == "Large") {
-  widget.presentLarge()
-} else if (previewSize == "Medium") {
-  widget.presentMedium()
-} else {
-  widget.presentSmall()
-}
+
+
+//#####################内容模块-创建小组件内容#####################
+
 async function createWidget() {
   const widget = new ListWidget();
 
@@ -388,7 +397,7 @@ async function createWidget() {
   }
 
 
-  if (previewSize === "Small" || config.widgetFamily === "small") {
+  if (previewSize === "small") {
     //   const widget = new ListWidget();
     const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
     error.font = Font.blackMonospacedSystemFont(12)
@@ -397,7 +406,7 @@ async function createWidget() {
 
     widget.backgroundColor = COLOR_BAR_BACKGROUND
 
-  } else if (previewSize == "Large" || config.widgetFamily == "large") {
+  } else if (previewSize == "large") {
     //   const widget = new ListWidget();
     const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
     error.font = Font.blackMonospacedSystemFont(16)
@@ -426,6 +435,7 @@ async function createWidget() {
   return widget
 }
 
+//#####################背景模块-逻辑处理部分#####################
 
 async function shadowImage(img) {
   let ctx = new DrawContext()
@@ -602,6 +612,8 @@ function phoneSizes() {
   return phones
 }
 
+//#####################版本更新模块#####################
+
 async function getversion() {
   const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
   var versionData
@@ -655,6 +667,7 @@ async function updateCheck(version) {
 
   return needUpdate
 }
+
 
 /********************************************************
  ************* MAKE SURE TO COPY EVERYTHING *************

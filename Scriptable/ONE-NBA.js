@@ -7,11 +7,12 @@
  ************ © 2021 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-NBA.js
- * version    : 1.6
+ * version    : 1.7
  * author     : thisisevanfox & Nicolas-kings
  * date       : 2021-05-09
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  :  v1.6 - 细节优化、适配中文比赛场地
+ * Changelog  :  v1.7 - 优化背景逻辑
+ *               v1.6 - 细节优化、适配中文比赛场地
  *               v1.5 - 优化背景图片缓存处理
                  v1.4 - 适配透明背景设置、图片背景高斯模糊等
                  v1.3 - 修复bug
@@ -19,7 +20,7 @@
                  v1.1 - api接口数据增加缓存，应对无网络情况下也能使用小组件
                  v1.0 - 首次发布
 ----------------------------------------------- */
-
+//##############公共参数配置模块############## 
 const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
@@ -31,12 +32,14 @@ const bgColor = new Color("000000") // 小组件背景色
 const blurStyle = "light" // 高斯样式：light/dark
 
 
-/************************************************************
- ********************用户设置 *********************
- ************请在首次运行之前进行修改************
- ***********************************************************/
+//##############用户自定义参数配置模块-开始##############
+//⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊
+//##############请在首次运行之前进行修改##############
+
 const MY_NBA_TEAM = "LAL"; ///在此处输入你喜欢的NBA球队的缩写。 具体配置 详见公众号内推文---曰坛
 
+//⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈
+//##############用户自定义参数配置模块-结束##############
 
 const padding = {
   top: 10,
@@ -45,7 +48,7 @@ const padding = {
   right: 10
 }
 const versionData = await getversion()
-let needUpdated = await updateCheck(1.6)
+let needUpdated = await updateCheck(1.7)
 const DARK_MODE = Device.isUsingDarkAppearance();
 
 
@@ -75,26 +78,25 @@ const WIDGET_URL = "https://m.china.nba.com";
 //true =窗口小部件将处于黑暗模式。
 //false =窗口小部件将处于亮灯模式。
 
-/*
-****************************************************************************
-* 这里是图片逻辑，不用修改
-****************************************************************************/
+//#####################背景模块-START#####################
+
 const widget = await createWidget()
 if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
   const okTips = "您的小部件背景已准备就绪"
   let message = "图片模式支持相册照片&背景透明"
-  let options = ["图片选择", "透明背景"]
-  let isTransparentMode = await generateAlert(message, options)
-  if (!isTransparentMode) {
+  let options = ["图片选择", "透明背景", "配置文档"]
+  let response = await generateAlert(message, options)
+  if (response == 0) {
     let img = await Photos.fromLibrary()
     message = okTips
     const resultOptions = ["好的"]
     await generateAlert(message, resultOptions)
     files.writeImage(path, img)
-  } else {
+  } if (response == 2) {
+    Safari.open(versionData['ONE-NBA'].wxurl);
+  } if (response == 1) {
     message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
     let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
-
     let shouldExit = await generateAlert(message, exitOptions)
     if (shouldExit) return
 
@@ -163,10 +165,8 @@ if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
 
 }
 
+//#####################背景模块-设置小组件的背景#####################
 
-//////////////////////////////////////
-// 组件End
-// 设置小组件的背景
 if (colorMode) {
   widget.backgroundColor = bgColor
 } else if (ImageMode) {
@@ -204,6 +204,8 @@ Script.setWidget(widget)
 Script.complete()
 // 预览
 
+//#####################内容模块-创建小组件内容#####################
+
 
 async function createWidget() {
   const widget = new ListWidget();
@@ -231,6 +233,8 @@ async function createWidget() {
   return widget;
 
 }
+
+//#####################事务逻辑处理模块#####################
 
 
 const WIDGET_BACKGROUND = DARK_MODE ? new Color("#ff7f00") : new Color("#FFFFFF");
@@ -1016,7 +1020,7 @@ function emptyFunction() {
 }
 
 /**
- * Returns static team data.
+ * 返回静态团队数据
  *
  * @return {Object}
  */
@@ -1325,7 +1329,7 @@ function getTeamData() {
   };
 }
 
-
+//#####################背景模块-逻辑处理部分#####################
 
 async function getImage(url) {
 
@@ -1681,6 +1685,8 @@ function phoneSizes() {
   }
   return phones
 }
+
+//#####################版本更新模块#####################
 
 async function getversion() {
   const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
