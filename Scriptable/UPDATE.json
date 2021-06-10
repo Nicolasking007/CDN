@@ -84,7 +84,7 @@
         "Updated": "2021-03-28 13:00"
     },
     "ONE-hotcomments": {
-        "version": "2.3",
+        "version": "2.4",
         "author": "Nicolas-kings",
         "description": "网易云热评小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-hotcomments/ONE-hotcomments.js",
@@ -96,7 +96,7 @@
         "images": [
             "https://i.loli.net/2021/03/27/WbFpYaeitnZ5Mzc.jpg"
         ],
-        "notes": "更新内容：\n- 优化背景逻辑 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-06-04 21:55",
+        "notes": "更新内容：\n- 修复图片报错的bug \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-06-10 10:30",
         "Updated": "2021-03-28 13:00"
     },
     "ONE-oilprice": {

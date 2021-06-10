@@ -7,12 +7,13 @@
  ************ © 2021 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-hotcomments.js
- * version    : 2.3
+ * version    : 2.4
  * author     : Nicolas-kings
  * date       : 2021-04-05
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  : v2.3 - 优化背景逻辑
+ * Changelog  : v2.4 - 修复图片报错的bug
+ *              v2.3 - 优化背景逻辑
  *              v2.2 - 优化背景图片缓存处理
                 v2.1 - 细节优化，样式调整
                 v2.0 - 小组件UI重构
@@ -38,7 +39,7 @@ const padding = {
   right: 10
 }
 const versionData = await getversion()
-let needUpdated = await updateCheck(2.3)
+let needUpdated = await updateCheck(2.4)
 const hotcommentsData = await getData();
 const widget = await createWidget()
 
@@ -141,8 +142,8 @@ if (colorMode) {
   // const url = "http://p1.music.126.net/uarVFKgUlrI9Z1nr-50cAw==/109951162843608471.jpg"     //固定一张图片,这里我选用城南花已开的封面,图片不能太大，容易崩溃
   // const i = await new Request(url);
   // const bgImgs = await i.loadImage();
-  const bgImgs = await getImageByUrl(hotcommentsData.data.picurl, `${hotcommentsData.data.picurl}-bg`, false)
-  bgImg = await blurImage(bgImgs, blurStyle, 100)
+  const bgImgs = await getImageByUrl(hotcommentsData.data.picurl, `hotcomments-bg`, false)
+  bgImg = await blurImage(bgImgs, blurStyle, 120)
   widget.backgroundImage = bgImg
   // widget.backgroundImage = await shadowImage(img)
 }
@@ -213,7 +214,7 @@ async function createWidget() {
 
   const taglist = nameStack.addText(`—— 评论来自${hotcommentsData.data.artistsname} ·《${hotcommentsData.data.name}》`);
   taglist.textColor = new Color("#bfbfbf");
-  taglist.font = Font.semiboldSystemFont(10);
+  taglist.font = Font.semiboldSystemFont(9);
 
   footerStack.addSpacer();
 
