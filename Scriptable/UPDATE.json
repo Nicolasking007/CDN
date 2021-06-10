@@ -116,7 +116,7 @@
         "Updated": "2021-03-28 13:00"
     },
     "ONE-Today": {
-        "version": "1.5",
+        "version": "1.6",
         "author": "Nicolas-kings",
         "description": "简单的日历小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Today/ONE-Today.js",
@@ -128,7 +128,7 @@
         "images": [
             "https://i.loli.net/2021/03/27/TbFJz8slCiYONV4.jpg"
         ],
-        "notes": "更新内容：\n- 优化背景逻辑 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-06-04 21:55",
+        "notes": "更新内容：\n- 应某位居士之托，遂增加干支纪年法，其他未做调整 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-06-10 13:50",
         "Updated": "2021-03-28 13:00"
     },
     "捷径社区数据": {

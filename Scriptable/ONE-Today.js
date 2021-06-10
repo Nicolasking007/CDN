@@ -7,11 +7,12 @@
  ************ © 2021 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Today.js
- * version    : 1.5
+ * version    : 1.6
  * author     : Nicolas-kings
  * date       : 2021-04-04
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  : v1.5 - 优化背景逻辑
+ * Changelog  : v1.6 - 应某位居士之托，遂增加干支纪年法，其他未做调整
+ *              v1.5 - 优化背景逻辑
  *              v1.4 - 优化背景图片缓存处理
                 v1.3 - 支持版本更新、脚本远程下载
                 v1.2 - api接口数据增加缓存，应对无网络情况下也能使用小组件
@@ -24,22 +25,32 @@ const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
 const changePicBg = false  //选择true时，使用透明背景 
 const ImageMode = true   //选择true时，使用必应壁纸
-const previewSize =  (config.runsInWidget ? config.widgetFamily : "medium");// medium、small、large 预览大小
+const previewSize = (config.runsInWidget ? config.widgetFamily : "medium");// medium、small、large 预览大小
 const colorMode = false // 是否是纯色背景
 const COLOR_LIGHT_GRAY = new Color('#E5E7EB', 1);
 const COLOR_DARK_GRAY = new Color('#374151', 1);
 const COLOR_BAR_BACKGROUND = Color.dynamic(COLOR_LIGHT_GRAY, COLOR_DARK_GRAY);
+
+
+
+//##############用户自定义参数配置模块-开始##############
+//⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊
+//##############请在首次运行之前进行修改##############
+
+const show_sexagenary_cycle = false   //显示干支纪年法  默认展示农历
 let smallsize = 80  // 昨天明天字体大小
 let bigsize = 85 // 今天字体大小
 
+//⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈
+//##############用户自定义参数配置模块-结束##############
+
+
 // 获取农历信息
 const versionData = await getversion()
-let needUpdated = await updateCheck(1.5)
+let needUpdated = await updateCheck(1.6)
 let date = new Date()
 const lunarInfo = await getLunar(date.getDate() - 1)
-let lunarJoinInfo = "农历" + lunarInfo.infoLunarText + "·" + lunarInfo.lunarYearText + " " + lunarInfo.holidayText
 const honeyData = await gethoney()// 
-const str = date.getFullYear() + "年" + (date.getMonth() + 1) + "月"
 let day = new Date().getDate().toString()
 let stamp = new Date().getTime() - 60 * 60 * 24 * 1000
 let stamp1 = new Date().getTime() + 60 * 60 * 24 * 1000
@@ -60,18 +71,18 @@ if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
   const okTips = "您的小部件背景已准备就绪"
   let message = "图片模式支持相册照片&背景透明"
   let options = ["图片选择", "透明背景", "配置文档"]
-    let response = await generateAlert(message, options)
-    if (response == 0) {
-      let img = await Photos.fromLibrary()
-      message = okTips
-      const resultOptions = ["好的"]
-      await generateAlert(message, resultOptions)
-      files.writeImage(path, img)
-    } if (response == 2) {
-      Safari.open(versionData['ONE-Today'].wxurl);
-    } if (response == 1) {
-      message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
-      let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
+  let response = await generateAlert(message, options)
+  if (response == 0) {
+    let img = await Photos.fromLibrary()
+    message = okTips
+    const resultOptions = ["好的"]
+    await generateAlert(message, resultOptions)
+    files.writeImage(path, img)
+  } if (response == 2) {
+    Safari.open(versionData['ONE-Today'].wxurl);
+  } if (response == 1) {
+    message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
+    let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
 
     let shouldExit = await generateAlert(message, exitOptions)
     if (shouldExit) return
@@ -181,14 +192,11 @@ Script.complete()
 
 async function createWidget() {
   let widget = new ListWidget()
-  let full = widget.addText(str + '·' + `${lunarJoinInfo}`)
-  full.font = new Font('Menlo', 14)
-  full.lineLimit = 1
-  full.centerAlignText()
-  full.textColor = new Color("#ffffff")
+  let lunarJoinInfo = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + ' · ' + "农历" + lunarInfo.infoLunarText + "·" + lunarInfo.lunarYearText + " " + lunarInfo.holidayText
+  let lunarJoincontent = date.getFullYear() + ' · ' + lunarInfo.lunarYearcontent + " " + lunarInfo.holidayText
 
   if (previewSize === "small") {
-    //   const widget = new ListWidget();
+
     const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
     error.font = Font.blackMonospacedSystemFont(12)
     error.textColor = Color.white()
@@ -197,7 +205,7 @@ async function createWidget() {
     widget.backgroundColor = COLOR_BAR_BACKGROUND
 
   } else if (previewSize == "large") {
-    //   const widget = new ListWidget();
+
     const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
     error.font = Font.blackMonospacedSystemFont(16)
     error.centerAlignText()
@@ -214,6 +222,11 @@ async function createWidget() {
 
   } else {
 
+    let full = widget.addText(show_sexagenary_cycle ? lunarJoincontent : lunarJoinInfo)
+    full.font = new Font("Chalkduster", 14)
+    full.lineLimit = 1
+    full.centerAlignText()
+    full.textColor = new Color("#ffffff")
     let body = widget.addStack()
     body.bottomAlignContent()
 
@@ -289,6 +302,7 @@ async function getLunar(day) {
                   try {
                       infoLunarText = document.querySelector('div#wnrl_k_you_id_${day}.wnrl_k_you .wnrl_k_you_id_wnrl_nongli').innerText
                       holidayText = document.querySelectorAll('div.wnrl_k_zuo div.wnrl_riqi')[${day}].querySelector('.wnrl_td_bzl').innerText
+                      lunarYearcontent = document.querySelector('div#wnrl_k_you_id_${day}.wnrl_k_you .wnrl_k_you_id_wnrl_nongli_ganzhi').innerText
                       lunarYearText = document.querySelector('div.wnrl_k_you_id_wnrl_nongli_ganzhi').innerText
                       lunarYearText = lunarYearText.slice(0, lunarYearText.indexOf('年')+1)
                       if(infoLunarText.search(holidayText) != -1) {
@@ -297,7 +311,7 @@ async function getLunar(day) {
                   } catch {
                       holidayText = ''
                   }
-                  return {infoLunarText: infoLunarText,  lunarYearText: lunarYearText,  holidayText: holidayText }
+                  return {infoLunarText: infoLunarText, lunarYearcontent:lunarYearcontent, lunarYearText: lunarYearText,  holidayText: holidayText }
               }
               
               getData()`
