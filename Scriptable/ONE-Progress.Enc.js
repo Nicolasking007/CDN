@@ -13,7 +13,7 @@
  * github     : https://github.com/Nicolasking007/Scriptable
  * desc       : 具体配置，详见微信公众号-曰(读yue)坛
  * color      : #FFA400, #FF7500, #0AA344, #4B5CC4, #B25D25
- * Changelog  :  v1.4 - 压缩代码，便于复制
+ * Changelog  :  v1.4 - 压缩代码，提升性能
  *               v1.3 - 优化背景逻辑
  *               v1.2 - 优化背景图片缓存处理
  *               v1.1 - 支持版本更新、脚本远程下载

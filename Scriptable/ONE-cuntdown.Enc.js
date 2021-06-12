@@ -11,7 +11,7 @@
  * author     : Nicolas-kings
  * date       : 2020-11-14
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  :  v1.3 - 压缩代码，便于复制
+ * Changelog  :  v1.3 - 压缩代码，提升性能
  *               v1.2 - 优化背景逻辑
  *               v1.1 - 优化背景图片缓存处理
                  v1.0 - 首次发布

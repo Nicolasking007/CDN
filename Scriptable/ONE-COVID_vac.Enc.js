@@ -12,7 +12,7 @@
  * date       : 2021-05-23
  * github     : https://github.com/Nicolasking007/Scriptable
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
- * Changelog  :  v1.4 - 压缩代码，便于复制
+ * Changelog  :  v1.4 - 压缩代码，提升性能
  *               v1.3 - 支持透明背景、图片背景、纯色背景设置
  *               v1.2 - 修复小尺寸无数据的问题、部分细节优化
  *               v1.1 - 部分UI细节调整

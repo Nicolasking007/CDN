@@ -12,7 +12,7 @@
  * date       : 2021-04-05
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  : v2.6 - 压缩代码，便于复制
+ * Changelog  : v2.6 - 压缩代码，提升性能
  *              v2.5 - 增加api数据源,遇到接口问题时可自行切换接口源
  *              v2.4 - 修复图片报错的bug
  *              v2.3 - 优化背景逻辑

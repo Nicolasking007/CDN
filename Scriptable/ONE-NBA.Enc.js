@@ -11,7 +11,7 @@
  * author     : thisisevanfox & Nicolas-kings
  * date       : 2021-05-09
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  :  v1.8 - 压缩代码，便于复制
+ * Changelog  :  v1.8 - 压缩代码，提升性能
  *               v1.7 - 优化背景逻辑
  *               v1.6 - 细节优化、适配中文比赛场地
  *               v1.5 - 优化背景图片缓存处理
