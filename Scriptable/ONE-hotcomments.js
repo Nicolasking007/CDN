@@ -7,12 +7,13 @@
  ************ © 2021 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-hotcomments.js
- * version    : 2.4
+ * version    : 2.5
  * author     : Nicolas-kings
  * date       : 2021-04-05
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  : v2.4 - 修复图片报错的bug
+ * Changelog  : v2.5 - 增加api数据源,遇到接口问题时可自行切换接口源
+ *              v2.4 - 修复图片报错的bug
  *              v2.3 - 优化背景逻辑
  *              v2.2 - 优化背景图片缓存处理
                 v2.1 - 细节优化，样式调整
@@ -32,6 +33,7 @@ const previewSize = "medium"  //预览大小 medium、small、large
 const colorMode = false // 是否是纯色背景
 const bgColor = new Color("000000") // 小组件背景色
 const blurStyle = "light" // 高斯样式：light/dark
+const Switch_data = false    //  切换网易云热评接口数据源
 const padding = {
   top: 10,
   left: 10,
@@ -39,7 +41,7 @@ const padding = {
   right: 10
 }
 const versionData = await getversion()
-let needUpdated = await updateCheck(2.4)
+let needUpdated = await updateCheck(2.5)
 const hotcommentsData = await getData();
 const widget = await createWidget()
 
@@ -142,8 +144,8 @@ if (colorMode) {
   // const url = "http://p1.music.126.net/uarVFKgUlrI9Z1nr-50cAw==/109951162843608471.jpg"     //固定一张图片,这里我选用城南花已开的封面,图片不能太大，容易崩溃
   // const i = await new Request(url);
   // const bgImgs = await i.loadImage();
-  const bgImgs = await getImageByUrl(hotcommentsData.data.picurl, `hotcomments-bg`, false)
-  bgImg = await blurImage(bgImgs, blurStyle, 120)
+  const bgImgs = await getImageByUrl(Switch_data ? hotcommentsData.data.picurl : hotcommentsData.data.songPic, `hotcomments-bg`, false)
+  bgImg = await blurImage(bgImgs, blurStyle, 100)
   widget.backgroundImage = bgImg
   // widget.backgroundImage = await shadowImage(img)
 }
@@ -172,12 +174,12 @@ async function createWidget() {
   let he = w.addText('❝ ')
   he.textColor = new Color("#ffffff")
   w.addSpacer();
-  let heading = w.addText(`${hotcommentsData.data.content}`);
+  let heading = w.addText(hotcommentsData.data.content);
   heading.font = Font.systemFont(18),
     heading.textColor = new Color("#ffffff");
   heading.centerAlignText()
   //heading.textOpacity = 0.88
-  heading.url = `orpheus://song/${hotcommentsData.data.url.split('?')[1].split('=')[1].split('.')[0]}`     //默认跳转网易云音乐进行播放
+  heading.url = Switch_data ? `orpheus://song/${hotcommentsData.data.url.split('?')[1].split('=')[1].split('.')[0]}` : `orpheus://song/${hotcommentsData.data.songId}`     //默认跳转网易云音乐进行播放
   heading.minimumScaleFactor = 0.5;
 
 
@@ -190,7 +192,7 @@ async function createWidget() {
   const profileStack = footerStack.addStack();
   profileStack.topAlignContent();
 
-  const image = await getImage(hotcommentsData.data.avatarurl);
+  const image = await getImage(Switch_data ? hotcommentsData.data.avatarurl : hotcommentsData.data.avatar);
   let profileImage = profileStack.addImage(image);
 
 
@@ -212,7 +214,7 @@ async function createWidget() {
   username.url = "orpheuswidget://"
   nameStack.addSpacer(5)
 
-  const taglist = nameStack.addText(`—— 评论来自${hotcommentsData.data.artistsname} ·《${hotcommentsData.data.name}》`);
+  const taglist = nameStack.addText(Switch_data ? `—— 评论来自${hotcommentsData.data.artistsname} ·《${hotcommentsData.data.name}》`:`—— 评论来自${hotcommentsData.data.songAutho} ·《${hotcommentsData.data.songName}》`);
   taglist.textColor = new Color("#bfbfbf");
   taglist.font = Font.semiboldSystemFont(9);
 
@@ -222,7 +224,7 @@ async function createWidget() {
   let docsElement = footerStack.addImage(docsSymbol.image)
   docsElement.imageSize = new Size(20, 20)
   docsElement.tintColor = Color.white()
-  docsElement.url = hotcommentsData.data.url     //跳转直链播放
+  docsElement.url = Switch_data ? hotcommentsData.data.url : `http://music.163.com/song/media/outer/url?id=${hotcommentsData.data.songId}.mp3`    //跳转直链播放
   // docsElement.imageOpacity = 0.5
 
   // const devLogo = await getImage(
@@ -238,11 +240,15 @@ async function createWidget() {
 
 //#####################事务逻辑处理模块#####################
 
-async function getData() {
+async function getData(source) {
   const hotcommentsCachePath = files.joinPath(files.documentsDirectory(), "hotcomments-NK")
   var hotcommentsData
+  let mxgapi = "https://api.muxiaoguo.cn/api/163reping"
+  let uomgapi = "https://api.uomg.com/api/comments.163"
   try {
-    hotcommentsData = await new Request("https://api.uomg.com/api/comments.163").loadJSON()
+    
+      hotcommentsData = await new Request(Switch_data ? uomgapi : mxgapi).loadJSON()
+
     files.writeString(hotcommentsCachePath, JSON.stringify(hotcommentsData))
     log("[+]获取热评成功:" + JSON.stringify(hotcommentsData))
   } catch (e) {
@@ -252,6 +258,8 @@ async function getData() {
 
   return hotcommentsData
 }
+
+
 
 //#####################背景模块-逻辑处理部分#####################
 
