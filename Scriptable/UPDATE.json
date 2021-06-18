@@ -199,7 +199,7 @@
         "Updated": "2021-05-27 13:00"
     },
     "ONE-NBAMATCH": {
-        "version": "1.0",
+        "version": "1.1",
         "author": "Nicolas-kings",
         "description": "关注喜爱NBA球队赛事结果小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-NBAMATCH/ONE-NBAMATCH.Enc.js",
@@ -212,7 +212,7 @@
             "https://i.loli.net/2021/06/04/ietfW3wKngVLBGX.jpg"
         ],
         "notice":"赛季结束或关注的球队争夺总冠军征程结束\n\n我们下赛季见 Good Luck！",
-        "notes": "更新内容：\n- 首次发布\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-06-14 11:00",
+        "notes": "更新内容：\n- 修复一个不可饶恕的bug，我的锅，各位 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-06-18 22:05",
         "Updated": "2021-05-27 13:00"
     },
     "ONE-LOLMATCH": {
