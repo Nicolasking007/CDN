@@ -56,7 +56,7 @@
             "images":["https://i.loli.net/2021/03/27/64eOAa1FtvDBm7J.jpg"]
         },
         {
-            "version": "2.6",
+            "version": "2.7",
             "author": "Nicolas-kings",
             "description": "网易云热评小组件",
             "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-hotcomments/ONE-hotcomments.Enc.js",
