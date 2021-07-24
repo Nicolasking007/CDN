@@ -250,7 +250,7 @@
         "Updated": "2021-05-27 13:00"
     },
     "ONE-Olympic": {
-        "version": "1.0",
+        "version": "1.1",
         "author": "Nicolas-kings",
         "description": "夏季奥林匹克运动会奖牌榜小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-FOOTMATCH/ONE-Olympic.Enc.js",
@@ -263,7 +263,7 @@
             "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg"
         ],
         "notice":"本届奥运会暨第32届夏季奥林匹克运动会结束\n\n我们2024年巴黎奥运会见 Good Luck！",
-        "notes": "更新内容：\n- 首次发布\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-07-24 19:00",
+        "notes": "更新内容：\n- 增加配置项，可自行调整参数适配各种机型 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-07-24 20:30",
         "Updated": "2021-05-27 13:00"
     },
     "copyright":"© 2021 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
