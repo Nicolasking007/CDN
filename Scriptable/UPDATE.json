@@ -90,12 +90,12 @@
         "description": "网易云热评小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-hotcomments/ONE-hotcomments.Enc.js",
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-hotcomments.Enc.js",
-        "thumb": "https://i.loli.net/2021/03/27/WbFpYaeitnZ5Mzc.jpg",
+        "thumb": "https://i.loli.net/2021/04/04/KQARiV18gzv2cDj.jpg",
         "wxurl": "https://mp.weixin.qq.com/s/26pBQdHqJ4mOmzphEtwK1Q",
         "name": "ONE-hotcomments",
         "title": "网易云热评",
         "images": [
-            "https://i.loli.net/2021/03/27/WbFpYaeitnZ5Mzc.jpg"
+            "https://i.loli.net/2021/04/04/KQARiV18gzv2cDj.jpg","https://i.loli.net/2021/03/27/WbFpYaeitnZ5Mzc.jpg"
         ],
         "notes": "更新内容：\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
         "Updated": "2021-03-28 13:00"
@@ -170,12 +170,12 @@
         "description": "中国/全球疫苗数据",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/COVID-19/ONE-COVID_Vac.Enc.js",
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-COVID_Vac.Enc.js",
-        "thumb": "https://i.loli.net/2021/04/25/yJx4jGIMCRKodqg.jpg",
+        "thumb": "https://i.loli.net/2021/05/27/OTal5tm1IUvVBPi.jpg",
         "wxurl": "https://mp.weixin.qq.com/s/BglSVR8R7D6Rk-V-Tyh1Eg",
         "name": "ONE-COVID_Vac",
         "title": "ONE-COVID_Vac",
         "images": [
-            "https://i.loli.net/2021/04/25/yJx4jGIMCRKodqg.jpg"
+            "https://i.loli.net/2021/05/27/OTal5tm1IUvVBPi.jpg"
         ],
         "notice": "数据说明：疫苗接种数据来自于国家卫健委发布。\n接种剂次：数据口径为接种剂次，而非接种人数。目前上市疫苗均需接种两个剂次。\n生产厂商：国药/北京，国药/武汉，科兴生物，康希诺，牛津/阿斯利康...",
         "notes": "更新内容：\n- 修复背景报错，新增多个图片背景选项\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
