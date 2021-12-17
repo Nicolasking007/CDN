@@ -285,47 +285,47 @@
     },
     "menuList": [
         {
-            "name": "ONE-Tool.Enc.js",
+            "name": ["ONE-Tool.Enc.js"],
             "text": "情话微甜小组件"
         },
         {
-            "name": "ONE-Progress.Enc.js",
+            "name": ["ONE-Progress.Enc.js"],
             "text": "人生进度的小组件"
         },
         {
-            "name": "ONE-NBA.Enc.js",
+            "name": ["ONE-NBA.Enc.js"],
             "text": "NBA球队赛事结果小组件 -1"
         },
         {
-            "name": "ONE-cuntdown.Enc.js",
+            "name": ["ONE-cuntdown.Enc.js"],
             "text": "简单的倒计时小组件"
         },
         {
-            "name": "ONE-hotcomments.Enc.js",
+            "name": ["ONE-hotcomments.Enc.js"],
             "text": "网易云热评小组件"
         },
         {
-            "name": "ONE-oilprice.Enc.js",
+            "name": ["ONE-oilprice.Enc.js"],
             "text": "油价实时数据小组件"
         },
         {
-            "name": "ONE-Today.Enc.js",
+            "name": ["ONE-Today.Enc.js"],
             "text": "简单的日历小组件"
         },
         {
-            "name": "ONE-COVID_Vac.Enc.js",
+            "name": ["ONE-COVID_Vac.Enc.js"],
             "text": "中国/全球疫苗数据接种小组件"
         },
         {
-            "name": "ONE-NBAMATCH.Enc.js",
+            "name": ["ONE-NBAMATCH.Enc.js"],
             "text": "NBA球队赛事结果小组件 -2"
         },
         {
-            "name": "ONE-LOLMATCH.Enc.js",
+            "name": ["ONE-LOLMATCH.Enc.js"],
             "text": "英雄联盟赛事结果小组件"
         },
         {
-            "name": "ONE-Olympic.Enc.js",
+            "name": ["ONE-Olympic.Enc.js"],
             "text": "奥运动会奖牌榜小组件"
         }
     ],
