@@ -148,7 +148,7 @@
             "images":["https://i.loli.net/2021/06/04/ietfW3wKngVLBGX.jpg"]
         },
         {
-            "version": "1.0",
+            "version": "1.2",
             "author": "Nicolas-kings",
             "description": "关注喜爱lpl战队赛事结果小组件",
             "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-LOLMATCH/ONE-LOLMATCH.Enc.js",

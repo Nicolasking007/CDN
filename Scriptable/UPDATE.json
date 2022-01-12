@@ -49,7 +49,7 @@
         "images": [
             "https://i.loli.net/2021/03/27/yEZAWRdraFKMpJB.jpg"
         ],
-        "notes": "更新内容：\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
+        "notes": "更新内容：\n- 修复bug，开启全新赛季 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-01-12 18:13",
         "Updated": "2021-05-09 14:30"
     },
     "ONE-Friday": {
@@ -216,7 +216,7 @@
         "Updated": "2021-05-27 13:00"
     },
     "ONE-LOLMATCH": {
-        "version": "1.1",
+        "version": "1.2",
         "author": "Nicolas-kings",
         "description": "关注喜爱lpl战队赛事结果小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-LOLMATCH/ONE-LOLMATCH.Enc.js",
