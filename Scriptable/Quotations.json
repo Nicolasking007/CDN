@@ -1,12 +1,13 @@
 {
-    "title": "毛泽东语录全集",
+    "title": "毛主席语录",
+    "desc":"- 他属于中国，也属于世界。今天，我们一起怀念他",
     "EN_title":"Quotations of Mao Zedong",
     "notice": "禁止以该源文件做任何形式的复制、转载，违者必究",
     "author": "Nicolas-kings",
     "repo": "https://github.com/Nicolasking007",
     "version":"20220130",
     "iamges":"https://pic.rmb.bdstatic.com/bjh/97f1d849546eecbcb01d219b78fbf38d.jpeg",
-    "bgimage":["https://pic.rmb.bdstatic.com/bjh/aba01259a2058d844ab4eda18f37460d.jpeg"],
+    "bgimage":["https://pic.rmb.bdstatic.com/bjh/f0f595d8ceaa5cb6cc6c4e684c8b87b9.jpeg","https://pic.rmb.bdstatic.com/bjh/aba01259a2058d844ab4eda18f37460d.jpeg"],
     "devLogo":["https://pic.rmb.bdstatic.com/bjh/7a562f4d0a5669c319175eb009041726.jpeg"],
     "content": [
         "历史是人民创造的。",

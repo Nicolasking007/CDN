@@ -253,7 +253,7 @@
         "version": "1.3",
         "author": "Nicolas-kings",
         "description": "夏季奥林匹克运动会奖牌榜小组件",
-        "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-FOOTMATCH/ONE-Olympic.Enc.js",
+        "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Olympic/ONE-Olympic.Enc.js",
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Olympic.Enc.js",
         "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
         "wxurl": "https://nkupp.com",
@@ -282,6 +282,22 @@
         "notice": "",
         "notes": "",
         "Updated": "2021-12-16 13:00"
+    },
+    "ONE-Quotations": {
+        "version": "1.0",
+        "author": "Nicolas-kings",
+        "description": "毛主席语录小组件",
+        "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Quotations/ONE-Quotations.Enc.js",
+        "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Quotations.Enc.js",
+        "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
+        "wxurl": "https://nkupp.com",
+        "name": "ONE-Quotations",
+        "title": "ONE-Quotations",
+        "images": [
+            "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg"
+        ],
+        "notes": "更新内容：\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
+        "Updated": "2021-05-27 13:00"
     },
     "menuList": [
         {
@@ -327,6 +343,10 @@
         {
             "name": ["ONE-Olympic.Enc.js"],
             "text": "奥运动会奖牌榜小组件"
+        },
+        {
+            "name": ["ONE-Quotations.Enc.js"],
+            "text": "毛主席语录小组件"
         }
     ],
     "copyright": "© 2021 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
