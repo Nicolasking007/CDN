@@ -1,0 +1,59 @@
+{
+    "author": "Nicolas-kings",
+    "scriptable": true,
+    "Email": "nicolas-king@qq.com",
+    "repo": "https://github.com/Nicolasking007/Scriptable",
+    "icon": "https://pic.rmb.bdstatic.com/bjh/6a9bfc89880d4a776f6406dd10249483.jpeg",
+    "notice":"此所有脚本仅用于学习研究，不保证其合法性、准确性、有效性，请根据情况自行判断，本人对此不承担任何保证责任\n\r请勿将此脚本用于任何商业或非法目的，若违反规定请自行对此负责\n\r如果任何单位或个人认为此脚本可能涉嫌侵犯其权利，应及时通知并提供身份证明，所有权证明，我们将在收到认证文件确认后删除此脚本\n\r所有直接或间接使用、查看此脚本的人均应该仔细阅读此声明。本人保留随时更改或补充此声明的权利。一旦您使用或复制了此脚本，即视为您已接受此免责声明。\n\r开发者: Nicolas-kings",
+    "menuList": [
+        {
+            "name": ["ONE-Tool.Enc.js"],
+            "text": "情话微甜小组件"
+        },
+        {
+            "name": ["ONE-Progress.Enc.js"],
+            "text": "人生进度的小组件"
+        },
+        {
+            "name": ["ONE-NBA.Enc.js"],
+            "text": "NBA球队赛事结果小组件 -1"
+        },
+        {
+            "name": ["ONE-cuntdown.Enc.js"],
+            "text": "简单的倒计时小组件"
+        },
+        {
+            "name": ["ONE-hotcomments.Enc.js"],
+            "text": "网易云热评小组件"
+        },
+        {
+            "name": ["ONE-oilprice.Enc.js"],
+            "text": "油价实时数据小组件"
+        },
+        {
+            "name": ["ONE-Today.Enc.js"],
+            "text": "简单的日历小组件"
+        },
+        {
+            "name": ["ONE-COVID_Vac.Enc.js"],
+            "text": "中国/全球疫苗数据接种小组件"
+        },
+        {
+            "name": ["ONE-NBAMATCH.Enc.js"],
+            "text": "NBA球队赛事结果小组件 -2"
+        },
+        {
+            "name": ["ONE-LOLMATCH.Enc.js"],
+            "text": "英雄联盟赛事结果小组件"
+        },
+        {
+            "name": ["ONE-Olympic.Enc.js"],
+            "text": "奥运动会奖牌榜小组件"
+        },
+        {
+            "name": ["ONE-Quotations.Enc.js"],
+            "text": "毛主席语录小组件"
+        }
+    ],
+    "copyright": "© 2022 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
+}
