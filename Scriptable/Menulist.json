@@ -14,7 +14,7 @@
         },
         {
             "name": ["ONE-Progress.Enc.js"],
-            "text": "人生进度的小组件"
+            "text": "人生进度条小组件"
         },
         {
             "name": ["ONE-NBA.Enc.js"],
@@ -30,7 +30,7 @@
         },
         {
             "name": ["ONE-oilprice.Enc.js"],
-            "text": "油价实时数据小组件"
+            "text": "每日油价实时数据小组件"
         },
         {
             "name": ["ONE-Today.Enc.js"],
