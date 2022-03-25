@@ -292,6 +292,7 @@
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Quotations.Enc.js",
         "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
         "wxurl": "https://nkupp.com",
+        "path":"Quotations",
         "name": "ONE-Quotations",
         "title": "ONE-Quotations",
         "images": [
@@ -300,5 +301,5 @@
         "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
         "Updated": "2021-05-27 13:00"
     },
-    "copyright": "© 2021 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
+    "copyright": "© 2022 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
 }
