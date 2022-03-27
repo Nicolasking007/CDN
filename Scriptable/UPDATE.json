@@ -85,7 +85,7 @@
         "Updated": "2021-03-28 13:00"
     },
     "ONE-hotcomments": {
-        "version": "2.8",
+        "version": "2.9",
         "author": "Nicolas-kings",
         "description": "网易云热评小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-hotcomments/ONE-hotcomments.Enc.js",
@@ -97,7 +97,7 @@
         "images": [
             "https://i.loli.net/2021/04/04/KQARiV18gzv2cDj.jpg","https://i.loli.net/2021/03/27/WbFpYaeitnZ5Mzc.jpg"
         ],
-        "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
+        "notes": "\n- 适配上游接口,修复接口限流问题 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 更新时间：2022-03-27 17:00",
         "Updated": "2021-03-28 13:00"
     },
     "ONE-oilprice": {
