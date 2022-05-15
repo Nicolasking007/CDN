@@ -18,7 +18,7 @@
             "https://i.loli.net/2021/03/27/sH1AGgCmOK3ilqu.jpg"
         ],
         "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-03-28 13:00"
+        "Updated": "2021-10-26 18:00"
     },
     "ONE-Progress": {
         "version": "1.5",
@@ -34,7 +34,7 @@
             "https://i.loli.net/2021/03/27/pz7i8DsA3WkGaTU.jpg"
         ],
         "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-03-28 13:00"
+        "Updated": "2021-10-26 18:00"
     },
     "ONE-NBA": {
         "version": "1.9",
@@ -50,7 +50,7 @@
             "https://i.loli.net/2021/03/27/yEZAWRdraFKMpJB.jpg"
         ],
         "notes": "\n- 修复bug，开启全新赛季 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-01-12 18:13",
-        "Updated": "2021-05-09 14:30"
+        "Updated": "2022-01-12 18:13"
     },
     "ONE-Friday": {
         "version": "1.1",
@@ -66,10 +66,10 @@
             "https://shop.io.mi-img.com/app/shop/img?id=shop_9c96a5f405165fe3a4b3c59df3a1d363.png"
         ],
         "notes": "\n- 优化背景图片缓存处理 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-03-28 13:00"
+        "Updated": "2021-10-26 18:00"
     },
     "ONE-cuntdown": {
-        "version": "1.4",
+        "version": "1.5",
         "author": "Nicolas-kings",
         "description": "简单的倒计时小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-cuntdown/ONE-cuntdown.Enc.js",
@@ -81,8 +81,8 @@
         "images": [
             "https://i.loli.net/2021/03/27/64eOAa1FtvDBm7J.jpg"
         ],
-        "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-03-28 13:00"
+        "notes": "\n- 新增多个自定义配置项、优化脚本更新逻辑 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-05-15 18:00",
+        "Updated": "2022-05-15 18:00"
     },
     "ONE-hotcomments": {
         "version": "2.9",
@@ -98,7 +98,7 @@
             "https://i.loli.net/2021/04/04/KQARiV18gzv2cDj.jpg","https://i.loli.net/2021/03/27/WbFpYaeitnZ5Mzc.jpg"
         ],
         "notes": "\n- 适配上游接口,修复接口限流问题 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 更新时间：2022-03-27 17:00",
-        "Updated": "2021-03-28 13:00"
+        "Updated": "2022-03-27 17:00"
     },
     "ONE-oilprice": {
         "version": "2.1",
@@ -114,7 +114,7 @@
             "https://i.loli.net/2021/03/27/OLpBgxMtnSJHWmh.jpg"
         ],
         "notes": "\n\n- 适配中石化接口字段调整,修复报错\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-04-30 19:00",
-        "Updated": "2021-03-28 13:00"
+        "Updated": "2022-04-30 19:00"
     },
     "ONE-Today": {
         "version": "1.8",
@@ -130,7 +130,7 @@
             "https://i.loli.net/2021/03/27/TbFJz8slCiYONV4.jpg"
         ],
         "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-03-28 13:00"
+        "Updated": "2021-10-26 18:00"
     },
     "捷径社区数据": {
         "version": "1.0",
@@ -146,7 +146,7 @@
             "https://i.loli.net/2021/04/25/yJx4jGIMCRKodqg.jpg"
         ],
         "notes": "\n- 支持脚本更新模块\n- 增加数据缓存\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-03-28 13:00"
+        "Updated": "2021-10-26 18:00"
     },
     "捷径盒数据": {
         "version": "1.0",
@@ -162,7 +162,7 @@
             "https://i.loli.net/2021/04/25/yJx4jGIMCRKodqg.jpg"
         ],
         "notes": "\n- 支持脚本更新模块\n- 增加数据缓存\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-03-28 13:00"
+        "Updated": "2021-10-26 18:00"
     },
     "ONE-COVID_Vac": {
         "version": "1.5",
@@ -179,7 +179,7 @@
         ],
         "notice": "数据说明：疫苗接种数据来自于国家卫健委发布。\n接种剂次：数据口径为接种剂次，而非接种人数。目前上市疫苗均需接种两个剂次。\n生产厂商：国药/北京，国药/武汉，科兴生物，康希诺，牛津/阿斯利康...",
         "notes": "\n- 修复背景报错，新增多个图片背景选项\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-05-27 13:00"
+        "Updated": "2021-10-26 18:00"
     },
     "ONE-memorandum": {
         "version": "1.0",
@@ -196,7 +196,7 @@
         ],
         "notice": "",
         "notes": "\n- 首次发布\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-05-27 13:00"
+        "Updated": "2021-10-26 18:00"
     },
     "ONE-NBAMATCH": {
         "version": "1.4",
@@ -213,7 +213,7 @@
         ],
         "notice": "赛季结束或关注的球队争夺总冠军征程结束\n\n我们下赛季见 Good Luck！",
         "notes": "\n- 修复因混淆导致判断出错的问题 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-12-16 10:30",
-        "Updated": "2021-05-27 13:00"
+        "Updated": "2021-12-16 10:30"
     },
     "ONE-LOLMATCH": {
         "version": "1.2",
@@ -230,7 +230,7 @@
         ],
         "notice": "LPL赛季结束或关注的战队争夺S11总冠军征程结束\n\n我们下赛季见 Good Luck！",
         "notes": "\n- 修复背景报错，新增多个图片背景选项\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-05-27 13:00"
+        "Updated": "2021-12-16 10:30"
     },
     "ONE-FOOTMATCH": {
         "version": "1.0",
@@ -247,7 +247,7 @@
         ],
         "notice": "赛季结束或关注的球队预选赛征程结束\n\n我们四年后再见 Good Luck！",
         "notes": "\n- 首次发布\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-05-27 13:00"
+        "Updated": "2021-12-16 10:30"
     },
     "ONE-Olympic": {
         "version": "1.3",
@@ -264,7 +264,7 @@
         ],
         "notice": "本届奥运会暨第32届夏季奥林匹克运动会结束\n\n我们2024年巴黎奥运会见 Good Luck！",
         "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
-        "Updated": "2021-05-27 13:00"
+        "Updated": "2021-12-16 10:30"
     },
     "ONE-Download": {
         "version": "1.0",
@@ -298,8 +298,25 @@
         "images": [
             "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg"
         ],
-        "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
+        "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-05-27 13:00",
         "Updated": "2021-05-27 13:00"
+    },
+    "ONE-Forwardtime": {
+        "version": "1.0",
+        "author": "Nicolas-kings",
+        "description": "正向计时小组件",
+        "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Forwardtime/ONE-Forwardtime.Enc.js",
+        "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Forwardtime.Enc.js",
+        "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
+        "wxurl": "https://nkupp.com",
+        "path":"",
+        "name": "ONE-Forwardtime",
+        "title": "ONE-Forwardtime",
+        "images": [
+            "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg"
+        ],
+        "notes": "\n- 首次发布 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-05-15 18:00",
+        "Updated": "2022-05-15 18:00"
     },
     "copyright": "© 2022 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
 }
