@@ -285,7 +285,7 @@
         "Updated": "2021-12-16 13:00"
     },
     "ONE-Quotations": {
-        "version": "1.0",
+        "version": "1.0.0",
         "author": "Nicolas-kings",
         "description": "毛主席语录小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Quotations/ONE-Quotations.Enc.js",
@@ -302,7 +302,7 @@
         "Updated": "2021-05-27 13:00"
     },
     "ONE-Forwardtime": {
-        "version": "1.0",
+        "version": "1.0.0",
         "author": "Nicolas-kings",
         "description": "正向计时小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Forwardtime/ONE-Forwardtime.Enc.js",
