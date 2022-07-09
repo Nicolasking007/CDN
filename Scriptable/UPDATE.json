@@ -5,11 +5,12 @@
     "repo": "https://github.com/Nicolasking007/Scriptable",
     "icon": "https://pic.rmb.bdstatic.com/bjh/6a9bfc89880d4a776f6406dd10249483.jpeg",
     "ONE-Tool": {
-        "version": "1.8",
+        "version": "1.8.1",
         "author": "Nicolas-kings",
         "description": "一个整合欢迎语、农历时间、每日情话、当日天气、手机电量、今年百分比的小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Tool/ONE-Tool.Enc.js",
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Tool.Enc.js",
+        "CY_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Tool_CY.Enc.js",
         "thumb": "https://i.loli.net/2021/03/27/sH1AGgCmOK3ilqu.jpg",
         "wxurl": "https://mp.weixin.qq.com/s/z3AqWzHsF_MQ1ucVHEImIg",
         "name": "ONE-Tool",
@@ -17,7 +18,7 @@
         "images": [
             "https://i.loli.net/2021/03/27/sH1AGgCmOK3ilqu.jpg"
         ],
-        "notes": "\n- 修复背景报错，新增多个图片背景选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2021-10-26 18:00",
+        "notes": "\n- 新增彩云天气版，打印日志调整、其他细节优化 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-07-09 21:48",
         "Updated": "2021-10-26 18:00"
     },
     "ONE-Progress": {
