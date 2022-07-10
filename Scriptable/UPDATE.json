@@ -268,7 +268,7 @@
         "Updated": "2021-12-16 10:30"
     },
     "ONE-Download": {
-        "version": "1.0",
+        "version": "1.1.0",
         "author": "Nicolas-kings",
         "description": "脚本下载器",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Download/ONE-Download.Enc.js",
@@ -282,7 +282,7 @@
             "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg"
         ],
         "notice": "",
-        "notes": "",
+        "notes": "\n- 增加第三方分享作品、网友投稿选项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-07-10 16:48",
         "Updated": "2021-12-16 13:00"
     },
     "ONE-Quotations": {
