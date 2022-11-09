@@ -37,7 +37,7 @@
         "Updated": "2021-10-26 18:00"
     },
     "ONE-NBA": {
-        "version": "1.9",
+        "version": "1.9.1",
         "author": "Nicolas-kings",
         "description": "关注喜爱NBA球队赛事结果小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-NBA/ONE-NBA.Enc.js",
@@ -49,7 +49,7 @@
         "images": [
             "https://i.loli.net/2021/03/27/yEZAWRdraFKMpJB.jpg"
         ],
-        "notes": "\n- 修复bug，开启全新赛季 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-01-12 18:13",
+        "notes": "\n- 适配上游接口，剔出失效接口，新增部分配置项 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-01-12 18:13",
         "Updated": "2022-01-12 18:13"
     },
     "ONE-Friday": {
