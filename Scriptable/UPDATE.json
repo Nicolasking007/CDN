@@ -102,7 +102,7 @@
         "Updated": "2022-03-27 17:00"
     },
     "ONE-oilprice": {
-        "version": "2.1",
+        "version": "v2.1.1",
         "author": "Nicolas-kings",
         "description": "支持全国所有省份的油价实时数据小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-oilprice/ONE-oilprice.Enc.js",
@@ -114,7 +114,7 @@
         "images": [
             "https://i.loli.net/2021/03/27/OLpBgxMtnSJHWmh.jpg"
         ],
-        "notes": "\n\n- 适配中石化接口字段调整,修复报错\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2022-04-30 19:00",
+        "notes": "\n\n- 适配上游接口,修复报错\n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2023-04-08 12:00",
         "Updated": "2022-04-30 19:00"
     },
     "ONE-Today": {
