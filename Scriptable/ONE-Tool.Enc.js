@@ -5,7 +5,7 @@
 /********************************************************
  ************* MAKE SURE TO COPY EVERYTHING *************
  *******************************************************
- ************ © 2022 Copyright Nicolas-kings ************/
+ ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Tool.js
  * version    : 1.8.1
@@ -61,4 +61,925 @@ const lockLocation = false
 
 //⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈
 //##############用户自定义参数配置模块-结束##############
-const _0x3fe016=_0x46c3,_0x11af54=_0x140d;(function(_0x9f183,_0x4c2bb3){const _0x478318=_0x46c3,_0x436e9a=_0x140d,_0x370e52=_0x9f183();while(!![]){try{const _0x4e2ef8=parseInt(_0x436e9a(0x185))/0x1+parseInt(_0x436e9a(0x1cc))/0x2*(parseInt(_0x436e9a(0x12a))/0x3)+parseInt(_0x478318(0x17d,'3MWa'))/0x4+parseInt(_0x436e9a(0x199))/0x5*(parseInt(_0x436e9a(0x1da))/0x6)+-parseInt(_0x436e9a(0x1a6))/0x7+-parseInt(_0x436e9a(0x140))/0x8*(-parseInt(_0x436e9a(0x215))/0x9)+-parseInt(_0x478318(0x12f,'ztx^'))/0xa;if(_0x4e2ef8===_0x4c2bb3)break;else _0x370e52['push'](_0x370e52['shift']());}catch(_0x1dded6){_0x370e52['push'](_0x370e52['shift']());}}}(_0x469a,0xec97f));const filename=Script[_0x11af54(0x14d)](),files=FileManager[_0x11af54(0x16b)](),localversion=_0x3fe016(0x112,'oYGI'),path=files[_0x3fe016(0x139,'U(mR')](files[_0x11af54(0x1ca)](),filename),versionData=await getversion(),needUpdated=await updateCheck(localversion),currentDate=new Date();let locationString=await getLocation();const areaData=await getLocationArea(locationString),city=areaData[_0x3fe016(0x204,'X(Uh')][_0x3fe016(0x1dc,'uqBR')][_0x11af54(0x144)],district=areaData[_0x11af54(0x15c)]['address_component'][_0x3fe016(0x122,'Jln2')],lunarInfo=await getLunar(currentDate[_0x3fe016(0x217,'1hDP')]()-0x1);let lunarJoinInfo='农历'+lunarInfo[_0x11af54(0x14a)]+lunarInfo[_0x11af54(0x111)]+'\x20'+lunarInfo[_0x3fe016(0x202,'tG#R')];const weatherData=await getWeather(),honeyData=await gethoney(),widget=await createWidget();log(_0x11af54(0x206));if(!colorMode&&!ImageMode&&!config[_0x3fe016(0x1bd,'7paj')]&&changePicBg){const okTips=_0x11af54(0x138);let message='开始之前，请回到主屏幕并进入编辑模式。\x20滑到最右边的空白页并截图。',options=['图片选择',_0x11af54(0x1ad),_0x11af54(0x1aa),'取消'],response=await generateAlert(message,options);if(response==0x3)return;if(response==0x0){let img=await Photos[_0x11af54(0x1d3)]();message=okTips;const resultOptions=['好的'];await generateAlert(message,resultOptions),files['writeImage'](path,img);}response==0x2&&Safari[_0x11af54(0x1db)](versionData[_0x11af54(0x1d4)][_0x3fe016(0x188,'oYGI')],![]);if(response==0x1){message=_0x11af54(0x1bf);let exitOptions=[_0x3fe016(0x11a,'WO!x'),_0x11af54(0x156)],shouldExit=await generateAlert(message,exitOptions);if(shouldExit)return;let img=await Photos[_0x11af54(0x1d3)](),height=img['size'][_0x11af54(0x1c5)],phone=phoneSizes()[height];if(!phone){message=_0x11af54(0x190),await generateAlert(message,['好的！我现在去截图']);return;}if(height==0x984){let files=FileManager[_0x11af54(0x16b)](),cacheName=_0x11af54(0x142),cachePath=files[_0x11af54(0x1f1)](files[_0x11af54(0x145)](),cacheName);if(files[_0x11af54(0x10f)](cachePath)){let typeString=files[_0x11af54(0x1f0)](cachePath);phone=phone[typeString];}else{message=_0x11af54(0x150);let types=['iPhone\x2012\x20mini',_0x11af54(0x129)],typeIndex=await generateAlert(message,types),type=typeIndex==0x0?'mini':'x';phone=phone[type],files[_0x11af54(0x1d8)](cachePath,type);}}message=_0x11af54(0x13d);let sizes=['小号','中号','大号'],size=await generateAlert(message,sizes),widgetSize=sizes[size];message=_0x11af54(0x147),message+=height==0x470?_0x3fe016(0x205,'[MGd'):'';let crop={'w':'','h':'','x':'','y':''};if(widgetSize=='小号'){crop['w']=phone['小号'],crop['h']=phone['小号'];let positions=[_0x3fe016(0x1a9,'QyI7'),_0x3fe016(0x1ba,'U(mR'),_0x11af54(0x172),_0x11af54(0x137),_0x3fe016(0x1ed,'Q60^'),_0x3fe016(0x1ab,'ztx^')],position=await generateAlert(message,positions),keys=positions[position]['split']('\x20');crop['y']=phone[keys[0x0]],crop['x']=phone[keys[0x1]];}else{if(widgetSize=='中号'){crop['w']=phone['中号'],crop['h']=phone['小号'],crop['x']=phone['左边'];let positions=['顶部','中间','底部'],position=await generateAlert(message,positions),key=positions[position][_0x11af54(0x110)]();crop['y']=phone[key];}else{if(widgetSize=='大号'){crop['w']=phone['中号'],crop['h']=phone['大号'],crop['x']=phone['左边'];let positions=['顶部','底部'],position=await generateAlert(message,positions);crop['y']=position?phone['中间']:phone['顶部'];}}}let imgCrop=cropImage(img,new Rect(crop['x'],crop['y'],crop['w'],crop['h']));message=_0x11af54(0x1e7);const resultOptions=[_0x11af54(0x1a2),_0x3fe016(0x132,'x#z8')],exportToFiles=await generateAlert(message,resultOptions);exportToFiles?files['writeImage'](path,imgCrop):Photos['save'](imgCrop);}}if(colorMode)widget[_0x11af54(0x126)]=bgColor;else{if(ImageMode)switch(Imgstyle){case 0x1:const blugImgs=await getImageByUrl(_0x11af54(0x1c4)+IMAGE_SEARCH_TERMS,'_'+Script[_0x11af54(0x14d)]()+_0x11af54(0x12b),![]);bgImg=await blurImage(blugImgs,blurStyle,blursize),widget['backgroundImage']=bgImg;break;case 0x2:const unsplashurl=_0x11af54(0x1c4)+IMAGE_SEARCH_TERMS,orginImgs=await getImageByUrl(unsplashurl,'_'+Script['name']()+'-orginImgs-bg',![]);bgImg=await shadowImage(orginImgs),widget[_0x3fe016(0x1f3,'7paj')]=bgImg;break;case 0x3:const bingurl=_0x11af54(0x1e0),bingImgs=await getImageByUrl(bingurl,'_'+Script[_0x3fe016(0x1b7,'ztx^')]()+_0x3fe016(0x1a3,'g)gd'),![]);bgImg=await shadowImage(bingImgs),widget[_0x11af54(0x203)]=bgImg;break;}else widget[_0x11af54(0x203)]=files[_0x11af54(0x198)](path);}widget[_0x11af54(0x17c)](padding[_0x11af54(0x153)],padding[_0x11af54(0x19d)],padding[_0x11af54(0x1bb)],padding['right']);if(!config[_0x11af54(0x18b)])switch(previewSize){case _0x3fe016(0x17e,'ced$'):await widget[_0x11af54(0x11d)]();break;case _0x11af54(0x1e5):await widget[_0x3fe016(0x143,'BI9X')]();break;case _0x11af54(0x159):await widget['presentLarge']();break;}Script[_0x3fe016(0x19f,'BI9X')](widget),Script[_0x11af54(0x1e6)]();async function createWidget(){const _0x42b5a5=_0x11af54,_0x2493c0=_0x3fe016,_0x38b56d=new ListWidget();_0x38b56d[_0x2493c0(0x160,'6HWA')]=0x6;const _0x439f8b=new Date(),_0x2458c8=_0x439f8b['getHours'](),_0x4475fc=_0x2458c8<0x8&&_0x42b5a5(0x18c),_0x2e3613=_0x2458c8>=0x8&&_0x2458c8<0xc&&_0x42b5a5(0x116),_0x378be4=_0x2458c8>=0xc&&_0x2458c8<0x13&&_0x42b5a5(0x17b),_0x5d3235=_0x2458c8>=0x13&&_0x2458c8<0x15&&_0x42b5a5(0x10b),_0x420d4c=_0x2458c8>=0x15&&_0x42b5a5(0x19a),_0x2330cc=new DateFormatter();_0x2330cc[_0x42b5a5(0x182)]=_0x42b5a5(0x1f8),_0x2330cc['useMediumDateStyle'](),_0x2330cc['useNoTimeStyle']();if(previewSize===_0x2493c0(0x1df,'BI9X')){const _0x3a2359=_0x38b56d[_0x2493c0(0x15a,'BI9X')](_0x42b5a5(0x20a));_0x3a2359['font']=Font[_0x2493c0(0x1d9,'Oj(4')](0xc),_0x3a2359[_0x42b5a5(0x1ce)]=Color[_0x2493c0(0x1d6,'l%CQ')](),_0x3a2359[_0x2493c0(0x1cb,'NJ$6')](),_0x38b56d[_0x2493c0(0x161,'BI9X')]=versionData[_0x2493c0(0x165,'Jln2')][_0x2493c0(0x158,'HwGf')],_0x38b56d[_0x42b5a5(0x126)]=bgColor;}else{const _0x2f4215=_0x38b56d[_0x2493c0(0x21b,'6HWA')]('[🤖]Hi,\x20'+User+_0x2493c0(0x1d2,'GTHf')+(_0x4475fc||_0x2e3613||_0x378be4||_0x5d3235||_0x420d4c)+'!');_0x2f4215[_0x2493c0(0x10c,'x#z8')]=new Color(_0x42b5a5(0x216)),_0x2f4215[_0x42b5a5(0x19e)]=new Font(_0x2493c0(0x1d7,'NJ$6'),0xb);const _0x1364c2=_0x2330cc[_0x2493c0(0x189,'H4yE')](_0x439f8b),_0x45adc2=_0x38b56d['addText'](_0x42b5a5(0x1cd)+_0x1364c2+'\x20'+lunarJoinInfo);_0x45adc2['textColor']=new Color(_0x2493c0(0x17f,'HsJv')),_0x45adc2[_0x2493c0(0x178,'tG#R')]=new Font(_0x42b5a5(0x14b),0xb);const _0x387b30=_0x38b56d[_0x2493c0(0x11e,'Ue4T')]('[🐷]'+honeyData[_0x42b5a5(0x134)]);_0x387b30['textColor']=new Color('#BBD676'),_0x387b30[_0x42b5a5(0x19e)]=new Font(_0x2493c0(0x187,'OjDM'),0xb),_0x387b30[_0x2493c0(0x121,'8*AR')]=0x1;const _0x597706=_0x38b56d['addText'](_0x42b5a5(0x115)+city+'\x20'+district+'\x20'+weatherData[_0x2493c0(0x21a,'%DIF')][_0x2493c0(0x201,'3MWa')]+'\x20T:'+weatherData[_0x2493c0(0x1c8,'APab')]['temp']+_0x2493c0(0x16a,'lYvw')+weatherData[_0x2493c0(0x14e,'jWpa')][_0x2493c0(0x1be,'1hDP')]+'°\x20'+weatherData[_0x2493c0(0x208,'U(mR')][_0x2493c0(0x16f,'uqBR')]);_0x597706[_0x2493c0(0x1b8,'APab')]=new Color(_0x2493c0(0x18e,'ivVu')),_0x597706[_0x42b5a5(0x19e)]=new Font(_0x2493c0(0x1d7,'NJ$6'),0xb);const _0x4b8b84=_0x38b56d['addText']('['+(Device[_0x2493c0(0x131,'E$LD')]()?'⚡️':'🔋')+']'+renderBattery()+'\x20Battery');_0x4b8b84[_0x2493c0(0x10e,'96(y')]=new Color(_0x2493c0(0x11b,'oYGI')),_0x4b8b84[_0x2493c0(0x157,')C!2')]=new Font(_0x2493c0(0x200,'E$LD'),0xb);const _0x3708e9=_0x38b56d[_0x42b5a5(0x1f6)](_0x2493c0(0x1a0,'1hDP')+renderYearProgress()+_0x2493c0(0x1e9,'3MWa'));_0x3708e9['textColor']=new Color(_0x2493c0(0x13f,'pRo5')),_0x3708e9[_0x42b5a5(0x19e)]=new Font(_0x42b5a5(0x14b),0xb);let _0x297f2=Date[_0x2493c0(0x197,'tG#R')]()+0x3e8*0x3c*parseInt(refreshInterval);_0x38b56d[_0x42b5a5(0x123)]=new Date(_0x297f2);}return _0x38b56d;}async function getLunar(_0x5557e7){const _0x183c45=_0x11af54,_0x168da0=_0x3fe016,_0x5d49db=_0x168da0(0x169,'oYGI');let _0x58d8da=undefined;try{const _0x374f9f=new Request(_0x183c45(0x20c)),_0x265d47={'user-agent':'Mozilla/5.0\x20(Macintosh;\x20Intel\x20Mac\x20OS\x20X\x2010_15_4)\x20AppleWebKit/537.36\x20(KHTML,\x20like\x20Gecko)\x20Chrome/87.0.4280.67\x20Safari/537.36'};_0x374f9f[_0x183c45(0x170)]=_0x168da0(0x1f7,'H4yE'),_0x374f9f[_0x168da0(0x148,'8*AR')]=_0x265d47;const _0xc7a7f3=await _0x374f9f[_0x183c45(0x1b2)]();let _0x58dd33=new WebView();await _0x58dd33[_0x183c45(0x1c6)](_0xc7a7f3);var _0xdc58ec=_0x168da0(0x117,'Y4lV')+_0x5557e7+'.wnrl_k_you\x20.wnrl_k_you_id_wnrl_nongli\x27).innerText\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20holidayText\x20=\x20document.querySelectorAll(\x27div.wnrl_k_zuo\x20div.wnrl_riqi\x27)['+_0x5557e7+'].querySelector(\x27.wnrl_td_bzl\x27).innerText\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20lunarYearText\x20=\x20document.querySelector(\x27div.wnrl_k_you_id_wnrl_nongli_ganzhi\x27).innerText\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20lunarYearText\x20=\x20lunarYearText.slice(0,\x20lunarYearText.indexOf(\x27年\x27)+1)\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if(infoLunarText.search(holidayText)\x20!=\x20-1)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20holidayText\x20=\x20\x27\x27\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x20catch\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20holidayText\x20=\x20\x27\x27\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20return\x20{infoLunarText:\x20infoLunarText,\x20\x20lunarYearText:\x20lunarYearText,\x20\x20holidayText:\x20holidayText\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20getData()';_0x58d8da=await _0x58dd33[_0x183c45(0x1ac)](_0xdc58ec,![]),Keychain[_0x168da0(0x1cf,'%DIF')](_0x5d49db,JSON[_0x168da0(0x1c0,'5GeZ')](_0x58d8da)),log(_0x183c45(0x14c));}catch(_0x17f01b){if(Keychain['contains'](_0x5d49db)){const _0x33fe9f=Keychain[_0x168da0(0x1a4,'APab')](_0x5d49db);_0x58d8da=JSON[_0x168da0(0x154,'ced$')](_0x33fe9f),logError(_0x183c45(0x1e2));}}return _0x58d8da;}function _0x46c3(_0x3cf348,_0x4f3e07){const _0x80d44=_0x469a();return _0x46c3=function(_0x371d93,_0x18863d){_0x371d93=_0x371d93-0x10b;let _0x469a83=_0x80d44[_0x371d93];if(_0x46c3['QJkMZD']===undefined){var _0x46c3ce=function(_0xaa72fe){const _0xd156f3='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x140d39='',_0x2ef393='',_0x38f40d=_0x140d39+_0x46c3ce;for(let _0x343a10=0x0,_0x538d3f,_0x152ed2,_0xc25b92=0x0;_0x152ed2=_0xaa72fe['charAt'](_0xc25b92++);~_0x152ed2&&(_0x538d3f=_0x343a10%0x4?_0x538d3f*0x40+_0x152ed2:_0x152ed2,_0x343a10++%0x4)?_0x140d39+=_0x38f40d['charCodeAt'](_0xc25b92+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x538d3f>>(-0x2*_0x343a10&0x6)):_0x343a10:0x0){_0x152ed2=_0xd156f3['indexOf'](_0x152ed2);}for(let _0x38b56d=0x0,_0x439f8b=_0x140d39['length'];_0x38b56d<_0x439f8b;_0x38b56d++){_0x2ef393+='%'+('00'+_0x140d39['charCodeAt'](_0x38b56d)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x2ef393);};const _0x376c86=function(_0x2458c8,_0x4475fc){let _0x2e3613=[],_0x378be4=0x0,_0x5d3235,_0x420d4c='';_0x2458c8=_0x46c3ce(_0x2458c8);let _0x2330cc;for(_0x2330cc=0x0;_0x2330cc<0x100;_0x2330cc++){_0x2e3613[_0x2330cc]=_0x2330cc;}for(_0x2330cc=0x0;_0x2330cc<0x100;_0x2330cc++){_0x378be4=(_0x378be4+_0x2e3613[_0x2330cc]+_0x4475fc['charCodeAt'](_0x2330cc%_0x4475fc['length']))%0x100,_0x5d3235=_0x2e3613[_0x2330cc],_0x2e3613[_0x2330cc]=_0x2e3613[_0x378be4],_0x2e3613[_0x378be4]=_0x5d3235;}_0x2330cc=0x0,_0x378be4=0x0;for(let _0x3a2359=0x0;_0x3a2359<_0x2458c8['length'];_0x3a2359++){_0x2330cc=(_0x2330cc+0x1)%0x100,_0x378be4=(_0x378be4+_0x2e3613[_0x2330cc])%0x100,_0x5d3235=_0x2e3613[_0x2330cc],_0x2e3613[_0x2330cc]=_0x2e3613[_0x378be4],_0x2e3613[_0x378be4]=_0x5d3235,_0x420d4c+=String['fromCharCode'](_0x2458c8['charCodeAt'](_0x3a2359)^_0x2e3613[(_0x2e3613[_0x2330cc]+_0x2e3613[_0x378be4])%0x100]);}return _0x420d4c;};_0x46c3['mklhnx']=_0x376c86,_0x3cf348=arguments,_0x46c3['QJkMZD']=!![];}const _0x74a96a=_0x80d44[0x0],_0x3090fc=_0x371d93+_0x74a96a,_0x1b098b=_0x3cf348[_0x3090fc];if(!_0x1b098b){if(_0x46c3['ztlFaM']===undefined){const _0x2f4215=function(_0x1364c2){this['yErcSN']=_0x1364c2,this['wjLSck']=[0x1,0x0,0x0],this['lLKoSK']=function(){return'newState';},this['mTBQbR']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['IAvkdw']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x2f4215['prototype']['poMiAB']=function(){const _0x45adc2=new RegExp(this['mTBQbR']+this['IAvkdw']),_0x387b30=_0x45adc2['test'](this['lLKoSK']['toString']())?--this['wjLSck'][0x1]:--this['wjLSck'][0x0];return this['ZHlPOg'](_0x387b30);},_0x2f4215['prototype']['ZHlPOg']=function(_0x597706){if(!Boolean(~_0x597706))return _0x597706;return this['LuOAZE'](this['yErcSN']);},_0x2f4215['prototype']['LuOAZE']=function(_0x4b8b84){for(let _0x3708e9=0x0,_0x297f2=this['wjLSck']['length'];_0x3708e9<_0x297f2;_0x3708e9++){this['wjLSck']['push'](Math['round'](Math['random']())),_0x297f2=this['wjLSck']['length'];}return _0x4b8b84(this['wjLSck'][0x0]);},new _0x2f4215(_0x46c3)['poMiAB'](),_0x46c3['ztlFaM']=!![];}_0x469a83=_0x46c3['mklhnx'](_0x469a83,_0x18863d),_0x3cf348[_0x3090fc]=_0x469a83;}else _0x469a83=_0x1b098b;return _0x469a83;},_0x46c3(_0x3cf348,_0x4f3e07);}async function getLocation(){const _0x1f7fdd=_0x3fe016,_0x40b7b5=_0x11af54,_0x189d28=files[_0x40b7b5(0x1f1)](files[_0x40b7b5(0x1ca)](),_0x1f7fdd(0x1e8,'Y4lV'));var _0x317641,_0x4557c7,_0x45ba9b;if(lockLocation&&files['fileExists'](_0x189d28))_0x45ba9b=files['readString'](_0x189d28),logError('[+]位置锁定，使用缓存数据');else{try{const _0x1bb7d4=await Location[_0x1f7fdd(0x1e1,'HsJv')]();_0x317641=_0x1bb7d4[_0x40b7b5(0x113)],_0x4557c7=_0x1bb7d4[_0x1f7fdd(0x13b,'L!fh')],_0x45ba9b=_0x4557c7+','+_0x317641,files[_0x40b7b5(0x1d8)](_0x189d28,_0x45ba9b),log(_0x40b7b5(0x1fc));}catch(_0x49a7ec){_0x45ba9b=files[_0x40b7b5(0x1f0)](_0x189d28),logError(_0x40b7b5(0x194));}_0x45ba9b=_0x45ba9b;}return log(_0x1f7fdd(0x15e,'E$LD')),_0x45ba9b;}async function getWeather(){const _0x5effe7=_0x3fe016,_0x2efcf3=_0x11af54,_0x3dbcac=files[_0x2efcf3(0x1f1)](files['documentsDirectory'](),_0x5effe7(0x1fd,'qzwx')),_0x315537=files[_0x5effe7(0x1c1,'QyI7')](_0x3dbcac),_0x2a1b3c=_0x315537?files[_0x2efcf3(0x118)](_0x3dbcac):0x0;var _0x44de9a;if(_0x315537&&currentDate[_0x2efcf3(0x191)]()-_0x2a1b3c['getTime']()<0xea60){log('[+]请求时间间隔过小，使用缓存数据');const _0x126539=files[_0x2efcf3(0x1f0)](_0x3dbcac);_0x44de9a=JSON[_0x2efcf3(0x155)](_0x126539);}else try{const _0x5acc7e=_0x2efcf3(0x135)+locationString+_0x5effe7(0x12e,'H4yE')+WeatherKey+'&lang=zh-cn',_0x1b554a=await new Request(_0x5acc7e)[_0x5effe7(0x171,'Jln2')]();_0x44de9a=_0x1b554a,files['writeString'](_0x3dbcac,JSON[_0x5effe7(0x15d,'jWpa')](_0x44de9a)),log(_0x5effe7(0x173,'5GeZ'));}catch(_0x44ef18){_0x44de9a=JSON[_0x5effe7(0x1c7,'Uupz')](files[_0x2efcf3(0x1f0)](_0x3dbcac)),logError(_0x5effe7(0x1e3,'rt*X'));}return _0x44de9a;}async function getLocationArea(){const _0x37465f=_0x11af54,_0x2f37a3=_0x3fe016;let _0x7f6688=files[_0x2f37a3(0x128,'BDo5')](files[_0x2f37a3(0x1a5,'Uupz')](),_0x2f37a3(0x20f,'sQiv')),_0x1a518f=files[_0x2f37a3(0x1c1,'QyI7')](_0x7f6688),_0x5dff4d=_0x1a518f?files[_0x37465f(0x118)](_0x7f6688):0x0,_0x3b33d3;if(_0x1a518f&&currentDate[_0x37465f(0x191)]()-_0x5dff4d[_0x37465f(0x191)]()<0xea60)return log(_0x2f37a3(0x211,'l%CQ')),_0x3b33d3=JSON[_0x2f37a3(0x1c7,'Uupz')](files[_0x37465f(0x1f0)](_0x7f6688));let _0x794949=locationString[_0x37465f(0x1fe)](','),_0x50bfda;try{let _0xe70d46='OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77',_0x5d409b=tencentApiKey==''?_0xe70d46:tencentApiKey,_0xe11a46=_0x2f37a3(0x12d,'pRo5')+_0x794949[0x1]+','+_0x794949[0x0]+'&key='+_0x5d409b+'&get_poi=0',_0x5c665e=new Request(_0xe11a46),_0x4b9389={'Referer':_0x2f37a3(0x18d,'tG#R')};_0x5c665e[_0x2f37a3(0x184,'lYvw')]=_0x2f37a3(0x1f7,'H4yE'),_0x5c665e[_0x2f37a3(0x1f4,'Y4lV')]=_0x4b9389,_0x50bfda=await _0x5c665e[_0x37465f(0x133)](),log(_0x2f37a3(0x11f,'7paj')),files[_0x37465f(0x1d8)](_0x7f6688,JSON[_0x2f37a3(0x183,'APab')](_0x50bfda));}catch(_0x32b769){logError(_0x37465f(0x119)),_0x50bfda=JSON[_0x2f37a3(0x1d5,'H4yE')](files[_0x37465f(0x1f0)](_0x7f6688));}return _0x50bfda;}async function gethoney(){const _0x172ee3=_0x11af54,_0x1137f7=_0x3fe016,_0x15d0b8=files[_0x1137f7(0x164,')C!2')](files['documentsDirectory'](),_0x1137f7(0x1d0,'1hDP'));var _0x41961c;try{_0x41961c=await new Request(_0x1137f7(0x146,'96(y'))[_0x172ee3(0x133)](),files[_0x1137f7(0x19b,'BI9X')](_0x15d0b8,JSON[_0x1137f7(0x1de,'ztx^')](_0x41961c)),log(_0x1137f7(0x1a1,'E$LD'));}catch(_0x5e8631){_0x41961c=JSON[_0x172ee3(0x155)](files['readString'](_0x15d0b8)),logError('[+]获取情话信息失败，使用缓存数据');}return _0x41961c;}function renderProgress(_0x3198fb){const _0x43d28e=_0x3fe016,_0x5e204f=_0x11af54,_0x5b950b='▓'[_0x5e204f(0x149)](Math[_0x43d28e(0x1af,'l%CQ')](_0x3198fb*0x18)),_0x4075fe='░'['repeat'](0x18-_0x5b950b[_0x5e204f(0x1b1)]);return''+_0x5b950b+_0x4075fe+'\x20'+Math[_0x43d28e(0x1ec,'E$LD')](_0x3198fb*0x64)+'%';}function renderBattery(){const _0x169e2c=_0x11af54,_0x7f4a6e=Device[_0x169e2c(0x1e4)]();return renderProgress(_0x7f4a6e);}function renderYearProgress(){const _0x404018=_0x11af54,_0x1e3fcc=new Date(),_0x1dd3d2=new Date(_0x1e3fcc[_0x404018(0x167)](),0x0,0x1),_0x20cd44=new Date(_0x1e3fcc['getFullYear']()+0x1,0x0,0x1),_0x417605=(_0x1e3fcc-_0x1dd3d2)/(_0x20cd44-_0x1dd3d2);return renderProgress(_0x417605);}async function shadowImage(_0x53da8f){const _0x1a76ab=_0x11af54,_0x3cacb4=_0x3fe016;let _0xf36809=new DrawContext();return _0xf36809[_0x3cacb4(0x1c9,'lYvw')]=_0x53da8f['size'],_0xf36809['drawImageInRect'](_0x53da8f,new Rect(0x0,0x0,_0x53da8f[_0x1a76ab(0x177)][_0x3cacb4(0x1ea,'APab')],_0x53da8f['size'][_0x1a76ab(0x1c5)])),_0xf36809[_0x3cacb4(0x1a8,'Ba9i')](new Color(_0x3cacb4(0x209,'Ue4T'),0.5)),_0xf36809[_0x3cacb4(0x210,'FM6o')](new Rect(0x0,0x0,_0x53da8f[_0x1a76ab(0x177)]['width'],_0x53da8f[_0x1a76ab(0x177)][_0x1a76ab(0x1c5)])),await _0xf36809[_0x3cacb4(0x1a7,'qzwx')]();}function _0x140d(_0x3cf348,_0x4f3e07){const _0x80d44=_0x469a();return _0x140d=function(_0x371d93,_0x18863d){_0x371d93=_0x371d93-0x10b;let _0x469a83=_0x80d44[_0x371d93];if(_0x140d['ZOAYjO']===undefined){var _0x46c3ce=function(_0x376c86){const _0xaa72fe='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0xd156f3='',_0x140d39='',_0x2ef393=_0xd156f3+_0x46c3ce;for(let _0x38f40d=0x0,_0x343a10,_0x538d3f,_0x152ed2=0x0;_0x538d3f=_0x376c86['charAt'](_0x152ed2++);~_0x538d3f&&(_0x343a10=_0x38f40d%0x4?_0x343a10*0x40+_0x538d3f:_0x538d3f,_0x38f40d++%0x4)?_0xd156f3+=_0x2ef393['charCodeAt'](_0x152ed2+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x343a10>>(-0x2*_0x38f40d&0x6)):_0x38f40d:0x0){_0x538d3f=_0xaa72fe['indexOf'](_0x538d3f);}for(let _0xc25b92=0x0,_0x38b56d=_0xd156f3['length'];_0xc25b92<_0x38b56d;_0xc25b92++){_0x140d39+='%'+('00'+_0xd156f3['charCodeAt'](_0xc25b92)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x140d39);};_0x140d['bnvNlE']=_0x46c3ce,_0x3cf348=arguments,_0x140d['ZOAYjO']=!![];}const _0x74a96a=_0x80d44[0x0],_0x3090fc=_0x371d93+_0x74a96a,_0x1b098b=_0x3cf348[_0x3090fc];if(!_0x1b098b){const _0x439f8b=function(_0x2458c8){this['fLyJia']=_0x2458c8,this['ZjHsrR']=[0x1,0x0,0x0],this['fVhstv']=function(){return'newState';},this['uXiQbQ']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['AbXFBN']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x439f8b['prototype']['bkQlhF']=function(){const _0x4475fc=new RegExp(this['uXiQbQ']+this['AbXFBN']),_0x2e3613=_0x4475fc['test'](this['fVhstv']['toString']())?--this['ZjHsrR'][0x1]:--this['ZjHsrR'][0x0];return this['NUmliY'](_0x2e3613);},_0x439f8b['prototype']['NUmliY']=function(_0x378be4){if(!Boolean(~_0x378be4))return _0x378be4;return this['jGcrtz'](this['fLyJia']);},_0x439f8b['prototype']['jGcrtz']=function(_0x5d3235){for(let _0x420d4c=0x0,_0x2330cc=this['ZjHsrR']['length'];_0x420d4c<_0x2330cc;_0x420d4c++){this['ZjHsrR']['push'](Math['round'](Math['random']())),_0x2330cc=this['ZjHsrR']['length'];}return _0x5d3235(this['ZjHsrR'][0x0]);},new _0x439f8b(_0x140d)['bkQlhF'](),_0x469a83=_0x140d['bnvNlE'](_0x469a83),_0x3cf348[_0x3090fc]=_0x469a83;}else _0x469a83=_0x1b098b;return _0x469a83;},_0x140d(_0x3cf348,_0x4f3e07);}async function generateAlert(_0x328b8b,_0x24ec90){const _0x5121b0=_0x3fe016,_0x4b9328=_0x11af54;let _0x549b21=new Alert();_0x549b21[_0x4b9328(0x180)]=_0x328b8b;for(const _0x58ba3d of _0x24ec90){_0x549b21['addAction'](_0x58ba3d);}let _0x3765fe=await _0x549b21[_0x5121b0(0x1bc,'5GeZ')]();return _0x3765fe;}function cropImage(_0x3943cc,_0xffd525){const _0x29c7a4=_0x11af54,_0x2e24f9=_0x3fe016;let _0x33aff6=new DrawContext();return _0x33aff6['size']=new Size(_0xffd525[_0x2e24f9(0x10d,'tG#R')],_0xffd525[_0x2e24f9(0x15b,'7paj')]),_0x33aff6['drawImageAtPoint'](_0x3943cc,new Point(-_0xffd525['x'],-_0xffd525['y'])),_0x33aff6[_0x29c7a4(0x1b9)]();}async function blurImage(_0x58a26d,_0x1c72ae,_0x1f9a00=blursize){const _0x5bc007=_0x11af54,_0x22e961=_0x3fe016,_0x260b9b=_0x22e961(0x1ae,'ced$')+_0x1c72ae+_0x5bc007(0x124)+_0x1f9a00+_0x5bc007(0x218);let _0x12935b=Data['fromPNG'](_0x58a26d)[_0x22e961(0x120,'Ba9i')](),_0xab6556='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20id=\x22blurImg\x22\x20src=\x22data:image/png;base64,'+_0x12935b+'\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20<canvas\x20id=\x22mainCanvas\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x1e51be=new WebView();await _0x1e51be[_0x22e961(0x1f2,'APab')](_0xab6556);let _0x266b7d=await _0x1e51be[_0x22e961(0x1dd,'ced$')](_0x260b9b),_0x18f88e=_0x266b7d['slice'](0x16),_0x16a350=Data[_0x5bc007(0x1b0)](_0x18f88e),_0x163f48=Image[_0x5bc007(0x162)](_0x16a350);return _0x163f48;}async function getImageByUrl(_0x5c85b8,_0x4865c1,_0x5eac70=!![]){const _0xa3fd8d=_0x3fe016,_0x1ab3bf=_0x11af54,_0x83cc2a=FileManager['local']()[_0x1ab3bf(0x1f1)](FileManager[_0xa3fd8d(0x16e,'iX(i')]()[_0x1ab3bf(0x192)](),_0x4865c1),_0x367118=FileManager[_0x1ab3bf(0x16b)]()[_0xa3fd8d(0x13a,'7paj')](_0x83cc2a);if(_0x5eac70&&_0x367118)return Image[_0xa3fd8d(0x1d1,'1hDP')](_0x83cc2a);try{const _0x5fe15b=new Request(_0x5c85b8),_0x418cf7=await _0x5fe15b['loadImage']();return FileManager[_0x1ab3bf(0x16b)]()[_0xa3fd8d(0x16c,'APab')](_0x83cc2a,_0x418cf7),_0x418cf7;}catch(_0x383102){console[_0xa3fd8d(0x186,'sQiv')](_0xa3fd8d(0x17a,'5GeZ')+_0x383102);if(_0x367118)return Image['fromFile'](_0x83cc2a);let _0x138980=new DrawContext();return _0x138980[_0xa3fd8d(0x1b5,'1hDP')]=new Size(0x64,0x64),_0x138980[_0x1ab3bf(0x1fa)](Color[_0x1ab3bf(0x174)]()),_0x138980[_0x1ab3bf(0x18f)](new Rect(0x0,0x0,0x64,0x64)),await _0x138980['getImage']();}}function phoneSizes(){const _0x2e4288=_0x11af54,_0xb202ac=_0x3fe016;let _0x5f1a40={'2532':{'models':['12',_0xb202ac(0x13e,'qzwx')],'小号':0x1da,'中号':0x3f6,'大号':0x426,'左边':0x4e,'右边':0x26a,'顶部':0xe7,'中间':0x333,'底部':0x57f},'2778':{'models':[_0x2e4288(0x12c)],'小号':0x1fe,'中号':0x444,'大号':0x47a,'左边':0x60,'右边':0x2a6,'顶部':0xf6,'中间':0x372,'底部':0x5ee},'2688':{'models':['Xs\x20Max',_0x2e4288(0x207)],'小号':0x1fb,'中号':0x438,'大号':0x471,'左边':0x51,'右边':0x28e,'顶部':0xe4,'中间':0x35a,'底部':0x5d0},'1792':{'models':['11','Xr'],'小号':0x152,'中号':0x2d0,'大号':0x2f6,'左边':0x36,'右边':0x1b4,'顶部':0xa0,'中间':0x244,'底部':0x3e8},'2436':{'x':{'models':['X','Xs',_0x2e4288(0x1ee)],'小号':0x1d1,'中号':0x3db,'大号':0x40b,'左边':0x45,'右边':0x24f,'顶部':0xd5,'中间':0x30f,'底部':0x549},'mini':{'models':[_0x2e4288(0x16d)],'小号':0x1d1,'中号':0x3db,'大号':0x40b,'左边':0x45,'右边':0x24f,'顶部':0xe7,'中间':0x321,'底部':0x55b}},'2208':{'models':['6+','6s+','7+','8+'],'小号':0x1d7,'中号':0x414,'大号':0x42f,'左边':0x63,'右边':0x2a0,'顶部':0x72,'中间':0x2b8,'底部':0x4fe},'1334':{'models':['6','6s','7','8'],'小号':0x128,'中号':0x282,'大号':0x288,'左边':0x36,'右边':0x190,'顶部':0x3c,'中间':0x19c,'底部':0x2fc},'1136':{'models':['5','5s','5c','SE'],'小号':0x11a,'中号':0x248,'大号':0x26e,'左边':0x1e,'右边':0x14c,'顶部':0x3b,'中间':0x18f,'底部':0x18f}};return _0x5f1a40;}async function getversion(){const _0x45a37b=_0x11af54,_0x5dbfe4=_0x3fe016,_0x3ce60e=(function(){let _0x3bed82=!![];return function(_0x5963e2,_0x4e8bcf){const _0x4131af=_0x3bed82?function(){const _0x457b50=_0x46c3;if(_0x4e8bcf){const _0x4efc32=_0x4e8bcf[_0x457b50(0x18a,'QyI7')](_0x5963e2,arguments);return _0x4e8bcf=null,_0x4efc32;}}:function(){};return _0x3bed82=![],_0x4131af;};}()),_0x26f5cc=_0x3ce60e(this,function(){const _0x3f6066=_0x46c3,_0x2def85=_0x140d;return _0x26f5cc[_0x2def85(0x20d)]()[_0x2def85(0x1ef)]('(((.+)+)+)+$')[_0x2def85(0x20d)]()[_0x3f6066(0x1c2,'Oj(4')](_0x26f5cc)['search'](_0x2def85(0x152));});_0x26f5cc();const _0x2a8083=files[_0x5dbfe4(0x1eb,'H4yE')](files['documentsDirectory'](),_0x45a37b(0x19c));var _0x2c29bf;try{_0x2c29bf=await new Request(_0x5dbfe4(0x212,'tG#R'))[_0x45a37b(0x133)](),files['writeString'](_0x2a8083,JSON[_0x5dbfe4(0x193,'7paj')](_0x2c29bf)),log('[+]欢迎使用：'+_0x2c29bf['author']+_0x45a37b(0x175)),log('[+]遇到问题，请前往公众号：曰坛\x20反馈'),log('[+]版本信息获取成功');}catch(_0x403649){_0x2c29bf=JSON[_0x45a37b(0x155)](files[_0x5dbfe4(0x163,'BDo5')](_0x2a8083)),logError(_0x5dbfe4(0x166,'6HWA'));}return _0x2c29bf;}function version_compare(_0x1c37c6,_0x319df8){const _0x57500d=_0x3fe016,_0x31bdb5=_0x11af54;var _0x6a02c5=_0x1c37c6[_0x31bdb5(0x1fe)]('.'),_0x414a45=_0x319df8[_0x57500d(0x114,'ivVu')]('.'),_0x4092ea=Math[_0x31bdb5(0x214)](_0x6a02c5[_0x57500d(0x20b,'dY0G')],_0x414a45['length']);for(var _0x423f0b=0x0;_0x423f0b<_0x4092ea;_0x423f0b++){if(parseInt(_0x6a02c5[_0x423f0b])!=parseInt(_0x414a45[_0x423f0b]))return parseInt(_0x6a02c5[_0x423f0b])>parseInt(_0x414a45[_0x423f0b])?0x1:-0x1;}return _0x6a02c5[_0x31bdb5(0x1b1)]==_0x414a45['length']?0x0:_0x6a02c5[_0x57500d(0x20e,'GTHf')]>_0x414a45[_0x31bdb5(0x1b1)]?0x1:-0x1;}async function updateCheck(_0x30dc28){const _0x29f62a=_0x3fe016,_0x26a081=_0x11af54;let _0x258120=versionData,_0x382e04=_0x258120['ONE-Tool']['version'],_0x5669e8=version_compare(_0x382e04,_0x30dc28);log(_0x26a081(0x213)+_0x382e04);let _0x4d6cd6=![];if(_0x5669e8==0x1){_0x4d6cd6=!![],log(_0x29f62a(0x1f5,'l%CQ'));if(!config[_0x26a081(0x18b)]){log('[+]执行更新步骤');let _0x4f7b87=new Alert();_0x4f7b87[_0x26a081(0x168)]='检测到有新版本！',_0x4f7b87[_0x26a081(0x141)]('暂不更新'),_0x4f7b87[_0x26a081(0x14f)](_0x26a081(0x196)),_0x4f7b87[_0x29f62a(0x13c,'iX(i')],_0x4f7b87[_0x29f62a(0x1b6,'uqBR')]=_0x258120[_0x26a081(0x1d4)][_0x26a081(0x1f9)];if(await _0x4f7b87['present']()==0x1){const _0x33b8e0=new Request(_0x258120[_0x29f62a(0x1fb,'Q60^')]['cdn_scriptURL']),_0x2d55c3=await _0x33b8e0[_0x26a081(0x1b2)]();files[_0x29f62a(0x125,'g)gd')](module[_0x29f62a(0x11c,'%DIF')],_0x2d55c3);const _0x27d1bc=new Notification();_0x27d1bc['title']=_0x29f62a(0x176,'APab'),_0x27d1bc['body']=_0x26a081(0x195),_0x27d1bc[_0x26a081(0x136)]();}Script[_0x29f62a(0x181,'Uupz')]();}}else{if(_0x5669e8==0x0)log('[+]当前版本已是最新');else{const _0x5b6936=new Notification();_0x5b6936[_0x29f62a(0x130,'WO!x')]=_0x26a081(0x1b4),_0x5b6936[_0x26a081(0x1ff)]=_0x29f62a(0x219,'uqBR'),_0x5b6936[_0x29f62a(0x127,'HwGf')]();}}return _0x4d6cd6;}function _0x469a(){const _0x3f347d=['wYTD5yAC5y6g5l+H5OgV6k+35Rgc5OIq5yQF','BMfTzq','WQ/dNmkm','ywrKqwn0Aw9U','5l2G5l2/55sO5lUa5lMi5z6l5y+355QeAvbOB25L77YF','mtK2mdeZmZb1r1vpBg4','kcGOlISPkYKRksSK','Dg9W','EmkklJj5','CgfYC2u','6yca5yE6koAYOEACIEAiQUwBVIK','m8kEuCov','W7hdJWdcSGu','BgfYz2u','W4pcT07dGCoSWOtdRa','W50GECowha8','CMvZDwX0','WRldH8kjk8kjW5XFnCkL','WQmKWPpLVA7LIlBKVylNVkZNU63NUjZLU43OJ6ZLJOtMIQFLI5e','EuHtWRFdLg/cQW','qJxcKmkhBJFcNW','W5FcOuy','zNjVBurHDge','auRcGXPsW5JdH8o3W5ru','p8kEvSopduZcJIC','W4VdKCojCmkSkSkIDW','AM7cRoInK+wpKEEiKEAFLos8UEAdRUwLVUI1HU+/NEs+SUEuUoE/UUwTS+AuVoAnRq','z2v0rNvSBfLLyxi','DgL0Bgu','mSoXeSkrW5X/uu9osCotdKWp','r2xdNmk7W6G','Bg9JywW','w8kgW7ldT8k+W6roDuXq','mtiGBwLUAq','WPusW5qDW6W','W6JcGfDHhvjI','Bwv0Ag9K','W6JdSmoToCkYfSkcvq','5lIT6zE0iow3PUI+Uq','kCoBWOtLKitPOy3LPyBMS5dKVitMGPZORj/MS4tMIztLIi8','yMXHy2S','5yI25l2C5Bcp57Ue5lU2','5lIN6l6j5PMV5PsZ5OUl5yIY','C2L6zq','W5dcKJVcVW','WOFdJgxdUf7cMLaZWP1KacCxza','5zQm54Q35yM56l+15AAY6lwk77+E','ywz0zxjUB29U','C2v0ugfKzgLUzW','W58LWQLAw3n+W7azWPhcPSkXW5u','E8kgps1W','WRpdQmo4DaJcG8kp','BwvZC2fNzq','uCkUW6RdIcdcLrqF','Bg9JywXL','x8kaW6NdQSk1W4PkCLi','WPOGWOJcLCk9WOu','mta3mZu3ngvKtu5XsG','kSkxleFcOq','WOhcSt7cMSoj','c8ocsSkpW4u','WOrVWQbjWRL5','W5RcHLJdGmke','CNvUC0LUv2LKz2v0','BwLKBMLNAhq','W57cIshcUXVcLKSKWPvmpe0vumoLWRdcJfRdHG','WRXlWRRcOX3dL2K','zMLSBfjLy3q','5OkO5lY85lMo6ycj5OUP5lQg6z2EAvbOB25L5Bgp5BMv5OIQ5zU+55Qe5zU+5yop77Ym5OIw6icf5lIn5PsV5OYb5OkO55QeAvbOB25L44cc6k+35l2/55sO5yw25lUw5zU+5yop5yAn6k+v5lIa5QYHiq','z2v0vgLTzq','DgvTCg9Yyxj5rgLYzwn0B3j5','W4yXySoygHZdOCoIW7m','wYTD5PEG5Rov5A6A5l2n77Ym5l2/55sO57Yt5A2y5A6A5l2n5PwW5O2U','6k+354k55yE75BEM5lIk6kEsrg9UzEwUJoAiKo+8JoMhJEAwSoI/M+wfPEIeMUACRownS+wpR34','56Ul5y2Z5PU05PAW','W5JcKIi','CMvHzeLTywDL','nZuYnZi1yMfjywXr','BMLNAhq','W5xcOupdOCoSWQ/dRa/dRHNcJG','DMvYC2LVBI1osW','BgvMDa','zM9UDa','W5hcTL7dGSoGWPJdVXJdSW','d+kpLmo6','WQmKWPpMG7JORQBKV67MGk3OJPxLJABMIBVLI4q','5A+85yE65yIW55U45yAm','WQm0es3dLa/cIsP/iHSE','s8krW68','vSkUW6tdJshcLq4oWPBdSSoTBNnIx2KFzG','mteWmZy2ndHKsK9eC0u','ngz+DcVdKWRcOW','vrWOW7H/crSUxSkvAYa','6Aon6ycEcow1IUI9Ha','6ywn572U5PAh5QgJ','5BUE6ykUWOJLJz3OVji','zxzHBhvHDgvkyxzHu2nYAxb0','6ycp5PIo6iom5PMV','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','WQpdU3xcQgW','zNjVBujHC2u2nfn0CMLUzW','BgvUz3rO','Bg9Hzfn0CMLUzW','WQxcMCo3ahRdSCo7vmoWxaKKhW','5l2C6icf6ikV5A6A5PIV5OMt556m552H5zwM77Yb','j07dNs8','W7lcJeP2ofX1','jsFdHCol','wmkrW6pdT8kyW4jpE1K','z2v0sw1Hz2u','6Age6ykTW7lLJ7FOVOy','yM90Dg9T','aSkcWRZdU8oMaCkWWQtcN8knW7qW','W4CWFSocprxdN8oTW657vuy','mKldGIBcGZv4mCk/','5lUL5lIl5PIV44cq6ycp5PIo6iom5PMV44cr55sF5OIq5Q2L6AQK77Ym5AAc5P6C5l2G5RkH5PYj5Bgp5BMv5OIQ5zU+6k+36yca5yE677Ym5BM26l+u5zUE5lI75Bgp5BMv6zw/5OYj6l+B5ywL57Yw6l6r5QIH5BYp44cc5RUr5yQO5yIW5PYa5y+Z6l6555Qe56M655M96Ag15OIQ5zU+44cc54s25zco6yEn5PAW6l+q6kgm77Yb','aCkeWQVdOCoTcmkTWOpcIG','W53cN0tdICk4f18xuSo8','kSkGW5zaWPnBW6ldUfLBgW','FrVcNYddMWvyvH7cMKbF','Ahr0Chm6lY9ZB3vYy2uUDw5ZCgXHC2GUy29Tl3jHBMrVBs84mdb4mZCZpW','AgvPz2H0','Bg9HzeHutuW','qSkGW7xdIYK','qSkBW6W','WOqSWOBcMa','zg9JDw1LBNrZrgLYzwn0B3j5','gmoTjSoVW5mDWQZcSSkKWODNb2Xxaq','mZm5nZi0mLbSA0Pkua','w/cFK4vD','Dgv4DenVBg9Y','zrCX','peJdIs/cIvrFeq','mLxdIcFcTHb9pW','fsKYk0WBW5K','zNjVBuXPyNjHCNK','t05flvrVB2W','WOD6WQbtWRi','WRldV3pcS3S','nSoTjSo3W5K','D3jPDgvtDhjPBMC','k8kJW5LqWOXKW7JdTujhgqz7l8k6dt/cVtLwWOxdNSoUl8oy','nMziB3Hoyq','B3bLBKLUqxbW','W77cJv13peHJr8kuWP9XtZZdSmkad8oB','BCkDps1PoCo1imk4CKHLa8ofrWhdQt8','odldMSohW4v8W4/dMSkM','W5hcVKVdUCoL','Ahr0Chm6lY9HCgKUzhvQAw4UB3jNl2jPBMCVmtm2nI5WAha','W7pdNSk8qcVcQCk/','wYTD5yAC5y6g5l+H5OgV6k+35Rgc5AsX6lsL77Ym5l2/55sO57Yt5A2y5PwW5O2U','WQrnW6dLKzJPO4NLP7FMSRBKViVMGyRORRJMSlxLPBxOT6/VVA3KVQ3NLjVNVzVLRRtMLkZMJ5C','yMf0DgvYEuXLDMvS','BwvKAxvT','y29TCgXLDgu','5OkO55Qe5Bcp6yoO5lU26iom5PMV5BEY5yEg5Ash5BcX57UQ77Ym6yca5yE65yIW5Qgm6z2I6Ake6kEi44cc','bNdcTWtdLXr3BmkuWQ3dKXHp','W4PoW7ujhru8W5aWWQxcM8kTW6C','w8kDW7/dT8kZ','WP10WRToWOD/E0K','WP5JWQfscq','5BUF6yo5gUw0NoI8Ga','mteGuhjV','C2vHCMnO','CMvHzfn0CMLUzW','AM9PBLbHDgG','qmkBW7RdP8ktW7LUwa','W5CKC8oAeWNdP8oXW6r4Ev/cRLtcJq','i2ZcUG/dKqDW','WP7cVeFMOiFMTzxLIiJMNOZMLPhNIApMN4BVV4S','ywrKvgv4Da','WRbEWOy','EMGTy24','BM90zxm','C2v0rMLSBenVBg9Y','bv9/W5FdRwBcLSon','wYTD5Qoa5Rwl5PIV5zcM5BYa5zcV5A6A5l2n5l+H5OgV77YA5Qoa5Rwl5lITFG','g0vPxcxdMGJdQ8kLjq','C3bSAxq','yM9KEq','WRvQWQbrfa','WP5YW6GC','W57cKJNcOGZdJr1FWPXwoW','yMfJA2DYB3vUzeLTywDL','W4FdUbumW7ldNW','W5FcREISK+AWS+AfJo+/KoAdKUEAGoIVPUwNOEs5LoAvQUAnM+s6QEIHQUwWMUMcJos7No+8H+wzM+ASO+s4S+MxL+wtLUw7P+MbOEMbP+MHHoEzJowtMoobNCoT','wYTD5Q2J5zYO5RIY5P+t5Bcp57Ue5lU277Ym6k+36icq5B+d562j5B6fFG','mteGuhjVie1HEa','xcRcPq','Ar7cNsFdMqak','5OQX5Q2j77Ym6k+L5Bc65A+45Bcp57Ue5lU25l2C6icf5PQc5PYQ6ycc6ywn','bhxdHSkIvmk8','Ahr0Chm6lY93yw5UAwfUCMLSAs41mti0mc5JB20V','Dg9tDhjPBMC','v2WBi1Cx','lSkxo0NcKmkOe8oQA8oYmmoA','omoPlmojWPRdPhFcUq','WP7cVeFOHRNORRhKVBxNV6TGE8kJ6kY95RcV5Pwv6zsW6zEk6zUg6l6m5Bgl776E5lYs55EU57+35A6p5PwI5O+1','W57cIshcUXVcLKSKWPPkiu0ouSkVWRBcJ17cN8k5dwq9pxHBl8kYu8kTW4rrWPDxWPvyAx9eBSkRB8kKft3cPmkbqaH8W7FdN2DRr8kTWRhcQZNdMCksWRm6c8odnSoKWR4JWO3dKmk3qCkOWRCg','wYTD5PYa5PAW54Mi5PYS77YA','BwLU','mJeYnZuXDMPUB1De','i2zMzMzMzG','m0ldKW7cKq10','ktSkicaGicaGicaGcIaGicaGicaGic8VifbLCMzVCM0GDgHLigfKzgL0Aw9UywWGChjVy2vZC2LUzYbMB3iGzgfYAYbPBwfNzxmUcIaGicaGicaGigLMicHPC0rHCMSPihSkicaGicaGicaGcIaGicaGicaGicaGlY8GrhjHDYb0AguGAgfYzcbSAwDODcbIB3GGB3zLCIbPDc4kicaGicaGicaGicbJB250zxH0lMDSB2jHBenVBxbVC2L0zu9WzxjHDgLVBIa9icjOyxjKlwXPz2H0iJSkicaGicaGicaGicbJB250zxH0lMzPBgXtDhLSzsa9icjYz2jHkdu1ldu1ldu1ldaUmIKIoWOGicaGicaGicaGignVBNrLEhqUzMLSBfjLy3qOmcWGmcWGDYWGAcK7cIaGicaGicakicaGicaGicaGicaVlYbeCMf3ihrOzsbZB2z0igXPz2H0igjVEcbVDMvYigL0lGOGicaGicaGicaGignVBNrLEhqUz2XVyMfSq29TCg9ZAxrLt3bLCMf0Aw9Uid0GiNnVzNqTBgLNAhqIoWOGicaGicaGicaGignVBNrLEhqUzMLSBfn0EwXLid0GiNjNyMeOntuSntuSntuSmsKIoWOGicaGicaGicaGignVBNrLEhqUzMLSBfjLy3qOmcWGmcWGDYWGAcK7cIaGicaGicakicaGicaGicaGicaVlYbeCMf3ihrOzsbYzwD1BgfYigjVEcbVDMvYigL0lGOGicaGicaGicaGignVBNrLEhqUz2XVyMfSq29TCg9ZAxrLt3bLCMf0Aw9Uid0GiNnVDxjJzs1VDMvYiJSkicaGicaGicaGicbJB250zxH0lMzPBgXtDhLSzsa9icjYz2jHkdu1ldu1ldu1ldaUncKIoWOGicaGicaGicaGignVBNrLEhqUzMLSBfjLy3qOmcWGmcWGDYWGAcK7cIaGicaGicaGiaOGicaGicaGicaVlYbpDgHLCNDPC2uGChjVy2vZCYbSAwDODcbPBwfNzxmUcIaGicaGicaGih0GzwXZzsb7cIaGicaGicaGicaGy29UDgv4Dc5MAwXSu3r5BguGpsaICMDIysGYntuSmJu1ldi1nsWWlJqPiJSkicaGicaGicaGicbJB250zxH0lMzPBgXszwn0kdaSidaSihCSigGPoWOGicaGicaGicb9cIaGicaGicakicaGicaGicaGlY8GuMv0DxjUigeGyMfZzty0ihjLChjLC2vUDgf0Aw9UlGOGicaGicaGicbJyw52yxmUDg9eyxrHvvjmkcK7iaOGicaGicaGica','5zgr5zkP77Y46l+C5lMZ6zEv6Aki5Q275BUp5Oc15yAP5lI0772F5lQt5yYk6ikC5y2+55sLWO4','Eb0Y','uchcLCkWyIhcJa','zxzLBMLUzW','pMvvarxcQYNcULS','W4hcLdhcVWa','W6L9WONcUCotWOrSrJa','zMLSzuv4Axn0CW','Dg9mB3DLCKnHC2u','BhvUyxjzzwfYvgv4Da','tCkub8otWPG','Bgf0Axr1zgu','W6X9WPtcJL4','w/cFJkrD','Bw9YBMLUzW','qsNdU0VcLfuJjCoBW6pdNNyKjCkphSoUW5rZuhdcM8khoZGAWQtdPmkDmsWMW6nNodpdHSo1n8oComkxWOfIaICMWOPyWOtdHJJdRH3dRSkDW6ldRhBdUmkidCosWPFdU8kdpSoldNZcO2xdS8kbWPisbvnBcsb1W7OvW50UbmkVWQFdQr4cdmoOW59GWRG+Bg1sW4rogCoEgWOeWRzhWPXDB8kOm8k9W6LMgCkgWP1hnLXtcSkmWR3cVaJdPwv+sq','Bw9KAwzPy2f0Aw9Urgf0zq','wYTDz2v0tg9JyxrPB25bCMvH5yE66zsz','57U057MKnUw0MUADT+AiOEwyRSkS','x8kkd8k7W68Haa','CbSPk0/dMsGf','ChjLC2vUDfnTywXS','k0RdIupcJeHo','W65UtEIhJ+IVM+s8TUE/PSofW5Pv6k+h5RgW5OUF5yQS','uHyEW59LaefzySknDJVdOCo5','mSoqavOqW7FdI8oeW4G','W6ddTSo/kCkklmkUBW','CMvMCMvZAefMDgvYrgf0zq','iIa9psaIzgfYAYi7cIaGicaGicaGihzHCIbPBwfNzuz1BMmGpsbPC0rHCMSGpYbKyxjRqMX1CIa6igXPz2H0qMX1CJSkicaGicaGiaOGicaGicaGicbMB3iGkgXLDcbPpta7igKGpcbWAxGUBgvUz3rOoYbPkZ00ksb7cIaGicaGicakicaGicaGicaGicaVlYbdB252zxj0ihrVieHttc4kicaGicaGicaGicbSzxqGAhnSid0GCMDIvg9iC2WOCgL4w2LDlhbPEfTPkZfDlhbPEfTPkZjDktSkicaGicaGicaGicakicaGicaGicaGicaVlYbbChbSEsb0AguGAw1Hz2uGzNvUy3rPB24UcIaGicaGicaGicaGAhnSid0GAw1Hz2vgDw5JkgHZBcK7cIaGicaGicaGiaOGicaGicaGicaGic8VienVBNzLCNqGyMfJAYb0BYbsr0iUcIaGicaGicaGicaGy29UC3qGCMDIid0GAhnSvg9sz2iOAhnSwZbDlcbOC2XBmv0SigHZBfSYxsK7cIaGicaGicaGiaOGicaGicaGicaGic8Vifb1Dcb0AguGDMfSDwvZigjHy2SGAw50BYb0AguGzgf0ys4kicaGicaGicaGicbWAxHBAv0GpsbYz2jBmf07cIaGicaGicaGicaGCgL4w2KRmv0GpsbYz2jBmv07cIaGicaGicaGicaGCgL4w2KRmL0GpsbYz2jBmL07cIaGicaGicakicaGicaGicaGFqOGicaGicaGcIaGicaGicaGic8VierYyxCGB3zLCIb0AguGB2XKigLTywDLlGOGicaGicaGicbJB250zxH0lNb1DeLTywDLrgf0ysHPBwfNzurHDgeSmcWWktSkicaGicaGiaOGicaGicaGicaVlYbcBhvYihrOzsbPBwfNzs4kicaGicaGicaGC3rHy2TcBhvYq2fUDMfZuKDckcjTywLUq2fUDMfZiIWGmcWGmcWGDYWGAcWG','W7KKetFdLHxcKd9Lyr4','yMfJA2DYB3vUzenVBg9Y','W7xdLb3cPq14WR1l','gudcIXbrW43dGCo2','AvbOB25LideXifbYBYWGwfmSig9YifG','m1LPtw1MuG','lwjN','mtiGuhjVie1HEa','w8kvWRLOWOVcMrNdO8kfDXRcSHv+W4X1v0ieW7SNWRlcNx7dJmkLWPxcN8k0zgrHWOKTbLSxW4VdHSkmhhWFnsi4sqT+','W5fWWRDzW6O','EN/cNSkEWPOOWPxcJmkQzcHjueS','z8oGASkegW','WPf8WO1vgN0Ls8oEda','6Aoo6kEi57UP5lQd','Bg9HzePtt04','AxnOyw4','Ahr0Chm6lY9KzxzHCgKUAgv3zwf0AgvYlM5LDc92nY93zwf0AgvYl25VDZ9SB2nHDgLVBJ0','C2nOzwr1Bgu','5lIT6zE0iowpS+I+Uq','5OkO55Qe5Bcp6yoO5lU26iom5PMV5BEY5yEg5Ash5BcX57UQ','wcRcU2PVyaJcHG','W5mSFmoumqpdOCo3W75V','Cmk6W4PSrCoVWONcImok','WPGzW5m','5OkO5OoZ6kAb5yIB5BU65lUa5lMi5Bc65A+455Qe5Bcp6yoO5lU277YF','yJeQBttdNq','emkhW7WHWPVcLqm','odHLyxzAseS','ywrKrgvZDhj1y3rPDMvby3rPB24','BMSTCgHVBMuTDhLWzq','W5lcOu/dPSoSWPldRdddOHpcGmo7bW','y2L0Eq','BgLICMfYEurPCMvJDg9YEq','W7vSWOxcVCoJW5eVbInSW5tcO8kir8omFh7cSCoShdpcG8kbW5ZdTSkUWPfzzCkvmZ07BLFdO8k8FmkZW4m','5OkO5OoZ5A6d5zYO5lUa5lMi5l2n572U77YF','nSoCdLS5W6ZdLq','CMvWzwf0','Aw5MB0X1BMfYvgv4Da','twvUBg8'];_0x469a=function(){return _0x3f347d;};return _0x469a();};
+const filename = Script.name()
+const files = FileManager.local()
+const localversion = '1.8.1'
+const path = files.joinPath(files.documentsDirectory(), filename)
+const versionData = await getversion()
+const needUpdated = await updateCheck(localversion)
+
+const currentDate = new Date()
+let locationString = await getLocation();
+const areaData = await getLocationArea(locationString)
+// 城市名称
+const city = areaData.result.address_component.city
+// 详细地址
+const district = areaData.result.address_component.district
+// 农历时间
+const lunarInfo = await getLunar(currentDate.getDate() - 1)
+// 农历拼接
+let lunarJoinInfo = "农历" + lunarInfo.infoLunarText + lunarInfo.lunarYearText + " " + lunarInfo.holidayText
+const weatherData = await getWeather()
+const honeyData = await gethoney()
+const widget = await createWidget()
+log("[+]正在渲染小组件，请耐心等待~")
+
+//#####################背景模块-START#####################
+
+if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
+
+
+    const okTips = "您的小部件背景已准备就绪"
+    let message = "开始之前，请回到主屏幕并进入编辑模式。 滑到最右边的空白页并截图。"
+    let options = ["图片选择", "透明背景", "配置文档", "取消"]
+    let response = await generateAlert(message, options)
+    if (response == 3) return
+    if (response == 0) {
+        let img = await Photos.fromLibrary()
+        message = okTips
+        const resultOptions = ["好的"]
+        await generateAlert(message, resultOptions)
+        files.writeImage(path, img)
+    }
+    if (response == 2) {
+        Safari.openInApp(versionData['ONE-Tool'].wxurl, false);
+    }
+    if (response == 1) {
+        message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
+        let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
+
+        let shouldExit = await generateAlert(message, exitOptions)
+        if (shouldExit) return
+
+        // Get screenshot and determine phone size.
+        let img = await Photos.fromLibrary()
+        let height = img.size.height
+        let phone = phoneSizes()[height]
+        if (!phone) {
+            message = "您似乎选择了非iPhone屏幕截图的图像，或者不支持您的iPhone。请使用其他图像再试一次!"
+            await generateAlert(message, ["好的！我现在去截图"])
+            return
+        }
+        if (height == 2436) {
+            let files = FileManager.local()
+            let cacheName = "nk-phone-type"
+            let cachePath = files.joinPath(files.libraryDirectory(), cacheName)
+            if (files.fileExists(cachePath)) {
+                let typeString = files.readString(cachePath)
+                phone = phone[typeString]
+            } else {
+                message = "你使用什么型号的iPhone？"
+                let types = ["iPhone 12 mini", "iPhone 11 Pro, XS, or X"]
+                let typeIndex = await generateAlert(message, types)
+                let type = (typeIndex == 0) ? "mini" : "x"
+                phone = phone[type]
+                files.writeString(cachePath, type)
+            }
+        }
+        // Prompt for widget size and position.
+        message = "您想要创建什么尺寸的小部件？"
+        let sizes = ["小号", "中号", "大号"]
+        let size = await generateAlert(message, sizes)
+        let widgetSize = sizes[size]
+
+        message = "您想它在什么位置？"
+        message += (height == 1136 ? " (请注意，您的设备仅支持两行小部件，因此中间和底部选项相同。)" : "")
+
+        // Determine image crop based on phone size.
+        let crop = {
+            w: "",
+            h: "",
+            x: "",
+            y: ""
+        }
+        if (widgetSize == "小号") {
+            crop.w = phone.小号
+            crop.h = phone.小号
+            let positions = ["顶部 左边", "顶部 右边", "中间 左边", "中间 右边", "底部 左边", "底部 右边"]
+            let position = await generateAlert(message, positions)
+
+            // Convert the two words into two keys for the phone size dictionary.
+            let keys = positions[position].split(' ')
+            crop.y = phone[keys[0]]
+            crop.x = phone[keys[1]]
+
+        } else if (widgetSize == "中号") {
+            crop.w = phone.中号
+            crop.h = phone.小号
+
+            // 中号 and 大号 widgets have a fixed x-value.
+            crop.x = phone.左边
+            let positions = ["顶部", "中间", "底部"]
+            let position = await generateAlert(message, positions)
+            let key = positions[position].toLowerCase()
+            crop.y = phone[key]
+
+        } else if (widgetSize == "大号") {
+            crop.w = phone.中号
+            crop.h = phone.大号
+            crop.x = phone.左边
+            let positions = ["顶部", "底部"]
+            let position = await generateAlert(message, positions)
+
+            // 大号 widgets at the 底部 have the "中间" y-value.
+            crop.y = position ? phone.中间 : phone.顶部
+        }
+
+        // Crop image and finalize the widget.
+        let imgCrop = cropImage(img, new Rect(crop.x, crop.y, crop.w, crop.h))
+
+        message = "您的小部件背景已准备就绪，退出到桌面预览。"
+        const resultOptions = ["导出到相册", "预览组件"]
+        const exportToFiles = await generateAlert(message, resultOptions)
+        if (exportToFiles) {
+            files.writeImage(path, imgCrop)
+        } else {
+            Photos.save(imgCrop)
+        }
+    }
+
+}
+
+
+//#####################背景模块-设置小组件的背景#####################
+
+
+if (colorMode) {
+    widget.backgroundColor = bgColor
+} else if (ImageMode) {
+    switch (Imgstyle) {
+        case 1:
+            const blugImgs = await getImageByUrl("https://source.unsplash.com/random/800x373?" + IMAGE_SEARCH_TERMS, `_${Script.name()}-bg`, false)
+            bgImg = await blurImage(blugImgs, blurStyle, blursize)
+            widget.backgroundImage = bgImg
+            break;
+        case 2:
+            const unsplashurl = "https://source.unsplash.com/random/800x373?" + IMAGE_SEARCH_TERMS
+            const orginImgs = await getImageByUrl(unsplashurl, `_${Script.name()}-orginImgs-bg`, false)
+            bgImg = await shadowImage(orginImgs)
+            widget.backgroundImage = bgImg
+            break;
+        case 3:
+            const bingurl = "https://api.dujin.org/bing/1366.php"
+            const bingImgs = await getImageByUrl(bingurl, `_${Script.name()}-bingImgs-bg`, false)
+            bgImg = await shadowImage(bingImgs)
+            widget.backgroundImage = bgImg
+            break;
+    }
+
+} else {
+    widget.backgroundImage = files.readImage(path)
+}
+// 设置边距(上，左，下，右)
+widget.setPadding(padding.top, padding.left, padding.bottom, padding.right)
+// 设置组件
+if (!config.runsInWidget) {
+    switch (previewSize) {
+        case "small":
+            await widget.presentSmall();
+            break;
+        case "medium":
+            await widget.presentMedium();
+            break;
+        case "large":
+            await widget.presentLarge();
+            break;
+    }
+}
+Script.setWidget(widget)
+// 完成脚本
+Script.complete()
+// 预览
+
+//#####################内容模块-创建小组件内容#####################
+
+async function createWidget() {
+    const widget = new ListWidget()
+    widget.spacing = 6
+    const time = new Date()
+    const hour = time.getHours()
+    const isMidnight = hour < 8 && 'midnight'
+    const isMorning = hour >= 8 && hour < 12 && 'morning'
+    const isAfternoon = hour >= 12 && hour < 19 && 'afternoon'
+    const isEvening = hour >= 19 && hour < 21 && 'evening'
+    const isNight = hour >= 21 && 'night'
+
+    const dfTime = new DateFormatter()
+    dfTime.locale = 'zh-cn'
+    dfTime.useMediumDateStyle()
+    dfTime.useNoTimeStyle()
+
+    if (previewSize === "small") {
+        //   const widget = new ListWidget();
+        const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
+        error.font = Font.blackMonospacedSystemFont(12)
+        error.textColor = Color.white()
+        error.centerAlignText()
+        widget.url = versionData['ONE-Tool'].wxurl
+        widget.backgroundColor = bgColor
+
+    } else {
+
+        const hello = widget.addText(`[🤖]Hi, ${User}. Good ${isMidnight || isMorning || isAfternoon || isEvening || isNight}!`)
+        hello.textColor = new Color('#ffffff')
+        hello.font = new Font('Menlo', 11)
+
+        const enTime = dfTime.string(time)
+        const lunartime = widget.addText(`[📅]${enTime} ${lunarJoinInfo}`)
+        lunartime.textColor = new Color('#C6FFDD')
+        lunartime.font = new Font('Menlo', 11)
+
+        const honey = widget.addText(`[🐷]${honeyData.ishan}`)
+        honey.textColor = new Color('#BBD676')
+        honey.font = new Font('Menlo', 11)
+        honey.lineLimit = 1
+
+        const weather = widget.addText(`[🌤]${city} ${district} ${weatherData.now.text} T:${weatherData.now.temp}°  F:${weatherData.now.feelsLike}° ${weatherData.now.windDir}`)
+        weather.textColor = new Color('#FBD786')
+        weather.font = new Font('Menlo', 11)
+
+        const Battery = widget.addText(`[${Device.isCharging() ? '⚡️' : '🔋'}]${renderBattery()} Battery`)
+        Battery.textColor = new Color('#00FF00')
+        Battery.font = new Font('Menlo', 11)
+
+        const Progress = widget.addText(`[⏳]${renderYearProgress()} YearProgress`)
+        Progress.textColor = new Color('#f19c65')
+        Progress.font = new Font('Menlo', 11)
+
+        let nextRefresh = Date.now() + 1000 * 60 * parseInt(refreshInterval)// add 30 min to now
+        widget.refreshAfterDate = new Date(nextRefresh) //下次刷新时间
+
+
+
+    }
+
+    return widget
+}
+
+
+//#####################事务逻辑处理模块#####################
+// ######获取万年历数据#######
+async function getLunar(day) {
+    // 缓存key
+    const cacheKey = "NK-lunar-cache"
+    // 万年历数据
+    let response = undefined
+    try {
+        const request = new Request("https://wannianrili.51240.com/")
+        const defaultHeaders = {
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36"
+        }
+        request.method = 'GET'
+        request.headers = defaultHeaders
+        const html = await request.loadString()
+        let webview = new WebView()
+        await webview.loadHTML(html)
+        var getData = `
+            function getData() {
+                try {
+                    infoLunarText = document.querySelector('div#wnrl_k_you_id_${day}.wnrl_k_you .wnrl_k_you_id_wnrl_nongli').innerText
+                    holidayText = document.querySelectorAll('div.wnrl_k_zuo div.wnrl_riqi')[${day}].querySelector('.wnrl_td_bzl').innerText
+                    lunarYearText = document.querySelector('div.wnrl_k_you_id_wnrl_nongli_ganzhi').innerText
+                    lunarYearText = lunarYearText.slice(0, lunarYearText.indexOf('年')+1)
+                    if(infoLunarText.search(holidayText) != -1) {
+                        holidayText = ''
+                    }
+                } catch {
+                    holidayText = ''
+                }
+                return {infoLunarText: infoLunarText,  lunarYearText: lunarYearText,  holidayText: holidayText }
+            }
+            
+            getData()`
+
+        // 节日数据  
+        response = await webview.evaluateJavaScript(getData, false)
+        Keychain.set(cacheKey, JSON.stringify(response))
+        log(`[+]农历信息请求成功`);
+    } catch (e) {
+        if (Keychain.contains(cacheKey)) {
+            const cache = Keychain.get(cacheKey)
+            response = JSON.parse(cache)
+            logError(`[+]农历信息请求失败，使用缓存数据`)
+        }
+    }
+
+    return response
+}
+
+//获取农历时间
+// async function getLunarData() {
+//   const url = 'https://api.xlongwei.com/service/datetime/convert.json'
+//   const request = new Request(url)
+//   const res = await request.loadJSON()
+//   return `${res.ganzhi}${res.shengxiao}年 农历${res.chinese.replace(/.*年/, '')}`
+// }
+
+// ######获取定位信息#######
+async function getLocation() {
+    // 设定位置缓存数据路径
+    const locationPath = files.joinPath(files.documentsDirectory(), "Mylocation-NK")
+    var latitude, longitude
+    var locationString
+    // 如果位置设定保存且锁定了，从缓存文件读取信息
+
+    if (lockLocation && files.fileExists(locationPath)) {
+        locationString = files.readString(locationPath)
+        logError("[+]位置锁定，使用缓存数据")
+        // return locationString
+        // 否则，从系统获取位置信息
+    } else {
+        try {
+            const location = await Location.current()
+            latitude = location.latitude
+            longitude = location.longitude
+            locationString = longitude + "," + latitude
+            files.writeString(locationPath, locationString)
+            log("[+]检测是否开启定位信息：检测中~")
+        }
+        catch (e) {
+            locationString = files.readString(locationPath)
+            logError("[+]无法定位，使用缓存定位数据")
+        }
+        locationString = locationString
+
+        //   return locationString
+    }
+    log("[+]当前位置经纬度获取成功")
+    return locationString
+}
+
+// ######获取和风天气数据#######
+async function getWeather() {
+    // 设定天气数据缓存路径
+    const cachePath = files.joinPath(files.documentsDirectory(), "HFcache-NK")
+    // log("彩云缓存："+cachePath)
+    const cacheExists = files.fileExists(cachePath)
+    const cacheDate = cacheExists ? files.modificationDate(cachePath) : 0
+    var data
+    // 假设存储器已经存在且距离上次请求时间不足60秒，使用存储器数据
+    if (cacheExists && (currentDate.getTime() - cacheDate.getTime()) < 60000) {
+        log("[+]请求时间间隔过小，使用缓存数据")
+        const cache = files.readString(cachePath)
+        data = JSON.parse(cache)
+        // 否则利用 api 得到新的数据
+    } else {
+
+        try {
+            const weatherReq = "https://devapi.heweather.net/v7/weather/now?location=" + locationString + "&key=" + WeatherKey + "&lang=zh-cn"
+            const dataToday = await new Request(weatherReq).loadJSON()
+            data = dataToday
+            files.writeString(cachePath, JSON.stringify(data))
+            log("[+]和风天气信息请求成功")
+        }
+        catch (e) {
+            data = JSON.parse(files.readString(cachePath))
+            logError("[+]和风天气信息请求失败，使用缓存数据")
+        }
+    }
+    return data
+}
+
+// ######获取定位的地址#######
+async function getLocationArea() {
+    // 加个缓存
+    let cachePath = files.joinPath(files.documentsDirectory(), "areaCache-NK");
+    // 	log("Tencent缓存："+cachePath)
+    let cacheExists = files.fileExists(cachePath)
+    let cacheDate = cacheExists ? files.modificationDate(cachePath) : 0;
+    let data;
+    // 假设存储器已经存在且距离上次请求时间不足60秒，使用存储器数据	
+    if (cacheExists && (currentDate.getTime() - cacheDate.getTime()) < 60000) {
+        log("[+]腾讯位置API请求时间间隔过小，使用缓存数据");
+        return data = JSON.parse(files.readString(cachePath))
+    }
+    let locationLs = locationString.split(",");
+    let area;
+    try {
+        // 官方文档的key
+        let testKey = "OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77"
+        let apiKey = tencentApiKey == "" ? testKey : tencentApiKey
+        let areaReq = "https://apis.map.qq.com/ws/geocoder/v1/?location=" + locationLs[1] + "," + locationLs[0] + "&key=" + apiKey + "&get_poi=0";
+        let areaRequest = new Request(areaReq);
+        let header = { "Referer": "https://lbs.qq.com/" }
+        areaRequest.method = 'GET';
+        areaRequest.headers = header;
+        area = await areaRequest.loadJSON();
+        log("[+]腾讯位置API请求成功");
+        files.writeString(cachePath, JSON.stringify(area))
+        // 		log("信息：" + JSON.stringify(area));
+    } catch (err) {
+        logError("[+]getLocationArea出错");
+        area = JSON.parse(files.readString(cachePath));
+    }
+    return area;
+}
+
+// ######情话#######
+async function gethoney() {
+    const honeyCachePath = files.joinPath(files.documentsDirectory(), "honey-NK")
+    var honeyData
+    try {
+        honeyData = await new Request("https://api.vvhan.com/api/love?type=json").loadJSON()
+        files.writeString(honeyCachePath, JSON.stringify(honeyData))
+        log("[+]情话信息获取成功")
+    } catch (e) {
+        honeyData = JSON.parse(files.readString(honeyCachePath))
+        logError("[+]获取情话信息失败，使用缓存数据")
+    }
+
+    return honeyData
+}
+
+
+// ######电量#######
+function renderProgress(progress) {
+    const used = '▓'.repeat(Math.floor(progress * 24))
+    const left = '░'.repeat(24 - used.length)
+    return `${used}${left} ${Math.floor(progress * 100)}%`
+}
+
+function renderBattery() {
+    const batteryLevel = Device.batteryLevel()
+    return renderProgress(batteryLevel)
+}
+
+function renderYearProgress() {
+    const now = new Date()
+    const start = new Date(now.getFullYear(), 0, 1) // Start of this year
+    const end = new Date(now.getFullYear() + 1, 0, 1) // End of this year
+    const progress = (now - start) / (end - start)
+    return renderProgress(progress)
+}
+
+//#####################背景模块-逻辑处理部分#####################
+
+async function shadowImage(img) {
+    let ctx = new DrawContext()
+    // 把画布的尺寸设置成图片的尺寸
+    ctx.size = img.size
+    // 把图片绘制到画布中
+    ctx.drawImageInRect(img, new Rect(0, 0, img.size['width'], img.size['height']))
+    // 设置绘制的图层颜色，为半透明的黑色
+    ctx.setFillColor(new Color('#000000', 0.5))
+    // 绘制图层
+    ctx.fillRect(new Rect(0, 0, img.size['width'], img.size['height']))
+
+    // 导出最终图片
+    return await ctx.getImage()
+}
+
+
+async function generateAlert(message, options) {
+    let alert = new Alert()
+    alert.message = message
+
+    for (const option of options) {
+        alert.addAction(option)
+    }
+
+    let response = await alert.presentAlert()
+    return response
+}
+
+// Crop an image into the specified rect.
+function cropImage(img, rect) {
+    let draw = new DrawContext()
+    draw.size = new Size(rect.width, rect.height)
+    draw.drawImageAtPoint(img, new Point(-rect.x, -rect.y))
+    return draw.getImage()
+}
+
+// **
+//  * 图片高斯模糊
+//  * @param {Image} img 
+//  * @param {string} style light/dark
+//  * @return {Image} 图片
+//  */
+async function blurImage(img, style, blur = blursize) {
+    const js = `
+   var mul_table=[512,512,456,512,328,456,335,512,405,328,271,456,388,335,292,512,454,405,364,328,298,271,496,456,420,388,360,335,312,292,273,512,482,454,428,405,383,364,345,328,312,298,284,271,259,496,475,456,437,420,404,388,374,360,347,335,323,312,302,292,282,273,265,512,497,482,468,454,441,428,417,405,394,383,373,364,354,345,337,328,320,312,305,298,291,284,278,271,265,259,507,496,485,475,465,456,446,437,428,420,412,404,396,388,381,374,367,360,354,347,341,335,329,323,318,312,307,302,297,292,287,282,278,273,269,265,261,512,505,497,489,482,475,468,461,454,447,441,435,428,422,417,411,405,399,394,389,383,378,373,368,364,359,354,350,345,341,337,332,328,324,320,316,312,309,305,301,298,294,291,287,284,281,278,274,271,268,265,262,259,257,507,501,496,491,485,480,475,470,465,460,456,451,446,442,437,433,428,424,420,416,412,408,404,400,396,392,388,385,381,377,374,370,367,363,360,357,354,350,347,344,341,338,335,332,329,326,323,320,318,315,312,310,307,304,302,299,297,294,292,289,287,285,282,280,278,275,273,271,269,267,265,263,261,259];var shg_table=[9,11,12,13,13,14,14,15,15,15,15,16,16,16,16,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,19,19,19,19,19,19,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24];function stackBlurCanvasRGB(id,top_x,top_y,width,height,radius){if(isNaN(radius)||radius<1)return;radius|=0;var canvas=document.getElementById(id);var context=canvas.getContext("2d");var imageData;try{try{imageData=context.getImageData(top_x,top_y,width,height)}catch(e){try{netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");imageData=context.getImageData(top_x,top_y,width,height)}catch(e){alert("Cannot access local image");throw new Error("unable to access local image data: "+e);return}}}catch(e){alert("Cannot access image");throw new Error("unable to access image data: "+e);}var pixels=imageData.data;var x,y,i,p,yp,yi,yw,r_sum,g_sum,b_sum,r_out_sum,g_out_sum,b_out_sum,r_in_sum,g_in_sum,b_in_sum,pr,pg,pb,rbs;var div=radius+radius+1;var w4=width<<2;var widthMinus1=width-1;var heightMinus1=height-1;var radiusPlus1=radius+1;var sumFactor=radiusPlus1*(radiusPlus1+1)/2;var stackStart=new BlurStack();var stack=stackStart;for(i=1;i<div;i++){stack=stack.next=new BlurStack();if(i==radiusPlus1)var stackEnd=stack}stack.next=stackStart;var stackIn=null;var stackOut=null;yw=yi=0;var mul_sum=mul_table[radius];var shg_sum=shg_table[radius];for(y=0;y<height;y++){r_in_sum=g_in_sum=b_in_sum=r_sum=g_sum=b_sum=0;r_out_sum=radiusPlus1*(pr=pixels[yi]);g_out_sum=radiusPlus1*(pg=pixels[yi+1]);b_out_sum=radiusPlus1*(pb=pixels[yi+2]);r_sum+=sumFactor*pr;g_sum+=sumFactor*pg;b_sum+=sumFactor*pb;stack=stackStart;for(i=0;i<radiusPlus1;i++){stack.r=pr;stack.g=pg;stack.b=pb;stack=stack.next}for(i=1;i<radiusPlus1;i++){p=yi+((widthMinus1<i?widthMinus1:i)<<2);r_sum+=(stack.r=(pr=pixels[p]))*(rbs=radiusPlus1-i);g_sum+=(stack.g=(pg=pixels[p+1]))*rbs;b_sum+=(stack.b=(pb=pixels[p+2]))*rbs;r_in_sum+=pr;g_in_sum+=pg;b_in_sum+=pb;stack=stack.next}stackIn=stackStart;stackOut=stackEnd;for(x=0;x<width;x++){pixels[yi]=(r_sum*mul_sum)>>shg_sum;pixels[yi+1]=(g_sum*mul_sum)>>shg_sum;pixels[yi+2]=(b_sum*mul_sum)>>shg_sum;r_sum-=r_out_sum;g_sum-=g_out_sum;b_sum-=b_out_sum;r_out_sum-=stackIn.r;g_out_sum-=stackIn.g;b_out_sum-=stackIn.b;p=(yw+((p=x+radius+1)<widthMinus1?p:widthMinus1))<<2;r_in_sum+=(stackIn.r=pixels[p]);g_in_sum+=(stackIn.g=pixels[p+1]);b_in_sum+=(stackIn.b=pixels[p+2]);r_sum+=r_in_sum;g_sum+=g_in_sum;b_sum+=b_in_sum;stackIn=stackIn.next;r_out_sum+=(pr=stackOut.r);g_out_sum+=(pg=stackOut.g);b_out_sum+=(pb=stackOut.b);r_in_sum-=pr;g_in_sum-=pg;b_in_sum-=pb;stackOut=stackOut.next;yi+=4}yw+=width}for(x=0;x<width;x++){g_in_sum=b_in_sum=r_in_sum=g_sum=b_sum=r_sum=0;yi=x<<2;r_out_sum=radiusPlus1*(pr=pixels[yi]);g_out_sum=radiusPlus1*(pg=pixels[yi+1]);b_out_sum=radiusPlus1*(pb=pixels[yi+2]);r_sum+=sumFactor*pr;g_sum+=sumFactor*pg;b_sum+=sumFactor*pb;stack=stackStart;for(i=0;i<radiusPlus1;i++){stack.r=pr;stack.g=pg;stack.b=pb;stack=stack.next}yp=width;for(i=1;i<=radius;i++){yi=(yp+x)<<2;r_sum+=(stack.r=(pr=pixels[yi]))*(rbs=radiusPlus1-i);g_sum+=(stack.g=(pg=pixels[yi+1]))*rbs;b_sum+=(stack.b=(pb=pixels[yi+2]))*rbs;r_in_sum+=pr;g_in_sum+=pg;b_in_sum+=pb;stack=stack.next;if(i<heightMinus1){yp+=width}}yi=x;stackIn=stackStart;stackOut=stackEnd;for(y=0;y<height;y++){p=yi<<2;pixels[p]=(r_sum*mul_sum)>>shg_sum;pixels[p+1]=(g_sum*mul_sum)>>shg_sum;pixels[p+2]=(b_sum*mul_sum)>>shg_sum;r_sum-=r_out_sum;g_sum-=g_out_sum;b_sum-=b_out_sum;r_out_sum-=stackIn.r;g_out_sum-=stackIn.g;b_out_sum-=stackIn.b;p=(x+(((p=y+radiusPlus1)<heightMinus1?p:heightMinus1)*width))<<2;r_sum+=(r_in_sum+=(stackIn.r=pixels[p]));g_sum+=(g_in_sum+=(stackIn.g=pixels[p+1]));b_sum+=(b_in_sum+=(stackIn.b=pixels[p+2]));stackIn=stackIn.next;r_out_sum+=(pr=stackOut.r);g_out_sum+=(pg=stackOut.g);b_out_sum+=(pb=stackOut.b);r_in_sum-=pr;g_in_sum-=pg;b_in_sum-=pb;stackOut=stackOut.next;yi+=width}}context.putImageData(imageData,top_x,top_y)}function BlurStack(){this.r=0;this.g=0;this.b=0;this.a=0;this.next=null}
+         // https://gist.github.com/mjackson/5311256
+       
+         function rgbToHsl(r, g, b){
+             r /= 255, g /= 255, b /= 255;
+             var max = Math.max(r, g, b), min = Math.min(r, g, b);
+             var h, s, l = (max + min) / 2;
+       
+             if(max == min){
+                 h = s = 0; // achromatic
+             }else{
+                 var d = max - min;
+                 s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                 switch(max){
+                     case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                     case g: h = (b - r) / d + 2; break;
+                     case b: h = (r - g) / d + 4; break;
+                 }
+                 h /= 6;
+             }
+       
+             return [h, s, l];
+         }
+       
+         function hslToRgb(h, s, l){
+             var r, g, b;
+       
+             if(s == 0){
+                 r = g = b = l; // achromatic
+             }else{
+                 var hue2rgb = function hue2rgb(p, q, t){
+                     if(t < 0) t += 1;
+                     if(t > 1) t -= 1;
+                     if(t < 1/6) return p + (q - p) * 6 * t;
+                     if(t < 1/2) return q;
+                     if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                     return p;
+                 }
+       
+                 var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                 var p = 2 * l - q;
+                 r = hue2rgb(p, q, h + 1/3);
+                 g = hue2rgb(p, q, h);
+                 b = hue2rgb(p, q, h - 1/3);
+             }
+       
+             return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+         }
+         
+         function lightBlur(hsl) {
+         
+           // Adjust the luminance.
+           let lumCalc = 0.35 + (0.3 / hsl[2]);
+           if (lumCalc < 1) { lumCalc = 1; }
+           else if (lumCalc > 3.3) { lumCalc = 3.3; }
+           const l = hsl[2] * lumCalc;
+           
+           // Adjust the saturation. 
+           const colorful = 2 * hsl[1] * l;
+           const s = hsl[1] * colorful * 1.5;
+           
+           return [hsl[0],s,l];
+           
+         }
+         
+         function darkBlur(hsl) {
+       
+           // Adjust the saturation. 
+           const colorful = 2 * hsl[1] * hsl[2];
+           const s = hsl[1] * (1 - hsl[2]) * 3;
+           
+           return [hsl[0],s,hsl[2]];
+           
+         }
+       
+         // Set up the canvas.
+         const img = document.getElementById("blurImg");
+         const canvas = document.getElementById("mainCanvas");
+       
+         const w = img.naturalWidth;
+         const h = img.naturalHeight;
+       
+         canvas.style.width  = w + "px";
+         canvas.style.height = h + "px";
+         canvas.width = w;
+         canvas.height = h;
+       
+         const context = canvas.getContext("2d");
+         context.clearRect( 0, 0, w, h );
+         context.drawImage( img, 0, 0 );
+         
+         // Get the image data from the context.
+         var imageData = context.getImageData(0,0,w,h);
+         var pix = imageData.data;
+         
+         var isDark = "${style}" == "dark";
+         var imageFunc = isDark ? darkBlur : lightBlur;
+       
+         for (let i=0; i < pix.length; i+=4) {
+       
+           // Convert to HSL.
+           let hsl = rgbToHsl(pix[i],pix[i+1],pix[i+2]);
+           
+           // Apply the image function.
+           hsl = imageFunc(hsl);
+         
+           // Convert back to RGB.
+           const rgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
+         
+           // Put the values back into the data.
+           pix[i] = rgb[0];
+           pix[i+1] = rgb[1];
+           pix[i+2] = rgb[2];
+       
+         }
+       
+         // Draw over the old image.
+         context.putImageData(imageData,0,0);
+       
+         // Blur the image.
+         stackBlurCanvasRGB("mainCanvas", 0, 0, w, h, ${blur});
+         
+         // Perform the additional processing for dark images.
+         if (isDark) {
+         
+           // Draw the hard light box over it.
+           context.globalCompositeOperation = "hard-light";
+           context.fillStyle = "rgba(55,55,55,0.2)";
+           context.fillRect(0, 0, w, h);
+       
+           // Draw the soft light box over it.
+           context.globalCompositeOperation = "soft-light";
+           context.fillStyle = "rgba(55,55,55,1)";
+           context.fillRect(0, 0, w, h);
+       
+           // Draw the regular box over it.
+           context.globalCompositeOperation = "source-over";
+           context.fillStyle = "rgba(55,55,55,0.4)";
+           context.fillRect(0, 0, w, h);
+         
+         // Otherwise process light images.
+         } else {
+           context.fillStyle = "rgba(255,255,255,0.4)";
+           context.fillRect(0, 0, w, h);
+         }
+       
+         // Return a base64 representation.
+         canvas.toDataURL(); 
+         `
+
+    // Convert the images and create the HTML.
+    let blurImgData = Data.fromPNG(img).toBase64String()
+    let html = `
+         <img id="blurImg" src="data:image/png;base64,${blurImgData}" />
+         <canvas id="mainCanvas" />
+         `
+
+    // Make the web view and get its return value.
+    let view = new WebView()
+    await view.loadHTML(html)
+    let returnValue = await view.evaluateJavaScript(js)
+
+    // Remove the data type from the string and convert to data.
+    let imageDataString = returnValue.slice(22)
+    let imageData = Data.fromBase64String(imageDataString)
+
+    // Convert to image and crop before returning.
+    let imageFromData = Image.fromData(imageData)
+    // return cropImage(imageFromData)
+    return imageFromData
+}
+
+async function getImageByUrl(url, cacheKey, useCache = true) {
+    const cacheFile = FileManager.local().joinPath(FileManager.local().temporaryDirectory(), cacheKey)
+    const exists = FileManager.local().fileExists(cacheFile)
+    // 判断是否有缓存
+    if (useCache && exists) {
+        return Image.fromFile(cacheFile)
+    }
+    try {
+        const req = new Request(url)
+        const img = await req.loadImage()
+        // 存储到缓存
+        FileManager.local().writeImage(cacheFile, img)
+        return img
+    } catch (e) {
+        console.error(`图片加载失败：${e}`)
+        if (exists) {
+            return Image.fromFile(cacheFile)
+        }
+        // 没有缓存+失败情况下，返回黑色背景
+        let ctx = new DrawContext()
+        ctx.size = new Size(100, 100)
+        ctx.setFillColor(Color.black())
+        ctx.fillRect(new Rect(0, 0, 100, 100))
+        return await ctx.getImage()
+    }
+}
+
+// Pixel sizes and positions for widgets on all supported phones.
+function phoneSizes() {
+    let phones = {
+      "2556": {
+        "models": ["14 Pro Max"],
+        "小号": 510,
+        "中号": 1092,
+        "大号": 1146,
+        "左边": 99,
+        "右边": 681,
+        "顶部": 282,
+        "中间": 918,
+        "底部": 1554,
+      },
+  
+      "2556": {
+        "models": ["14 Pro"],
+        "小号": 474,
+        "中号": 1014,
+        "大号": 1062,
+        "左边": 82,
+        "右边": 622,
+        "顶部": 270,
+        "中间": 858,
+        "底部": 1446,
+      },
+      "2532": {
+        "models": ["12", "12 Pro", "14"],
+        "小号": 474,
+        "中号": 1014,
+        "大号": 1062,
+        "左边": 78,
+        "右边": 618,
+        "顶部": 231,
+        "中间": 819,
+        "底部": 1407,
+      },
+  
+      "2778": {
+        "models": ["12 Pro Max", "13 Pro Max"],
+        "小号": 510,
+        "中号": 1092,
+        "大号": 1146,
+        "左边": 96,
+        "右边": 678,
+        "顶部": 246,
+        "中间": 882,
+        "底部": 1518,
+      },
+  
+      "2688": {
+        "models": ["Xs Max", "11 Pro Max"],
+        "小号": 507,
+        "中号": 1080,
+        "大号": 1137,
+        "左边": 81,
+        "右边": 654,
+        "顶部": 228,
+        "中间": 858,
+        "底部": 1488
+      },
+  
+      "1792": {
+        "models": ["11", "Xr"],
+        "小号": 338,
+        "中号": 720,
+        "大号": 758,
+        "左边": 54,
+        "右边": 436,
+        "顶部": 160,
+        "中间": 580,
+        "底部": 1000
+      },
+  
+      "2436": {
+        x: {
+          "models": ["X", "Xs", "11 Pro"],
+          "小号": 465,
+          "中号": 987,
+          "大号": 1035,
+          "左边": 69,
+          "右边": 591,
+          "顶部": 213,
+          "中间": 783,
+          "底部": 1353
+        },
+  
+        mini: {
+          "models": ["12 mini"],
+          "小号": 465,
+          "中号": 987,
+          "大号": 1035,
+          "左边": 69,
+          "右边": 591,
+          "顶部": 231,
+          "中间": 801,
+          "底部": 1371
+        }
+      },
+  
+      "2208": {
+        "models": ["6+", "6s+", "7+", "8+"],
+        "小号": 471,
+        "中号": 1044,
+        "大号": 1071,
+        "左边": 99,
+        "右边": 672,
+        "顶部": 114,
+        "中间": 696,
+        "底部": 1278
+      },
+  
+      "1334": {
+        "models": ["6", "6s", "7", "8", "SE2"],
+        "小号": 296,
+        "中号": 642,
+        "大号": 648,
+        "左边": 54,
+        "右边": 400,
+        "顶部": 60,
+        "中间": 412,
+        "底部": 764
+      },
+  
+      "1136": {
+        "models": ["5", "5s", "5c", "SE"],
+        "小号": 282,
+        "中号": 584,
+        "大号": 622,
+        "左边": 30,
+        "右边": 332,
+        "顶部": 59,
+        "中间": 399,
+        "底部": 399
+      }
+    }
+    return phones
+  }
+
+
+//#####################版本更新模块#####################
+
+async function getversion() {
+    const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
+    var versionData
+    try {
+        versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+        files.writeString(versionCachePath, JSON.stringify(versionData))
+        log(`[+]欢迎使用：${versionData.author}制作小组件`);
+        log("[+]遇到问题，请前往公众号：曰坛 反馈");
+        log("[+]版本信息获取成功")
+    } catch (e) {
+        versionData = JSON.parse(files.readString(versionCachePath))
+        logError("[+]获取版本信息失败，使用缓存数据")
+    }
+
+    return versionData
+}
+
+// 版本比较
+function version_compare(v1, v2) {
+    // 将两个版本号拆成数组
+    var arr1 = v1.split('.'),
+        arr2 = v2.split('.');
+    var minLength = Math.min(arr1.length, arr2.length);
+    // 依次比较版本号每一位大小
+    for (var i = 0; i < minLength; i++) {
+        if (parseInt(arr1[i]) != parseInt(arr2[i])) {
+            return (parseInt(arr1[i]) > parseInt(arr2[i])) ? 1 : -1;
+        }
+    }
+    // 若前几位分隔相同，则按分隔数比较。
+    if (arr1.length == arr2.length) {
+        return 0;
+    } else {
+        return (arr1.length > arr2.length) ? 1 : -1;
+    }
+}
+
+async function updateCheck(localversion) {
+
+    let uC = versionData
+    let originversion = uC['ONE-Tool'].version
+    let status = version_compare(originversion, localversion)
+    log('[+]最新版本：' + originversion)
+    let needUpdate = false
+    if (status == 1) {
+        needUpdate = true
+        log("[+]检测到有新版本！")
+        if (!config.runsInWidget) {
+            log("[+]执行更新步骤")
+            let upd = new Alert()
+            upd.title = "检测到有新版本！"
+            upd.addDestructiveAction("暂不更新")
+            upd.addAction("立即更新")
+            upd.add
+            upd.message = uC['ONE-Tool'].notes
+            if (await upd.present() == 1) {
+                const req = new Request(uC['ONE-Tool'].cdn_scriptURL)
+                const codeString = await req.loadString()
+                files.writeString(module.filename, codeString)
+                const n = new Notification()
+                n.title = "下载更新成功"
+                n.body = "请点击左上角Done完成，重新进入脚本即可~"
+                n.schedule()
+
+            }
+            Script.complete()
+        }
+
+    } else if (status == 0) {
+        log("[+]当前版本已是最新")
+    } else {
+        const n = new Notification()
+        n.title = "作者肯定是打瞌睡啦！"
+        n.body = "哎呀！这个问题正常情况下，不可能发生~"
+        n.schedule()
+    }
+
+    return needUpdate
+}
+
+/********************************************************
+ ************* MAKE SURE TO COPY EVERYTHING *************
+ *******************************************************
+ ************ © 2023 Copyright Nicolas-kings ************/

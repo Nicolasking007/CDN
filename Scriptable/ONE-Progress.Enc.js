@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: green; icon-glyph: magic;
@@ -7,7 +8,7 @@
 /********************************************************
  ************* MAKE SURE TO COPY EVERYTHING *************
  *******************************************************
- ************ © 2021 Copyright Nicolas-kings ************/
+ ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Progress.js
  * version    : 1.5
@@ -25,21 +26,959 @@
 ----------------------------------------------- */
 //##############公共参数配置模块############## 
 
-const changePicBg = false  //选择true时，使用透明背景 
-const ImageMode = true  //选择true时，使用必应壁纸
-const previewSize = (config.runsInWidget ? config.widgetFamily : "medium");// medium、small、large 预览大小
-const colorMode = false // 是否是纯色背景
-const life_expectancy = 77.3  //采用2020年中国人均预期寿命77.3岁
-const blurStyle = "dark" // 高斯样式：light/dark
-const blursize = 100   //模糊程度
-const Imgstyle = 1   //1 图片加蒙板 2 unsplash壁纸  3 Bing 壁纸
-const IMAGE_SEARCH_TERMS = "nature,wather"  // 仅当选项为Unsplash 有效
-//##############用户自定义参数配置模块-开始##############
-//⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊⇊
-//##############请在首次运行之前进行修改##############
+// 选择true时，使用透明背景
+const changePicBg = false
+// 选择true时，使用必应壁纸  
+const ImageMode = false
+// 预览大小  small/medium/large
+const previewSize = (config.runsInWidget ? config.widgetFamily : "medium");
+// 是否使用纯色背景
+const colorMode = false
+// 小组件背景色
+const bgColor = new Color('#223A70', 1)
+// 高斯样式：light/dark
+const blurStyle = "dark"
+// 模糊程度 参数范围 1~150
+const blursize = 100
+// 1：图片加蒙板 2：unsplash壁纸  3：Bing 壁纸
+const Imgstyle = 1
+// 仅当选项为Unsplash有效 即Imgstyle = 2
+const IMAGE_SEARCH_TERMS = "nature,wather"
+// 在这里输入您的出生年月 格式为YYYY-MM-DD
+const LIFE_BIRTHDAY = '1995-09-30';
+// 全局字体大小
+const FONT_SIZE = 16;
+// 全局行高
+const LINE_HEIGHT = 16;
+// 全局字体
+const LABEL_WIDTH = 100;
+// 堆栈大小
+const SPACER_SIZE = 10;
+// 倒计时宽度
+const BAR_WIDTH = 180;
+// 倒计时高度
+const BAR_HEIGHT = 12;
+// 浅色模式下字体颜色
+const COLOR_LIGHT_GRAY = new Color('#E5E7EB', 1);
+// 深色模式下字体颜色
+const COLOR_DARK_GRAY = new Color('#374151', 1);
+// 按照模式自动切换颜色
+const COLOR_BAR_BACKGROUND = Color.dynamic(COLOR_LIGHT_GRAY, COLOR_DARK_GRAY);
+// 倒计时进度条默认渐变色  #3B82F6,#10B981,#FBBF24,#EF4444
+const DEFAULT_Color = new LinearGradient()
+DEFAULT_Color.colors = [new Color('#3B82F6'), new Color('#FBBF24'), new Color('#10B981'), ]
+DEFAULT_Color.locations = [0.0, 0.5, 1.0]
+const COLOR_BAR_DEFAULT = DEFAULT_Color
 
-const LIFE_BIRTHDAY = '1995-09-30'; //在这里输入您的出生年月  
 
-//⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈⇈
-//##############用户自定义参数配置模块-结束##############
-const _0x2b9dd6=_0x5e59,_0x4b0dab=_0x1a8d;(function(_0x5e1c53,_0x476483){const _0x4c1c41=_0x5e59,_0x3aae4e=_0x1a8d,_0x183b78=_0x5e1c53();while(!![]){try{const _0x51174e=-parseInt(_0x3aae4e(0x15f))/0x1*(parseInt(_0x4c1c41(0x1aa,'bK$n'))/0x2)+parseInt(_0x4c1c41(0x16a,'Z64!'))/0x3*(parseInt(_0x3aae4e(0x1fb))/0x4)+-parseInt(_0x3aae4e(0x19e))/0x5*(-parseInt(_0x4c1c41(0x1d2,'xV[y'))/0x6)+parseInt(_0x4c1c41(0x1e6,'y34]'))/0x7*(parseInt(_0x3aae4e(0x179))/0x8)+parseInt(_0x4c1c41(0x1e3,'a!rZ'))/0x9+-parseInt(_0x4c1c41(0x1ca,'85t4'))/0xa*(parseInt(_0x4c1c41(0x151,'S5kH'))/0xb)+parseInt(_0x3aae4e(0x157))/0xc*(parseInt(_0x4c1c41(0x15b,'@(wq'))/0xd);if(_0x51174e===_0x476483)break;else _0x183b78['push'](_0x183b78['shift']());}catch(_0x382fd8){_0x183b78['push'](_0x183b78['shift']());}}}(_0x3920,0xcee97));const filename=Script['name']()+_0x4b0dab(0x177),files=FileManager[_0x2b9dd6(0x23c,'VT9B')](),path=files['joinPath'](files[_0x2b9dd6(0x1e1,'Uuv0')](),filename),FONT_SIZE=0x10,LINE_HEIGHT=0x10,LABEL_WIDTH=0x64,SPACER_SIZE=0xa,BAR_WIDTH=0xb4,BAR_HEIGHT=0xc,COLOR_LIGHT_GRAY=new Color(_0x4b0dab(0x164),0x1),COLOR_DARK_GRAY=new Color(_0x2b9dd6(0x22e,')DR3'),0x1),COLOR_BAR_BACKGROUND=Color[_0x4b0dab(0x233)](COLOR_LIGHT_GRAY,COLOR_DARK_GRAY),versionData=await getversion();let needUpdated=await updateCheck(1.5);const DEFAULT_Color=new LinearGradient();DEFAULT_Color['colors']=[new Color(_0x4b0dab(0x18b)),new Color('#FBBF24'),new Color('#10B981')],DEFAULT_Color[_0x4b0dab(0x205)]=[0x0,0.5,0x1];const COLOR_BAR_DEFAULT=DEFAULT_Color,params=(args['widgetParameter']+'')[_0x2b9dd6(0x215,'[Mc]')]('|');let colors=[];params[0x0]!==''&&params[0x0]!=='null'?(colors=params[0x0][_0x4b0dab(0x237)](',')[_0x4b0dab(0x1a9)](_0x52cf55=>_0x52cf55[_0x4b0dab(0x1ba)]()),colors=colors['map'](_0x3ad0a3=>new Color(_0x3ad0a3,0x1))):colors['push'](COLOR_BAR_DEFAULT);function getColors(_0x548fba){return colors[_0x548fba%colors['length']];}let isWeekStartsOnSunday=![];params[_0x2b9dd6(0x222,'k7jT')]>0x2&&params[0x2][_0x4b0dab(0x236)]()==='true'&&(isWeekStartsOnSunday=!![]);const now=new Date(),labels=['今天','本周','本月','今年','一生'],calcWeekOfYear=_0x168cb1=>{const _0x53b2df=_0x2b9dd6,_0x38f91b=_0x4b0dab,_0x5be973=new Date(_0x168cb1[_0x38f91b(0x207)](),0x0,0x1),_0x260319=_0x5be973[_0x53b2df(0x1ef,'yJnB')](),_0x4776cc=new Date(_0x168cb1[_0x53b2df(0x223,'&k][')](),0x0,_0x5be973[_0x38f91b(0x1f7)]()>0x3?0x8-_0x260319:0x1-_0x260319),_0xdcec10=isWeekStartsOnSunday?_0x168cb1[_0x38f91b(0x1ab)]():_0x168cb1[_0x38f91b(0x1ab)]()-0x5265c00,_0x459b66=Math[_0x53b2df(0x227,'IK#m')]((_0xdcec10-_0x4776cc[_0x53b2df(0x20f,'bgpB')]())/0x5265c00/0x7)+0x1;return _0x459b66;},labelsTemplate={'dayOfMonth':_0x484439=>{const _0x328832=_0x4b0dab;return _0x484439[_0x328832(0x1f1)]();},'dayOfMonthWithZero':_0x45203e=>{const _0x212f86=_0x45203e['getDate']();return _0x212f86<0xa?'0'+_0x212f86:_0x212f86;},'dayCn':_0x58c6ba=>{const _0x1bef5f=_0x4b0dab,_0x567220=_0x2b9dd6;return['星期一','星期二','星期三',_0x567220(0x1dc,'[&cv'),'星期五',_0x567220(0x1ee,'4eO3'),_0x1bef5f(0x1f4)][_0x58c6ba[_0x1bef5f(0x1f7)]()];},'dayEn':_0x32c9b4=>{const _0xe63ad4=_0x2b9dd6,_0x17b9e9=_0x4b0dab;return['Sun',_0x17b9e9(0x217),'Tue',_0x17b9e9(0x16e),_0xe63ad4(0x1a2,'j3im'),_0xe63ad4(0x160,'4eO3'),_0x17b9e9(0x1fd)][_0x32c9b4['getDay']()];},'weekOfYear':_0x456d93=>{const _0x1da00c=_0x4b0dab;let _0x14e4e3=calcWeekOfYear(_0x456d93);return _0x14e4e3===0x0&&(_0x14e4e3=calcWeekOfYear(new Date(_0x456d93[_0x1da00c(0x207)](),0x0,0x0))),_0x14e4e3;},'weekOfYearWithZero':_0x58f6eb=>{let _0x1c8bbf=calcWeekOfYear(_0x58f6eb);return _0x1c8bbf===0x0&&(_0x1c8bbf=calcWeekOfYear(new Date(_0x58f6eb['getFullYear'](),0x0,0x0))),_0x1c8bbf<0xa?'0'+_0x1c8bbf:_0x1c8bbf;},'monthNum':_0x4970ed=>{const _0x102db6=_0x2b9dd6;return _0x4970ed[_0x102db6(0x209,'&a[i')]()+0x1;},'monthNumWithZero':_0x5bc0cb=>{const _0x41928b=_0x2b9dd6,_0x1cc98f=_0x5bc0cb[_0x41928b(0x1e2,'l2ho')]()+0x1;return _0x1cc98f<0xa?'0'+_0x1cc98f:_0x1cc98f;},'monthEn':_0x58df99=>{const _0x5088c8=_0x4b0dab,_0x3c5664=_0x2b9dd6;return['Jan',_0x3c5664(0x152,'85t4'),_0x5088c8(0x1e5),_0x3c5664(0x19b,'ImMa'),_0x5088c8(0x19d),_0x5088c8(0x163),_0x5088c8(0x1ad),_0x5088c8(0x21c),_0x3c5664(0x167,'VT9B'),'Oct','Nov',_0x3c5664(0x21a,'iq!Y')][_0x58df99[_0x5088c8(0x219)]()];},'monthCn':_0x5175f5=>{const _0x13c423=_0x4b0dab;return['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月',_0x13c423(0x214)][_0x5175f5['getMonth']()];},'year':_0x2fde26=>{return _0x2fde26['getFullYear']();}};if(params[_0x2b9dd6(0x211,'[uM4')]>0x1&&params[0x1]!==''){const paramLabels=params[0x1][_0x2b9dd6(0x1d7,'Nj@G')](',')['map'](_0x19f101=>_0x19f101[_0x4b0dab(0x1ba)]()),templateRegExp=/(\${[^{}]+})/;for(let i=0x0;i<paramLabels[_0x4b0dab(0x174)];i++){while(paramLabels[i][_0x4b0dab(0x230)](templateRegExp)){const template=paramLabels[i][_0x4b0dab(0x230)](templateRegExp)[0x0],templateKey=template[_0x4b0dab(0x1d4)]('${','')[_0x4b0dab(0x1d4)]('}',''),templateValue=labelsTemplate[templateKey](now);paramLabels[i]=paramLabels[i][_0x2b9dd6(0x168,'X2Sp')](template,templateValue);}labels[i]=paramLabels[i];}}function calcProgress(_0x10df13,_0xcaec4c,_0x13317a){return(_0x13317a-_0x10df13)/(_0xcaec4c-_0x10df13);}function getAge(_0x3ab5a9){const _0x52daf1=_0x4b0dab,_0xb176a5=new Date(_0x3ab5a9),_0x320c62=new Date();_0x320c62['setHours'](0x0,0x0,0x0,0x0);const _0x525ddc=new Date(_0x320c62[_0x52daf1(0x207)](),_0xb176a5[_0x52daf1(0x219)](),_0xb176a5[_0x52daf1(0x1f1)]()),_0x336963=_0x525ddc-_0xb176a5,_0x57c593=_0x320c62-_0xb176a5;let _0x24908b=_0x320c62['getFullYear']()-_0xb176a5[_0x52daf1(0x207)](),_0x22eeba=null;return _0x57c593<_0x336963?(_0x24908b=_0x24908b-0x1,_0x22eeba=_0x24908b<0x0?0x0:_0x24908b):_0x22eeba=_0x24908b,_0x22eeba;}const dayStart=new Date(now[_0x2b9dd6(0x22f,')DR3')](),now[_0x4b0dab(0x219)](),now[_0x2b9dd6(0x1d1,'a!rZ')]()),dayEnd=new Date(now[_0x2b9dd6(0x22b,'hKF&')](),now[_0x4b0dab(0x219)](),now[_0x2b9dd6(0x19c,'Uuv0')]()+0x1),dayProgress=calcProgress(dayStart,dayEnd,now);let weekDay=now[_0x4b0dab(0x1f7)]()===0x0?0x6:now[_0x2b9dd6(0x156,'(eGc')]()-0x1;isWeekStartsOnSunday&&(weekDay=now[_0x4b0dab(0x1f7)]());const weekStart=new Date(now['getFullYear'](),now[_0x4b0dab(0x219)](),now['getDate']()-weekDay),weekEnd=new Date(weekStart[_0x4b0dab(0x207)](),weekStart['getMonth'](),weekStart[_0x2b9dd6(0x1b3,'&k][')]()+0x7),weekProgress=calcProgress(weekStart,weekEnd,now),monthStart=new Date(now[_0x4b0dab(0x207)](),now[_0x2b9dd6(0x209,'&a[i')](),0x1),monthEnd=new Date(now[_0x2b9dd6(0x225,'85t4')](),now[_0x4b0dab(0x219)]()+0x1,0x1),monthProgress=calcProgress(monthStart,monthEnd,now),yearStart=new Date(now[_0x4b0dab(0x207)](),0x0,0x1),yearEnd=new Date(now[_0x4b0dab(0x207)]()+0x1,0x0,0x1),yearProgress=calcProgress(yearStart,yearEnd,now);let age=getAge(LIFE_BIRTHDAY);log(age);const lifeStart=age,lifeEnd=life_expectancy,lifeProgress=Math[_0x4b0dab(0x197)](lifeStart/lifeEnd*0x3e8)/0x3e8,font=Font[_0x2b9dd6(0x1de,'11lM')](FONT_SIZE),padding={'top':0x0,'left':0x0,'bottom':0x0,'right':0x0};let widget=await createWidget();if(!colorMode&&!ImageMode&&!config[_0x4b0dab(0x18f)]&&changePicBg){const okTips=_0x2b9dd6(0x1e7,'@fIX');let message=_0x2b9dd6(0x234,'#cKJ'),options=[_0x4b0dab(0x171),_0x2b9dd6(0x15d,'ImMa'),_0x2b9dd6(0x17c,'bgpB')],response=await generateAlert(message,options);if(response==0x0){let img=await Photos[_0x2b9dd6(0x1ec,'@(wq')]();message=okTips;const resultOptions=['好的'];await generateAlert(message,resultOptions),files[_0x4b0dab(0x191)](path,img);}response==0x2&&Safari[_0x2b9dd6(0x1b5,'Z64!')](versionData[_0x2b9dd6(0x20b,'X2Sp')][_0x4b0dab(0x23b)]);if(response==0x1){message=_0x2b9dd6(0x1ea,'a!rZ');let exitOptions=['继续(已有截图)',_0x4b0dab(0x1a4)],shouldExit=await generateAlert(message,exitOptions);if(shouldExit)return;let img=await Photos[_0x4b0dab(0x1da)](),height=img[_0x2b9dd6(0x228,'bK$n')][_0x4b0dab(0x161)],phone=phoneSizes()[height];if(!phone){message='您似乎选择了非iPhone屏幕截图的图像，或者不支持您的iPhone。请使用其他图像再试一次!',await generateAlert(message,[_0x2b9dd6(0x190,'&k][')]);return;}message=_0x4b0dab(0x195);let sizes=['小号','中号','大号'],size=await generateAlert(message,sizes),widgetSize=sizes[size];message=_0x2b9dd6(0x187,'ANQf'),message+=height==0x470?_0x4b0dab(0x200):'';let crop={'w':'','h':'','x':'','y':''};if(widgetSize=='小号'){crop['w']=phone['小号'],crop['h']=phone['小号'];let positions=[_0x4b0dab(0x182),_0x2b9dd6(0x213,'4eO3'),_0x2b9dd6(0x1f6,')DR3'),_0x2b9dd6(0x1c8,'bK$n'),'底部\x20左边','底部\x20右边'],position=await generateAlert(message,positions),keys=positions[position]['split']('\x20');crop['y']=phone[keys[0x0]],crop['x']=phone[keys[0x1]];}else{if(widgetSize=='中号'){crop['w']=phone['中号'],crop['h']=phone['小号'],crop['x']=phone['左边'];let positions=['顶部','中间','底部'],position=await generateAlert(message,positions),key=positions[position]['toLowerCase']();crop['y']=phone[key];}else{if(widgetSize=='大号'){crop['w']=phone['中号'],crop['h']=phone['大号'],crop['x']=phone['左边'];let positions=['顶部','底部'],position=await generateAlert(message,positions);crop['y']=position?phone['中间']:phone['顶部'];}}}let imgCrop=cropImage(img,new Rect(crop['x'],crop['y'],crop['w'],crop['h']));message='您的小部件背景已准备就绪，退出到桌面预览。';const resultOptions=['好的'];await generateAlert(message,resultOptions),files['writeImage'](path,imgCrop);}}if(colorMode)widget[_0x4b0dab(0x20c)]=COLOR_BAR_BACKGROUND;else{if(ImageMode)switch(Imgstyle){case 0x1:const blugImgs=await getImageByUrl(_0x2b9dd6(0x186,'mE!^')+IMAGE_SEARCH_TERMS,'_'+Script[_0x2b9dd6(0x188,'85t4')]()+_0x4b0dab(0x1fc),![]);bgImg=await blurImage(blugImgs,blurStyle,blursize),widget['backgroundImage']=bgImg;break;case 0x2:const unsplashurl=_0x2b9dd6(0x1a0,'S5kH')+IMAGE_SEARCH_TERMS,orginImgs=await getImageByUrl(unsplashurl,'_'+Script[_0x4b0dab(0x22a)]()+'-orginImgs-bg',![]);bgImg=await shadowImage(orginImgs),widget[_0x4b0dab(0x202)]=bgImg;break;case 0x3:const bingurl='https://api.dujin.org/bing/1366.php',bingImgs=await getImageByUrl(bingurl,'_'+Script[_0x4b0dab(0x22a)]()+_0x4b0dab(0x1db),![]);bgImg=await shadowImage(bingImgs),widget[_0x2b9dd6(0x16d,'#cKJ')]=bgImg;break;}else widget[_0x2b9dd6(0x18d,'y0B0')]=files[_0x2b9dd6(0x1a6,'Z64!')](path);}widget[_0x4b0dab(0x192)](padding[_0x4b0dab(0x204)],padding['left'],padding[_0x2b9dd6(0x238,'[&cv')],padding[_0x4b0dab(0x1f3)]);if(!config[_0x2b9dd6(0x1eb,'[Mc]')])switch(previewSize){case _0x2b9dd6(0x16f,'&vx&'):await widget[_0x4b0dab(0x1ff)]();break;case _0x4b0dab(0x15c):await widget[_0x4b0dab(0x170)]();break;case'large':await widget[_0x2b9dd6(0x212,'[Mc]')]();break;}Script[_0x4b0dab(0x20e)](widget),Script[_0x2b9dd6(0x19a,'1TU#')]();async function createWidget(){const _0x3ed9bb=_0x4b0dab,_0x45e86d=_0x2b9dd6,_0x503d4e=new ListWidget();_0x503d4e[_0x45e86d(0x1fa,'@fIX')]=SPACER_SIZE;function _0x31443d(_0x53ce4f,_0x2e32e0,_0x554f86){const _0x12c5c1=_0x1a8d,_0x1af0fb=_0x45e86d,_0xfd9be8=(_0x2e32e0*0x64)[_0x1af0fb(0x220,'Z64!')](0x1),_0x378c20=_0x503d4e[_0x1af0fb(0x1ed,'y0B0')]();_0x378c20[_0x1af0fb(0x1d9,'[uM4')]();const _0xcd3cc=_0x378c20[_0x1af0fb(0x169,'#cKJ')]();_0xcd3cc[_0x12c5c1(0x166)]=new Size(LABEL_WIDTH,LINE_HEIGHT),_0xcd3cc['centerAlignContent']();const _0x2d39a3=_0xcd3cc[_0x1af0fb(0x199,'&vx&')](_0x53ce4f);_0x2d39a3[_0x12c5c1(0x20d)]=font,_0xcd3cc[_0x1af0fb(0x16b,'@(wq')]();const _0x45cc14=_0xcd3cc[_0x1af0fb(0x1be,'#cKJ')](_0xfd9be8+'%');_0x45cc14[_0x12c5c1(0x20d)]=new Font(_0x1af0fb(0x162,'iq!Y'),FONT_SIZE),_0x45cc14[_0x12c5c1(0x20d)]=Font[_0x1af0fb(0x1f0,'4eO3')](FONT_SIZE),_0x45cc14['textOpacity']=0.6,_0x378c20[_0x12c5c1(0x183)](SPACER_SIZE);const _0x35a88e=_0x378c20[_0x12c5c1(0x1a8)]();_0x35a88e[_0x1af0fb(0x185,'X2Sp')]=new Size(BAR_WIDTH,BAR_HEIGHT),_0x35a88e[_0x12c5c1(0x20c)]=COLOR_BAR_BACKGROUND,_0x35a88e[_0x12c5c1(0x189)]=BAR_HEIGHT/0x2,_0x35a88e[_0x12c5c1(0x14e)](),_0x35a88e[_0x1af0fb(0x235,'VT9B')]();const _0x3313a5=BAR_WIDTH*_0x2e32e0,_0x406983=_0x35a88e[_0x12c5c1(0x1a8)]();_0x406983['size']=new Size(_0x3313a5,BAR_HEIGHT),params[0x0]!==''&&params[0x0]!=='null'?_0x406983['backgroundColor']=_0x554f86:_0x406983[_0x1af0fb(0x17f,'Mwv2')]=DEFAULT_Color,_0x406983[_0x1af0fb(0x1d6,'IK#m')]=BAR_HEIGHT/0x2;}if(previewSize===_0x3ed9bb(0x1f2)){const _0x468c25=_0x503d4e[_0x3ed9bb(0x239)](_0x3ed9bb(0x173));_0x468c25[_0x3ed9bb(0x20d)]=Font[_0x3ed9bb(0x21b)](0xc),_0x468c25['textColor']=Color['white'](),_0x468c25[_0x3ed9bb(0x194)](),_0x503d4e[_0x45e86d(0x201,'k7jT')]=COLOR_BAR_BACKGROUND;}else{if(previewSize==_0x3ed9bb(0x218)){const _0x2badde=_0x503d4e[_0x3ed9bb(0x239)](_0x3ed9bb(0x173));_0x2badde[_0x45e86d(0x1e0,'IK#m')]=Font[_0x3ed9bb(0x21b)](0x10),_0x2badde[_0x3ed9bb(0x194)]();const _0x3bd4b5=_0x503d4e[_0x45e86d(0x178,'Zdh@')]('如您迫切需要适配该尺寸，请尝试在作者公众号留言反馈.');_0x3bd4b5['font']=Font[_0x45e86d(0x1ce,'Z64!')](0xa),_0x3bd4b5[_0x45e86d(0x21f,'11lM')]();const _0xcbaf59=_0x503d4e[_0x3ed9bb(0x239)](_0x3ed9bb(0x21e));_0xcbaf59['font']=Font['systemFont'](0xa),_0xcbaf59[_0x45e86d(0x155,'#cKJ')]=0.8,_0xcbaf59[_0x3ed9bb(0x194)](),_0x503d4e[_0x3ed9bb(0x1e4)]=_0x3ed9bb(0x1bf),_0x503d4e[_0x3ed9bb(0x20c)]=COLOR_BAR_BACKGROUND;}else _0x31443d(labels[0x0],dayProgress,getColors(0x0)),_0x31443d(labels[0x1],weekProgress,getColors(0x1)),_0x31443d(labels[0x2],monthProgress,getColors(0x2)),_0x31443d(labels[0x3],yearProgress,getColors(0x3)),_0x31443d(labels[0x4],lifeProgress,getColors(0x4));}return _0x503d4e;}async function shadowImage(_0xcb2994){const _0x57e649=_0x2b9dd6,_0x29012d=_0x4b0dab;let _0xd8f8ae=new DrawContext();return _0xd8f8ae['size']=_0xcb2994[_0x29012d(0x166)],_0xd8f8ae[_0x57e649(0x193,'@(wq')](_0xcb2994,new Rect(0x0,0x0,_0xcb2994[_0x29012d(0x166)][_0x29012d(0x1e9)],_0xcb2994['size']['height'])),_0xd8f8ae['setFillColor'](new Color(_0x57e649(0x216,'ANQf'),0.5)),_0xd8f8ae[_0x29012d(0x1bb)](new Rect(0x0,0x0,_0xcb2994[_0x29012d(0x166)][_0x57e649(0x232,'[&cv')],_0xcb2994[_0x57e649(0x21d,'&vx&')][_0x29012d(0x161)])),await _0xd8f8ae['getImage']();}async function loadImage(_0x4b9304){const _0x187ee6=_0x2b9dd6;let _0x34acd5=new Request(_0x4b9304),_0x25670a=await _0x34acd5[_0x187ee6(0x196,'[Mc]')]();return _0x25670a;}async function generateAlert(_0x3a3e97,_0x43463d){const _0x357c9a=_0x2b9dd6,_0xa8bdb=_0x4b0dab;let _0x138f3b=new Alert();_0x138f3b[_0xa8bdb(0x184)]=_0x3a3e97;for(const _0x47bc42 of _0x43463d){_0x138f3b[_0x357c9a(0x1af,'uZE4')](_0x47bc42);}let _0x45e22f=await _0x138f3b['presentAlert']();return _0x45e22f;}function cropImage(_0x314745,_0xf0fcb5){const _0x176009=_0x4b0dab,_0x480a8d=_0x2b9dd6;let _0x41780d=new DrawContext();return _0x41780d[_0x480a8d(0x15e,'mE!^')]=new Size(_0xf0fcb5[_0x176009(0x1e9)],_0xf0fcb5[_0x480a8d(0x1d0,'bgpB')]),_0x41780d[_0x176009(0x17b)](_0x314745,new Point(-_0xf0fcb5['x'],-_0xf0fcb5['y'])),_0x41780d[_0x480a8d(0x1b6,'d$&C')]();}function _0x5e59(_0x48de9d,_0x42efc5){const _0xb34ce1=_0x3920();return _0x5e59=function(_0x2fc908,_0x50d42f){_0x2fc908=_0x2fc908-0x14e;let _0x3920ef=_0xb34ce1[_0x2fc908];if(_0x5e59['TYklQB']===undefined){var _0x5e59b9=function(_0xa8ecc2){const _0xf84c8c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x1a8d1b='',_0x47b3d3='',_0x3d4c27=_0x1a8d1b+_0x5e59b9;for(let _0x1ace36=0x0,_0x35e92d,_0x1629e9,_0x4625dc=0x0;_0x1629e9=_0xa8ecc2['charAt'](_0x4625dc++);~_0x1629e9&&(_0x35e92d=_0x1ace36%0x4?_0x35e92d*0x40+_0x1629e9:_0x1629e9,_0x1ace36++%0x4)?_0x1a8d1b+=_0x3d4c27['charCodeAt'](_0x4625dc+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x35e92d>>(-0x2*_0x1ace36&0x6)):_0x1ace36:0x0){_0x1629e9=_0xf84c8c['indexOf'](_0x1629e9);}for(let _0x52cf55=0x0,_0x3ad0a3=_0x1a8d1b['length'];_0x52cf55<_0x3ad0a3;_0x52cf55++){_0x47b3d3+='%'+('00'+_0x1a8d1b['charCodeAt'](_0x52cf55)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x47b3d3);};const _0x46951a=function(_0x548fba,_0x168cb1){let _0x5be973=[],_0x260319=0x0,_0x4776cc,_0xdcec10='';_0x548fba=_0x5e59b9(_0x548fba);let _0x459b66;for(_0x459b66=0x0;_0x459b66<0x100;_0x459b66++){_0x5be973[_0x459b66]=_0x459b66;}for(_0x459b66=0x0;_0x459b66<0x100;_0x459b66++){_0x260319=(_0x260319+_0x5be973[_0x459b66]+_0x168cb1['charCodeAt'](_0x459b66%_0x168cb1['length']))%0x100,_0x4776cc=_0x5be973[_0x459b66],_0x5be973[_0x459b66]=_0x5be973[_0x260319],_0x5be973[_0x260319]=_0x4776cc;}_0x459b66=0x0,_0x260319=0x0;for(let _0x484439=0x0;_0x484439<_0x548fba['length'];_0x484439++){_0x459b66=(_0x459b66+0x1)%0x100,_0x260319=(_0x260319+_0x5be973[_0x459b66])%0x100,_0x4776cc=_0x5be973[_0x459b66],_0x5be973[_0x459b66]=_0x5be973[_0x260319],_0x5be973[_0x260319]=_0x4776cc,_0xdcec10+=String['fromCharCode'](_0x548fba['charCodeAt'](_0x484439)^_0x5be973[(_0x5be973[_0x459b66]+_0x5be973[_0x260319])%0x100]);}return _0xdcec10;};_0x5e59['okeYot']=_0x46951a,_0x48de9d=arguments,_0x5e59['TYklQB']=!![];}const _0x5a06a5=_0xb34ce1[0x0],_0x91cf16=_0x2fc908+_0x5a06a5,_0x4aaf3b=_0x48de9d[_0x91cf16];if(!_0x4aaf3b){if(_0x5e59['uKjcSk']===undefined){const _0x45203e=function(_0x212f86){this['IGSapC']=_0x212f86,this['JejyVn']=[0x1,0x0,0x0],this['smigKK']=function(){return'newState';},this['oxHgnV']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['fuhUdw']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x45203e['prototype']['cLROrE']=function(){const _0x58c6ba=new RegExp(this['oxHgnV']+this['fuhUdw']),_0x32c9b4=_0x58c6ba['test'](this['smigKK']['toString']())?--this['JejyVn'][0x1]:--this['JejyVn'][0x0];return this['zlEnxt'](_0x32c9b4);},_0x45203e['prototype']['zlEnxt']=function(_0x456d93){if(!Boolean(~_0x456d93))return _0x456d93;return this['WHaqBj'](this['IGSapC']);},_0x45203e['prototype']['WHaqBj']=function(_0x14e4e3){for(let _0x58f6eb=0x0,_0x1c8bbf=this['JejyVn']['length'];_0x58f6eb<_0x1c8bbf;_0x58f6eb++){this['JejyVn']['push'](Math['round'](Math['random']())),_0x1c8bbf=this['JejyVn']['length'];}return _0x14e4e3(this['JejyVn'][0x0]);},new _0x45203e(_0x5e59)['cLROrE'](),_0x5e59['uKjcSk']=!![];}_0x3920ef=_0x5e59['okeYot'](_0x3920ef,_0x50d42f),_0x48de9d[_0x91cf16]=_0x3920ef;}else _0x3920ef=_0x4aaf3b;return _0x3920ef;},_0x5e59(_0x48de9d,_0x42efc5);}function _0x1a8d(_0x48de9d,_0x42efc5){const _0xb34ce1=_0x3920();return _0x1a8d=function(_0x2fc908,_0x50d42f){_0x2fc908=_0x2fc908-0x14e;let _0x3920ef=_0xb34ce1[_0x2fc908];if(_0x1a8d['OBrAkh']===undefined){var _0x5e59b9=function(_0x46951a){const _0xa8ecc2='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0xf84c8c='',_0x1a8d1b='',_0x47b3d3=_0xf84c8c+_0x5e59b9;for(let _0x3d4c27=0x0,_0x1ace36,_0x35e92d,_0x1629e9=0x0;_0x35e92d=_0x46951a['charAt'](_0x1629e9++);~_0x35e92d&&(_0x1ace36=_0x3d4c27%0x4?_0x1ace36*0x40+_0x35e92d:_0x35e92d,_0x3d4c27++%0x4)?_0xf84c8c+=_0x47b3d3['charCodeAt'](_0x1629e9+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x1ace36>>(-0x2*_0x3d4c27&0x6)):_0x3d4c27:0x0){_0x35e92d=_0xa8ecc2['indexOf'](_0x35e92d);}for(let _0x4625dc=0x0,_0x52cf55=_0xf84c8c['length'];_0x4625dc<_0x52cf55;_0x4625dc++){_0x1a8d1b+='%'+('00'+_0xf84c8c['charCodeAt'](_0x4625dc)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x1a8d1b);};_0x1a8d['ppESAJ']=_0x5e59b9,_0x48de9d=arguments,_0x1a8d['OBrAkh']=!![];}const _0x5a06a5=_0xb34ce1[0x0],_0x91cf16=_0x2fc908+_0x5a06a5,_0x4aaf3b=_0x48de9d[_0x91cf16];if(!_0x4aaf3b){const _0x3ad0a3=function(_0x548fba){this['LYNGWu']=_0x548fba,this['ODsFTQ']=[0x1,0x0,0x0],this['HKVxif']=function(){return'newState';},this['RAgQbb']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['sxpNem']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x3ad0a3['prototype']['VarLxg']=function(){const _0x168cb1=new RegExp(this['RAgQbb']+this['sxpNem']),_0x5be973=_0x168cb1['test'](this['HKVxif']['toString']())?--this['ODsFTQ'][0x1]:--this['ODsFTQ'][0x0];return this['ZBVHZK'](_0x5be973);},_0x3ad0a3['prototype']['ZBVHZK']=function(_0x260319){if(!Boolean(~_0x260319))return _0x260319;return this['ODevtK'](this['LYNGWu']);},_0x3ad0a3['prototype']['ODevtK']=function(_0x4776cc){for(let _0xdcec10=0x0,_0x459b66=this['ODsFTQ']['length'];_0xdcec10<_0x459b66;_0xdcec10++){this['ODsFTQ']['push'](Math['round'](Math['random']())),_0x459b66=this['ODsFTQ']['length'];}return _0x4776cc(this['ODsFTQ'][0x0]);},new _0x3ad0a3(_0x1a8d)['VarLxg'](),_0x3920ef=_0x1a8d['ppESAJ'](_0x3920ef),_0x48de9d[_0x91cf16]=_0x3920ef;}else _0x3920ef=_0x4aaf3b;return _0x3920ef;},_0x1a8d(_0x48de9d,_0x42efc5);}function _0x3920(){const _0x2c6c3d=['dd7dSXpcHCoLfG','ohHNzwf0Cq','iHtdKMRcSmoVdrDZDrHm','zhjHD0LTywDLqxrqB2LUDa','6ysR57YN5Psk5Qcz','W7JcVX3dNCkg','sSoSb8oUqq','WQu+BmocySk+WQ7cT1RdMCkbgCkBWPa2WODbWQy','WOGrsSkevCk+WQ7cPuBdMmk1ga','5Qoa5Rwl5yIW5PYj5PAW54Mi5PYS77Yb','6Ag26yoOiow3PUI+Uq','ywrKu3bHy2vY','BwvZC2fNzq','zSo7tea','W7pdNmkVW5SbeSk6BmojeSkhWQ0dW5lcK8oeW4pcICk3W6CLWOtdRCknFmkFWPazvSofWRlcHZGOp20ZW7ldGCo/W7tcN3e','5Okh5OgT5A+25z6P5lUZ5lMw5l+O572k77+h','x8oIWPFdQW','y29YBMvYuMfKAxvZ','mtqZnJK2mJb5tNbrAeK','iZncodjgnG','Bg9HzePtt04','ctddTCkJc8k6bmoVz8kEW47dKw1xhW','etVdPa5QEcvaW5VcKmo9','CNvUC0LUv2LKz2v0','5AsQ55Ia772L5OUV542s5z6N5y+j5OMk5zQM','D3jPDgvjBwfNzq','C2v0ugfKzgLUzW','xSk7tmkFxZlcTCoRtwBcPbFdNSkQWOq','y2vUDgvYqwXPz25uzxH0','5OkO5OoZ6kAb5yIB5BU65lUa5lMi5Bc65A+455Qe5Bcp6yoO5lU277YF','wmkCWRTMW5TjxuVcUW','zMXVB3i','mtaYmJferfDIDgK','ySoKn8ohWOn+rW','pmkZbHVdLcmlBW','wmkZaG','W6XsW75UBCkAWRe','twf5','mtbfs1zlzM4','W4bcFWDyWRNdNmk0','WONdVCozW4JdMmo8n8k3WPNcI3FcLCoQqCoaWQldK8klpSonWOBdVIGTW4PeW6GbxCkZrSkhWPX9nxFcQK5bWRHxW5W3','wYTD5B2t5yMn54Mi5PYS5BEY5PIV5PYa5PAW','W7jyzq','zNjVBurHDge','6yca5yE6koAYOEACIEAiQUwBVIK','xx7cQCkbEmo2W7NcH07dHvFcPq','pYSKsmotACoEWPNcIa','wYTD6ygh5yIW6zEU6Aky77Ym6k+35yMn5B6a5ywS5lYx5y+377YA5PUW5z2BiowpJEMMIa','ywrKu3rHy2S','BwfW','mmoGW4PEbSoOWPRcMmorW4RdV8kYWOS','DMfSDwvpzG','W7JcV3S','sNvS','WPNdILZcK8oFWQKVkan+qG','WPVdGvBcOCoiWQ8ZjbK','5zU+54Mh5yQG6l295AsX6lsL77YA','56Ul5y2Z5PU05PAW','6k6A54oJ5ywS5BAH5lUQ6kwpjH9VDEwVP+AiR+++REMeIEAxToI+OowfJ+IgT+ADGEwmVowpKZu','mmoHemk6WOpdUXC','oCkUbaBdVI8tBW','iJ4GqG','WOWgW4ZcOtVcGmo/xG','DMvYC2LVBG','yMXHy2S','xu/dQCkaW6iKsG','DhjPBq','zMLSBfjLy3q','zxzHBhvHDgvkyxzHu2nYAxb0','xSkYoaSTWPJdMSkFq8k1zCkqFSku','W4fhugddRHrA','Ahr0Chm6lY9TCc53zwL4Aw4UCxeUy29Tl21Wl2HVBwvWywDLp19FyML6pu16vtnnvgn5turnmu5bpt0MAgLKpteMC249otu5mZfKnZyWnZG5m2u0mMfMyZG1zwrLmJrIytLMztuMC2nLBMu9mtG','W4ZdPgupW7K','wYTD5OMN6kgm5PU05PAW5Q2L6AQK','CgfYC2u','WQ8RE8ozDSo2W67dRvFdMCkOrCkqWOC7WODdWRVcNZxdLmodW6xdGmkWhsddN1xdG8oNWQqfChZdN8klc1CmWOT0W7S0W5/dIehdMCohAWa6fmkgFZq6ubaMdbLZaSk5E8o1WRpcOmo1xSkQbZldI8o5','iIaVpGOGicaGicaGpgnHBNzHCYbPzd0IBwfPBKnHBNzHCYiGlZ4kicaGicaGia','WRLJjw3dLmo2WR3cLq','Emo3rvBdIe/cIW','C3rYAw5NAwz5','5lIV6zsSW5NLJP/OVO8','WPhcULqHW5qjqSof','amk3W4NcUeJcGHKRW6GqlIFdKCk2','pt09pUASOUI/JUs9V+EuQo+8MG','y2rUx3nJCMLWDfvsta','B254eCk6jSoBWP/cN1lcUslcK2RdK8kEaeBcTvuSeY7dM8k4quyHW6pdGSkNtL89W47dItJcLGyTW7RcJSkZWR5HW7WnWO3dTZRcR8kYW7JdImk6W5ToWOVdJZZcPHORWPqcCa0DW5tdQSoahGldPSoDxbJdR8kFW4VcSSogW7BcSSottN/dShXzwrdcIfv3awhcLdSNW70KW4pcHx7dHmoZr8kYW78SW4pdMJG5WQxcSSoTWPZdQ8kbW43cJGfkW5qxC8kPFSoYWOBcPXdcLCoqWQJdOmkjWP8TW5ryr8kPWRhcHmk6WPxdTwJdNCkqW4lcLsddLM9pW7rJW6r3sc3cOfhdSCoVzCktWPFdSH9uDNtdPxhcIW3cK8oCeWZcSmkKiNdcUmoUWPfxymkXWRlcNu44W6yyWOKnmCo+B8k8WP3cKtFdNXHix8k4W7uKg8oNW5ZdKvJdHmoyC8oIh8ojFmonW6tdLCoxW4dcVmoCW5qyWOSclmoVeWVcMNniWPxdL8kWW7zKW4z2WPTQASompSoYW5rsW7/dHmoEW6GEWOn4WOZcMX/cO05mWQfzW4pdQCkAqZaeuf/dMvlcRSkbWQLaxSkhWQVcI8k1W7RcQKRcHI00W53dI8oBa8k7rcTWWQHjW5LNqmoNt2xcQmkIW7iaW7BdV8kxdvzizSogW6ORkCkBWO/cGSoKW6BcMSkTWQhcLmkhuG3dS8klWRZcRSoBW5VcNSoqnWtdLeDbWOVcQSkiBhGcaZhdPCochCobimk8nH8nW5ZdVCo/WP7cTSopq2dcVX7dMfJcRCojBx9SC8oyWP4DimkgWQXKWRNdI8k8W5ubimkRj011WQq3WOJcMSk8p8o0WO0xW4ddHZC7W73cLwSutIRcOX3cVSoLW6S6amoWWQFcGXRdUSkKo1LnWR00WOZdH8oMlSk8WPreWR8OvbVcLmkEWQdcMSkywSo3q0BcJLVcHSoecaFdOrGqFSovWO9wmMmLW5BcJCouWQCVnuXIomokgSkAcw4fymkktHK+lCkjWQJcOmkuWOtdKv/dSIJdHa/dVSoqWQrBbhaeu8kVWR/dNclcHr9jWRFdM3CwymkkW5yCF3KmWP5MscPwxYhdKv/cPXtdT2RcPg3dOH1ZBdK5W6FdS8oTlf18W4hdKmohW4rRE8o+WRWqureLiCkxnsFcI3RcNCodWQ9vmxzXW6TwW7pdN8k3WQP6xCoRlmkdWO/dMG8cWP3dMmkFW6j1WPzKWQGEWOVcHNddTSk+WRpdMmkpWRfIW5nqWPCelmoPvmoLseHbcCk0W7VdKfTvW6tdJtm5WPVcLdLwoq0PWQ8pW6mWyCoMW4pdTSk7fCoRWOu2W6SbW5/cO1xcMxpcRHmlWQPzWQ0oW6yEEdHJxd5QW5xcGCk+WQTGff9mfmkbW7PwW6W','pJC2wmo/ACo5WPhcG00','DgvTCg9Yyxj5rgLYzwn0B3j5','dIZdPb1NxW','rCkgWQFcJtJdTeC','WPlcSJjEWQjyamoaW7bzCaj8','Dg9tDhjPBMC','CMvWBgfJzq','WQnMWRz/yJa0aa','wfldTmkdW5Cyx3u0hmoDW58','dmkvW6FdRCkO','yxv0Ag9Y','AtfGW498fIfHvmk0W5lcNCkjcWZdTmohmW','zNjVBuXPyNjHCNK','lwjPBMDjBwDZlwjN','5PQg5P2O5zIz','cmkRW5tOJOFLJlFNIzxMNRFKVBlMGypLP5lOTiNVV4NKVjdNLlBNVyZLR5pMLkBMJyO','ALj7iColorNcQttdQa','W7RdRCojACkCpcpdVW','xvldQmkz','W69yW6LFyCklWRRcR38XWQqkmCoEzMW7qa','tCk4dICXWPpcMmod','eCoxW6BdVMVcSXhcGJddNdVcQCkH','DxjS','twfY','v2DHswdcSrhdVeXXw8o2zG','5Oc855Mu5Bct6yga5lUy6igM5PUm5BA35yAB5AEy5BgL57Q/','W77dRvRdL09kA8knW7BdMSkws1HGW4fzqItcM8kDWPdcGbrDEmkEWOymW4KSW6KpCKqaWR4RFmkpBg1uW7NcT8ovWRHtWOKHidGsDqHCt0FcKWtdSa9IW706W7HbWPtcGr8jiSk8bYviW5/cTCoNa11OWQBcK8kaW4b1uWRdN8kzWQ3dHrzDjmknWPmWW7G1WQHDWPH3hLpdPgldUmoHfSoyWOpcNSoLe8kkWQrBjmo8WPnbEb47W4NcKgWxW6q+WPCSkCkHWQWScXHuW6ZdMCkoWPldMZRcKmoUamoZBCkVdG9MWRGAr8k6WP/dG8oiW7xdTgxcJ8kYtLDnW4BdQmkwrw/dLL/dSHRcPCoFWRVdUx8AWOpcNZ1sW4ddOCofjeDdWQRdKIBdOgpcUvpdM8kaW7pdJSoCuCoIgCovWQunWPhdMZD4WPxdSSk2qCkGW4DDW5fWW6vkWPz5ASoeW63dIwpcQ2hcQ8kCf8kkb8o4AsRdPCokiJNdU1iwW7JdPmoXx1D2WPmsW6BcSc/dTKC1W6mzWR9xW5HjfsBcNHdcQJSjW5RcKJCwELpcGmk7WODsiSoihtpdOSk2BsbGBGVdJCktp8odWRHoW6/cOhNcPuZdLHNdTCoxWOrrW7quWRNcThzlzCoWW7eWDSoYW5jaW4VdUCkQWRZcVqbDWP/cQCo8W4NdIJ9Ipmk8jSowamouW6pcQ31SaMxdVqBdTCkNcmo+W53cLSkFW4SGvbDOW6JcNqr/pqfIW5FdMt9eqdTBt8kIWRBcJ8oCWO1aWOi+n8kFW6VdLrO3W4hcLxv+cCouW5BcOgbZutmOx30BBCkNW7xdIJHEW7BdSaFcPhHpnCkaWQZdTrzUu8k6WPvfWRZdQCo0ECkXWQxdJcL7nSkhtCkXgxNdJGeoWOPuW7tcLCkidWCWW6yzW4DKD8kEoL7dRYZdIKy7WQlcM2jvW6VdVCoMwmo7W7veWOxdNCobW7tcKCoBWPZdMSoRCSkygSoMW4a5WOBdR23cPSoVowBcJvfpvCozBCo5W5dcIYrNWQxdJqpcMxpdRCowphuDWPVcL8kSWRBcG8oHWOFdSxpdL8ojkM0ph8k+w8kdW5eTFxH6z8kKgmkHhdZdTGfQWROcg8khjmkGWRLfWPZcPHeqn1hdVgpcISo7eY87zCotW5RcL8kIWQZcGmo2W5xcHs3cJSk5W5RcOGldGCo7W6Xcs1rMWPZdIhiKW6lcVYmlW6FdHmonbxNcKblcQhjHWOldJaJcVSkiWPu3W7f4bJxdVmk3WQ5DW58smCoSv8oaWPLEANi8mfZcJ8o0W4BcJmkDfLvGW6HjWQ7cLSoKvfb4WPHnW5RdMCoZd8kKvCoAWPFcJ8keW4xcKGNdImo0cSokW7XtW61UwG7dKudcOtuLCaxdLSk0cSkhrCkfWQBcMSkOWQVcH8o0j8kbWQSjjwauFmoYnmkUpCoQlmoVW4joWPmdaSkXWQJdH1jXqSo6fahcICoIW5bNWR1GW4VdVSkeWPpcNKpdMNdcKY4Si8ownazDsSo+ssiUbmozW4D8W4BdTSowWPtcRHu4W5pdNuJdVmksW5VcKSkKdSkpW57cMSkHw8kVogVdK2m/ymkSpSozWPTpDCkXCfKJw8kJbHBcTLGzW5tdPerkv8ofWO7cO33cTsrmvKvbWOr4lYi7WRBcKwhdGmk1W6hcUZdcS8kyWPibeIJdQmoYpSoaW4HlcSkXWPxcGgLnW7ZcPSk+iYdcJSkRW48xW4VcNJxcU8o5eSkcW58IlL3cMgtdS2JcVSovq8kxWRulW6FcUftcMNBcLmkwW5idW7pdNxddRfxdM8oUe8kPWPRcJuD1aaJcNgZcO8oOWPlcUdJdRCoMeHldPmo/lKpdOsjRWQq4','D2LKDgG','5lUh5lUO5PU844oz6ygw5PQo6ioU5PQu44gg55Af5OMe5Q6N6AMl77Ym5AEK5P+O5l6N5RcD5P+o5Bkm5BU75OIQ5zI16k+G6yg75yAd77Ye5BMy6l+i5zQL5lQd5Bcn5BIY6zw05O296l255yE657626lYb5QUE5B+N44o05RMl5yQo5yUA5P2Z5y236lY255MB56Uv55U26Ac25OIS5zIt44kI54wt5zkv6yEZ5PA66l+B6kgP772I','rSkgWRrXW5TkA0xcUSoTW4rl','xmk7qSkfwJBcTSo+sv3cSW','cJxdSSkBgmkPcmoX','5PQx5P2m5ysn','WOm+W67cSCoNha','W6O8deldKmosWQ7cLCkrWOfgW6BcKCoMp8krW4vgWOxcM24','z2v0rgf0zq','C21HBgW','CMLNAhq','5PIF5PYF5PEL','WQrgW6/cSSk5WOtdItFcRGZdM8kNW58','5lIy6zsQW4xLTiBOVyS','z2v0rgf5','CN8UWRrZWPbTCmo6vCozgenRibm','W6RdUSouvmkufcNdU8k9W5i','W6FcOh3dI0FdHmoe','oenzBe1iCW','lwjN','u2f0','vmk6WOhcPmkxb8kzrCkXW7TJW7GPWRvbWRjhkCo8dG','ChjLC2vUDfnTywXS','icJOR7FMS6JMHi/VViZMGQJNMOtORR7LPiFKU4xMLk/MJihKUktOOyZLSi/PG6JKU7BVViZLM6dMRAtKUk3PL7tLKOZLUPxPG6JPGiNPOBNNM7JLKiZJGiiP','WQjOWRHKAsCVec9Mumo7W619W4G','yMfJA2DYB3vUzeLTywDL','WQbBW6ZcNZe/','Dg9W','Bg9JyxrPB25Z','fdldPq','z2v0rNvSBfLLyxi','nZm2ntyXn3DSsLjYCG','keZcPenanmo1WOm','Bg9JywW','wSoCCWJdUvRcGCo8W5O/W4VdPa','yMfJA2DYB3vUzenVBg9Y','zM9UDa','C2v0v2LKz2v0','ecJdOq9QzdC','lmk5hY3dKsOtsCogj8o2W7a','zJfGW5XTda','rmkbWR9XW7DksgdcV8o4W4zA','6Ao+6yk7qowpLEI8UW','5y2b5lQm5PYi','r8kdWRzRW6y','dmkUrCkXaY7cLq','tw9U','BgfYz2u','z2v0tw9UDgG','WQ7dSfy','yMXHy2TnB25VC3bHy2vKu3LZDgvTrM9UDa','qxvN','CmoPkCo2','5OIr5zYO5PUW5z2B562j5l2G8j+yJG','EK5MiColjH7cQJpdU8oYdKldMCka','osedrCoIyCoB','W6fyW6nexmkpWQdcSW','WQXSWRvOEJ0','mmoHemk4WPFdOX45pvyD','Bg9HzeLTywDL','vSoMWO7dIatdMeDcW7q/la','mZq1nZiZm3LNrM9RtG','xvhdQCkcW4a','CCkXWOmj','yMGZWQPyWP5W','BMfTzq','WRdcSYtcSrOgj8o0WRpcM8oU','AM9PBLbHDgG','zMLSzuv4Axn0CW','fSoTW5ldLmodqCoC','uSk7WPhcPSkhgmkbBSkHW7LL','Bwf0y2G','t05flvbYB2DYzxnZ','W64EWQBcTSo1','zhLUyw1PyW','5zME54MK5QIv5BY75PAK5O2T55Uw5yso54Eq54U9W5VOG5tMMiJPGBlMMRq','W7hdQCoet8kekrldV8kOW4mVj8koc8ooW50','Dg9mB3DLCKnHC2u','C3bSAxq','W7SyWRBcTSoYDW','ywrKvgv4Da','nNhdIUAIH+A2Q+wkREADQ+AxGoEjIEACVo+9QG','D3H1CMW','W7hdP8oEqCkD','Dg9WqwXPz25dB250zw50','ywrKqwn0Aw9U','Bg9N','W5dcUmo/W7FdQSkKySoO','D8oMWPG','BM90zxm','fcZdRb5CxYnBW5ZcMq','W5rgteddHbXpW6hdNSooWOq','WOjbwCk/a8k5','nZy2mJm0ogLQrKzoBG','yM9KEq','mCk4ymkHW5y0bxa9WQeoWORdUW','cmo4W5LmfSo6WOZdM8kHW5FdI8kDW7Thl8k/WPNcSIuTcW7dNCoRyCkQW7DfWPntd8o1WPhdKKldP17cSXG6mmkpW5zUxSkLcdzFvmo/W5mS','cmo/smkEqrFcVmok','BwvKAxvT','6ycw5PUn6ik85PQO','W6JdGCkHW44','mw9sALH1vG','W44Hcq','AgvPz2H0','WQFdSfT+ra','sNvU','i0u1rtDfqG','jmoNdmkBWOBdUH4f','C2L6zq','W47dRCon','z8o3rKNdIeVcIW','W4fhugFdVW1nW6K','Fh53hSkRqmo7WQNcJ03dSG','w8kTsCk7zJ7cT8oPwG','qCk3WPhcJmkx','W4jcv1/dRb5bW7FdMCoEWRr1bHRdNW','v2vK','CmoTmSo/WOO','ChjLC2vUDe1LzgL1Bq','5zU+54Mh6ycj5OUP','WQe2y8omA8kTWQZcPW','5OQX5Q2j77Ym6k+L5Bc65A+45Bcp57Ue5lU25l2C6icf5PQc5PYQ6ycc6ywn','BgvUz3rO','5yI25l2C55Qe5Bcp57Ue5lU2pd09pq','tSkYgr8ZWPJcGSoFy8kfFSklDCkqW7xcIInU','lMPWzW'];_0x3920=function(){return _0x2c6c3d;};return _0x3920();}async function blurImage(_0x807bb8,_0x563e08,_0x3ec0a2=blursize){const _0x1db8e8=_0x4b0dab,_0x54a074=_0x2b9dd6,_0x5805f8='\x0a\x20var\x20mul_table=[512,512,456,512,328,456,335,512,405,328,271,456,388,335,292,512,454,405,364,328,298,271,496,456,420,388,360,335,312,292,273,512,482,454,428,405,383,364,345,328,312,298,284,271,259,496,475,456,437,420,404,388,374,360,347,335,323,312,302,292,282,273,265,512,497,482,468,454,441,428,417,405,394,383,373,364,354,345,337,328,320,312,305,298,291,284,278,271,265,259,507,496,485,475,465,456,446,437,428,420,412,404,396,388,381,374,367,360,354,347,341,335,329,323,318,312,307,302,297,292,287,282,278,273,269,265,261,512,505,497,489,482,475,468,461,454,447,441,435,428,422,417,411,405,399,394,389,383,378,373,368,364,359,354,350,345,341,337,332,328,324,320,316,312,309,305,301,298,294,291,287,284,281,278,274,271,268,265,262,259,257,507,501,496,491,485,480,475,470,465,460,456,451,446,442,437,433,428,424,420,416,412,408,404,400,396,392,388,385,381,377,374,370,367,363,360,357,354,350,347,344,341,338,335,332,329,326,323,320,318,315,312,310,307,304,302,299,297,294,292,289,287,285,282,280,278,275,273,271,269,267,265,263,261,259];var\x20shg_table=[9,11,12,13,13,14,14,15,15,15,15,16,16,16,16,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,19,19,19,19,19,19,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24];function\x20stackBlurCanvasRGB(id,top_x,top_y,width,height,radius){if(isNaN(radius)||radius<1)return;radius|=0;var\x20canvas=document.getElementById(id);var\x20context=canvas.getContext(\x222d\x22);var\x20imageData;try{try{imageData=context.getImageData(top_x,top_y,width,height)}catch(e){try{netscape.security.PrivilegeManager.enablePrivilege(\x22UniversalBrowserRead\x22);imageData=context.getImageData(top_x,top_y,width,height)}catch(e){alert(\x22Cannot\x20access\x20local\x20image\x22);throw\x20new\x20Error(\x22unable\x20to\x20access\x20local\x20image\x20data:\x20\x22+e);return}}}catch(e){alert(\x22Cannot\x20access\x20image\x22);throw\x20new\x20Error(\x22unable\x20to\x20access\x20image\x20data:\x20\x22+e);}var\x20pixels=imageData.data;var\x20x,y,i,p,yp,yi,yw,r_sum,g_sum,b_sum,r_out_sum,g_out_sum,b_out_sum,r_in_sum,g_in_sum,b_in_sum,pr,pg,pb,rbs;var\x20div=radius+radius+1;var\x20w4=width<<2;var\x20widthMinus1=width-1;var\x20heightMinus1=height-1;var\x20radiusPlus1=radius+1;var\x20sumFactor=radiusPlus1*(radiusPlus1+1)/2;var\x20stackStart=new\x20BlurStack();var\x20stack=stackStart;for(i=1;i<div;i++){stack=stack.next=new\x20BlurStack();if(i==radiusPlus1)var\x20stackEnd=stack}stack.next=stackStart;var\x20stackIn=null;var\x20stackOut=null;yw=yi=0;var\x20mul_sum=mul_table[radius];var\x20shg_sum=shg_table[radius];for(y=0;y<height;y++){r_in_sum=g_in_sum=b_in_sum=r_sum=g_sum=b_sum=0;r_out_sum=radiusPlus1*(pr=pixels[yi]);g_out_sum=radiusPlus1*(pg=pixels[yi+1]);b_out_sum=radiusPlus1*(pb=pixels[yi+2]);r_sum+=sumFactor*pr;g_sum+=sumFactor*pg;b_sum+=sumFactor*pb;stack=stackStart;for(i=0;i<radiusPlus1;i++){stack.r=pr;stack.g=pg;stack.b=pb;stack=stack.next}for(i=1;i<radiusPlus1;i++){p=yi+((widthMinus1<i?widthMinus1:i)<<2);r_sum+=(stack.r=(pr=pixels[p]))*(rbs=radiusPlus1-i);g_sum+=(stack.g=(pg=pixels[p+1]))*rbs;b_sum+=(stack.b=(pb=pixels[p+2]))*rbs;r_in_sum+=pr;g_in_sum+=pg;b_in_sum+=pb;stack=stack.next}stackIn=stackStart;stackOut=stackEnd;for(x=0;x<width;x++){pixels[yi]=(r_sum*mul_sum)>>shg_sum;pixels[yi+1]=(g_sum*mul_sum)>>shg_sum;pixels[yi+2]=(b_sum*mul_sum)>>shg_sum;r_sum-=r_out_sum;g_sum-=g_out_sum;b_sum-=b_out_sum;r_out_sum-=stackIn.r;g_out_sum-=stackIn.g;b_out_sum-=stackIn.b;p=(yw+((p=x+radius+1)<widthMinus1?p:widthMinus1))<<2;r_in_sum+=(stackIn.r=pixels[p]);g_in_sum+=(stackIn.g=pixels[p+1]);b_in_sum+=(stackIn.b=pixels[p+2]);r_sum+=r_in_sum;g_sum+=g_in_sum;b_sum+=b_in_sum;stackIn=stackIn.next;r_out_sum+=(pr=stackOut.r);g_out_sum+=(pg=stackOut.g);b_out_sum+=(pb=stackOut.b);r_in_sum-=pr;g_in_sum-=pg;b_in_sum-=pb;stackOut=stackOut.next;yi+=4}yw+=width}for(x=0;x<width;x++){g_in_sum=b_in_sum=r_in_sum=g_sum=b_sum=r_sum=0;yi=x<<2;r_out_sum=radiusPlus1*(pr=pixels[yi]);g_out_sum=radiusPlus1*(pg=pixels[yi+1]);b_out_sum=radiusPlus1*(pb=pixels[yi+2]);r_sum+=sumFactor*pr;g_sum+=sumFactor*pg;b_sum+=sumFactor*pb;stack=stackStart;for(i=0;i<radiusPlus1;i++){stack.r=pr;stack.g=pg;stack.b=pb;stack=stack.next}yp=width;for(i=1;i<=radius;i++){yi=(yp+x)<<2;r_sum+=(stack.r=(pr=pixels[yi]))*(rbs=radiusPlus1-i);g_sum+=(stack.g=(pg=pixels[yi+1]))*rbs;b_sum+=(stack.b=(pb=pixels[yi+2]))*rbs;r_in_sum+=pr;g_in_sum+=pg;b_in_sum+=pb;stack=stack.next;if(i<heightMinus1){yp+=width}}yi=x;stackIn=stackStart;stackOut=stackEnd;for(y=0;y<height;y++){p=yi<<2;pixels[p]=(r_sum*mul_sum)>>shg_sum;pixels[p+1]=(g_sum*mul_sum)>>shg_sum;pixels[p+2]=(b_sum*mul_sum)>>shg_sum;r_sum-=r_out_sum;g_sum-=g_out_sum;b_sum-=b_out_sum;r_out_sum-=stackIn.r;g_out_sum-=stackIn.g;b_out_sum-=stackIn.b;p=(x+(((p=y+radiusPlus1)<heightMinus1?p:heightMinus1)*width))<<2;r_sum+=(r_in_sum+=(stackIn.r=pixels[p]));g_sum+=(g_in_sum+=(stackIn.g=pixels[p+1]));b_sum+=(b_in_sum+=(stackIn.b=pixels[p+2]));stackIn=stackIn.next;r_out_sum+=(pr=stackOut.r);g_out_sum+=(pg=stackOut.g);b_out_sum+=(pb=stackOut.b);r_in_sum-=pr;g_in_sum-=pg;b_in_sum-=pb;stackOut=stackOut.next;yi+=width}}context.putImageData(imageData,top_x,top_y)}function\x20BlurStack(){this.r=0;this.g=0;this.b=0;this.a=0;this.next=null}\x0a\x20\x20\x20\x20\x20\x20\x20//\x20https://gist.github.com/mjackson/5311256\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20function\x20rgbToHsl(r,\x20g,\x20b){\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20r\x20/=\x20255,\x20g\x20/=\x20255,\x20b\x20/=\x20255;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20var\x20max\x20=\x20Math.max(r,\x20g,\x20b),\x20min\x20=\x20Math.min(r,\x20g,\x20b);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20var\x20h,\x20s,\x20l\x20=\x20(max\x20+\x20min)\x20/\x202;\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if(max\x20==\x20min){\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h\x20=\x20s\x20=\x200;\x20//\x20achromatic\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}else{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20var\x20d\x20=\x20max\x20-\x20min;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20s\x20=\x20l\x20>\x200.5\x20?\x20d\x20/\x20(2\x20-\x20max\x20-\x20min)\x20:\x20d\x20/\x20(max\x20+\x20min);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20switch(max){\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20case\x20r:\x20h\x20=\x20(g\x20-\x20b)\x20/\x20d\x20+\x20(g\x20<\x20b\x20?\x206\x20:\x200);\x20break;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20case\x20g:\x20h\x20=\x20(b\x20-\x20r)\x20/\x20d\x20+\x202;\x20break;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20case\x20b:\x20h\x20=\x20(r\x20-\x20g)\x20/\x20d\x20+\x204;\x20break;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h\x20/=\x206;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20return\x20[h,\x20s,\x20l];\x0a\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20function\x20hslToRgb(h,\x20s,\x20l){\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20var\x20r,\x20g,\x20b;\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if(s\x20==\x200){\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20r\x20=\x20g\x20=\x20b\x20=\x20l;\x20//\x20achromatic\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}else{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20var\x20hue2rgb\x20=\x20function\x20hue2rgb(p,\x20q,\x20t){\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if(t\x20<\x200)\x20t\x20+=\x201;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if(t\x20>\x201)\x20t\x20-=\x201;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if(t\x20<\x201/6)\x20return\x20p\x20+\x20(q\x20-\x20p)\x20*\x206\x20*\x20t;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if(t\x20<\x201/2)\x20return\x20q;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if(t\x20<\x202/3)\x20return\x20p\x20+\x20(q\x20-\x20p)\x20*\x20(2/3\x20-\x20t)\x20*\x206;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20return\x20p;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20var\x20q\x20=\x20l\x20<\x200.5\x20?\x20l\x20*\x20(1\x20+\x20s)\x20:\x20l\x20+\x20s\x20-\x20l\x20*\x20s;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20var\x20p\x20=\x202\x20*\x20l\x20-\x20q;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20r\x20=\x20hue2rgb(p,\x20q,\x20h\x20+\x201/3);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20g\x20=\x20hue2rgb(p,\x20q,\x20h);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20b\x20=\x20hue2rgb(p,\x20q,\x20h\x20-\x201/3);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20return\x20[Math.round(r\x20*\x20255),\x20Math.round(g\x20*\x20255),\x20Math.round(b\x20*\x20255)];\x0a\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20function\x20lightBlur(hsl)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20Adjust\x20the\x20luminance.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20let\x20lumCalc\x20=\x200.35\x20+\x20(0.3\x20/\x20hsl[2]);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20if\x20(lumCalc\x20<\x201)\x20{\x20lumCalc\x20=\x201;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20else\x20if\x20(lumCalc\x20>\x203.3)\x20{\x20lumCalc\x20=\x203.3;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20l\x20=\x20hsl[2]\x20*\x20lumCalc;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20Adjust\x20the\x20saturation.\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20colorful\x20=\x202\x20*\x20hsl[1]\x20*\x20l;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20s\x20=\x20hsl[1]\x20*\x20colorful\x20*\x201.5;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20return\x20[hsl[0],s,l];\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20function\x20darkBlur(hsl)\x20{\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20Adjust\x20the\x20saturation.\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20colorful\x20=\x202\x20*\x20hsl[1]\x20*\x20hsl[2];\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20s\x20=\x20hsl[1]\x20*\x20(1\x20-\x20hsl[2])\x20*\x203;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20return\x20[hsl[0],s,hsl[2]];\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20//\x20Set\x20up\x20the\x20canvas.\x0a\x20\x20\x20\x20\x20\x20\x20const\x20img\x20=\x20document.getElementById(\x22blurImg\x22);\x0a\x20\x20\x20\x20\x20\x20\x20const\x20canvas\x20=\x20document.getElementById(\x22mainCanvas\x22);\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20const\x20w\x20=\x20img.naturalWidth;\x0a\x20\x20\x20\x20\x20\x20\x20const\x20h\x20=\x20img.naturalHeight;\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20canvas.style.width\x20\x20=\x20w\x20+\x20\x22px\x22;\x0a\x20\x20\x20\x20\x20\x20\x20canvas.style.height\x20=\x20h\x20+\x20\x22px\x22;\x0a\x20\x20\x20\x20\x20\x20\x20canvas.width\x20=\x20w;\x0a\x20\x20\x20\x20\x20\x20\x20canvas.height\x20=\x20h;\x0a\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20const\x20context\x20=\x20canvas.getContext(\x222d\x22);\x0a\x20\x20\x20\x20\x20\x20\x20context.clearRect(\x200,\x200,\x20w,\x20h\x20);\x0a\x20\x20\x20\x20\x20\x20\x20context.drawImage(\x20img,\x200,\x200\x20);\x0a\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20//\x20Get\x20the\x20image\x20data\x20from\x20the\x20context.\x0a\x20\x20\x20\x20\x20\x20\x20var\x20imageData\x20=\x20context.getImageData(0,0,w,h);\x0a\x20\x20\x20\x20\x20\x20\x20var\x20pix\x20=\x20imageData.data;\x0a\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20var\x20isDark\x20=\x20\x22'+_0x563e08+_0x54a074(0x1cd,'Z64!')+_0x3ec0a2+_0x54a074(0x1e8,'hKF&');let _0x346b76=Data[_0x54a074(0x1b9,'IK#m')](_0x807bb8)[_0x54a074(0x1bd,'l2ho')](),_0x421797=_0x54a074(0x15a,'bK$n')+_0x346b76+_0x1db8e8(0x1c4),_0x327b8d=new WebView();await _0x327b8d['loadHTML'](_0x421797);let _0x3e10ff=await _0x327b8d[_0x1db8e8(0x1bc)](_0x5805f8),_0xbce0c6=_0x3e10ff['slice'](0x16),_0x4346a9=Data[_0x54a074(0x1f8,'@iiX')](_0xbce0c6),_0x2242c6=Image[_0x1db8e8(0x1a3)](_0x4346a9);return _0x2242c6;}async function getImageByUrl(_0x3780e9,_0x170745,_0x260f90=!![]){const _0x3b60ed=_0x4b0dab,_0x17cc76=_0x2b9dd6,_0x36fe30=FileManager['local']()[_0x17cc76(0x221,'Uuv0')](FileManager['local']()[_0x3b60ed(0x1cf)](),_0x170745),_0x30c098=FileManager[_0x3b60ed(0x20a)]()[_0x3b60ed(0x22d)](_0x36fe30);if(_0x260f90&&_0x30c098)return Image[_0x17cc76(0x1b4,'1TU#')](_0x36fe30);try{const _0x3728a7=new Request(_0x3780e9),_0x471c92=await _0x3728a7[_0x3b60ed(0x224)]();return FileManager[_0x17cc76(0x1c0,'xV[y')]()[_0x17cc76(0x1f9,'VT9B')](_0x36fe30,_0x471c92),_0x471c92;}catch(_0x81a87a){console[_0x17cc76(0x17e,'ANQf')](_0x3b60ed(0x1b0)+_0x81a87a);if(_0x30c098)return Image[_0x17cc76(0x19f,'j3im')](_0x36fe30);let _0x4278ee=new DrawContext();return _0x4278ee[_0x3b60ed(0x166)]=new Size(0x64,0x64),_0x4278ee[_0x17cc76(0x210,'1TU#')](Color[_0x3b60ed(0x1b8)]()),_0x4278ee['fillRect'](new Rect(0x0,0x0,0x64,0x64)),await _0x4278ee[_0x17cc76(0x1df,'VT9B')]();}}function phoneSizes(){let _0x5d364a={'2340':{'小号':0x1b4,'中号':0x3a8,'大号':0x3d4,'左边':0x48,'右边':0x23a,'顶部':0xd4,'中间':0x2f4,'底部':0x514},'2532':{'小号':0x1d8,'中号':0x3f4,'大号':0x422,'左边':0x4e,'右边':0x26a,'顶部':0xe6,'中间':0x332,'底部':0x580},'2778':{'小号':0x206,'中号':0x45a,'大号':0x48a,'左边':0x56,'右边':0x2a6,'顶部':0xfc,'中间':0x382,'底部':0x608},'2688':{'小号':0x1fb,'中号':0x438,'大号':0x471,'左边':0x51,'右边':0x28e,'顶部':0xe4,'中间':0x35a,'底部':0x5d0},'1792':{'小号':0x152,'中号':0x2d0,'大号':0x2f6,'左边':0x36,'右边':0x1b4,'顶部':0xa0,'中间':0x244,'底部':0x3e8},'2436':{'小号':0x1d1,'中号':0x3db,'大号':0x40b,'左边':0x45,'右边':0x24f,'顶部':0xd5,'中间':0x30f,'底部':0x549},'2208':{'小号':0x1d7,'中号':0x414,'大号':0x42f,'左边':0x63,'右边':0x2a0,'顶部':0x72,'中间':0x2b8,'底部':0x4fe},'1334':{'小号':0x128,'中号':0x282,'大号':0x288,'左边':0x36,'右边':0x190,'顶部':0x3c,'中间':0x19c,'底部':0x2fc},'1136':{'小号':0x11a,'中号':0x248,'大号':0x26e,'左边':0x1e,'右边':0x14c,'顶部':0x3b,'中间':0x18f,'底部':0x18f}};return _0x5d364a;}async function getversion(){const _0x4425af=_0x2b9dd6,_0x5f03b7=_0x4b0dab,_0x5cddbd=(function(){let _0x57bc16=!![];return function(_0x283203,_0x282fcf){const _0x167274=_0x57bc16?function(){if(_0x282fcf){const _0x2f733d=_0x282fcf['apply'](_0x283203,arguments);return _0x282fcf=null,_0x2f733d;}}:function(){};return _0x57bc16=![],_0x167274;};}()),_0x328b2a=_0x5cddbd(this,function(){const _0x50f534=_0x5e59,_0x149f7b=_0x1a8d;return _0x328b2a[_0x149f7b(0x1d3)]()[_0x50f534(0x203,'mT[1')]('(((.+)+)+)+$')['toString']()[_0x50f534(0x1ae,'uZE4')](_0x328b2a)['search'](_0x50f534(0x1a5,'Hlwe'));});_0x328b2a();const _0x3e173d=files[_0x5f03b7(0x22c)](files[_0x4425af(0x176,'l2ho')](),'version-NK');var _0x54dc91;try{_0x54dc91=await new Request(_0x4425af(0x1c3,'Mwv2'))[_0x5f03b7(0x18c)](),files['writeString'](_0x3e173d,JSON[_0x5f03b7(0x1c7)](_0x54dc91)),console[_0x5f03b7(0x150)](_0x5f03b7(0x1cb)+_0x54dc91[_0x5f03b7(0x1d8)]+_0x5f03b7(0x175)),console[_0x4425af(0x1ac,'@fIX')](_0x5f03b7(0x1a7)),log('[+]版本信息获取成功');}catch(_0xcc3ce4){_0x54dc91=JSON[_0x5f03b7(0x1c2)](files[_0x4425af(0x154,'bgpB')](_0x3e173d)),log(_0x4425af(0x1dd,'9OhK'));}return _0x54dc91;}async function updateCheck(_0xb66cc7){const _0xe5d862=_0x4b0dab,_0x9667ff=_0x2b9dd6,_0x28cf36=versionData;log('[+]最新版本：'+_0x28cf36[_0x9667ff(0x17a,'Zdh@')][_0x9667ff(0x229,'@iiX')]);let _0x49db8f=![];if(_0x28cf36[_0xe5d862(0x231)][_0xe5d862(0x1b7)]!=_0xb66cc7){_0x49db8f=!![],log(_0x9667ff(0x23a,'Zdh@'));if(!config[_0xe5d862(0x18f)]){log(_0xe5d862(0x1c1));let _0x14671a=new Alert();_0x14671a[_0x9667ff(0x16c,')DR3')]=_0xe5d862(0x181),_0x14671a[_0x9667ff(0x1fe,')DR3')]('暂不更新'),_0x14671a[_0xe5d862(0x14f)](_0xe5d862(0x1b1)),_0x14671a[_0x9667ff(0x206,'Hlwe')],_0x14671a[_0x9667ff(0x1c6,'X2Sp')]=_0x28cf36[_0xe5d862(0x231)][_0xe5d862(0x153)];if(await _0x14671a['present']()==0x1){const _0x1abe14=new Request(_0x28cf36[_0x9667ff(0x180,'Mwv2')][_0xe5d862(0x1cc)]),_0x429a3e=await _0x1abe14['loadString']();files[_0x9667ff(0x18e,'bgpB')](module[_0x9667ff(0x172,'Mwv2')],_0x429a3e);const _0x5580ab=new Notification();_0x5580ab[_0x9667ff(0x17d,'s&3!')]='下载更新成功',_0x5580ab[_0xe5d862(0x158)]=_0x9667ff(0x1b2,'Zdh@'),_0x5580ab[_0x9667ff(0x165,'&k][')]();}Script[_0x9667ff(0x1d5,'k7jT')]();}}else log(_0xe5d862(0x1a1));return _0x49db8f;};
+
+
+const filename = `${Script.name()}.jpg`
+const files = FileManager.local()
+const path = files.joinPath(files.documentsDirectory(), filename)
+
+// 更新判断
+const localversion = '1.5.0'
+const versionData = await getversion()
+const needUpdated = await updateCheck(localversion)
+
+
+// Process parameters
+const params = (args.widgetParameter + '').split('|');
+
+// Parameter: Colors
+let colors = [];
+if (params[0] !== '' && params[0] !== 'null') {
+  colors = params[0].split(',').map(color => color.trim());
+  colors = colors.map(color => new Color(color, 1));
+} else {
+  colors.push(COLOR_BAR_DEFAULT);
+}
+
+function getColors(index) {
+  return colors[index % colors.length];
+}
+
+// Parameter: The week starts on Sunday
+let isWeekStartsOnSunday = false;
+if (params.length > 2 && params[2].toLowerCase() === 'true') {
+  isWeekStartsOnSunday = true;
+}
+
+// Parameter: Labels
+const now = new Date();
+const labels = ['今天', '本周', '本月', '今年', '一生'];
+const calcWeekOfYear = (date) => {
+  const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+  const dayOfFirstDay = firstDayOfYear.getDay();
+  const firstWeekStart = new Date(date.getFullYear(), 0, firstDayOfYear.getDay() > 3 ? 8 - dayOfFirstDay : 1 - dayOfFirstDay);
+  const dateValue = isWeekStartsOnSunday ? date.valueOf() : date.valueOf() - 86400000;
+  const weekNum = Math.floor((dateValue - firstWeekStart.valueOf()) / 86400000 / 7) + 1;
+  return weekNum;
+};
+const labelsTemplate = {
+  dayOfMonth: date => {
+    return date.getDate();
+  },
+  dayOfMonthWithZero: date => {
+    const dayNum = date.getDate();
+    return dayNum < 10 ? '0' + dayNum : dayNum;
+  },
+  dayCn: date => {
+    return ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'][date.getDay()];
+  },
+  dayEn: date => {
+    return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
+  },
+  weekOfYear: date => {
+    let weekNum = calcWeekOfYear(date);
+    if (weekNum === 0) {
+      weekNum = calcWeekOfYear(new Date(date.getFullYear(), 0, 0));
+    }
+    return weekNum;
+  },
+  weekOfYearWithZero: date => {
+    let weekNum = calcWeekOfYear(date);
+    if (weekNum === 0) {
+      weekNum = calcWeekOfYear(new Date(date.getFullYear(), 0, 0));
+    }
+    return weekNum < 10 ? '0' + weekNum : weekNum;
+  },
+  monthNum: date => {
+    return date.getMonth() + 1;
+  },
+  monthNumWithZero: date => {
+    const monthNum = date.getMonth() + 1;
+    return monthNum < 10 ? '0' + monthNum : monthNum;
+  },
+  monthEn: date => {
+    return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][date.getMonth()];
+  },
+  monthCn: date => {
+    return ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'][date.getMonth()];
+  },
+  year: date => {
+    return date.getFullYear();
+  },
+};
+if (params.length > 1 && params[1] !== '') {
+  const paramLabels = params[1].split(',').map(label => label.trim());
+  const templateRegExp = /(\${[^{}]+})/;
+  for (let i = 0; i < paramLabels.length; i++) {
+    while (paramLabels[i].match(templateRegExp)) {
+      const template = paramLabels[i].match(templateRegExp)[0];
+      const templateKey = template.replace('${', '').replace('}', '');
+      const templateValue = labelsTemplate[templateKey](now);
+      paramLabels[i] = paramLabels[i].replace(template, templateValue);
+    }
+    labels[i] = paramLabels[i];
+  }
+}
+
+// Calculate date progress
+function calcProgress(start, end, progress) {
+  return (progress - start) / (end - start);
+}
+
+function getAge(LIFE_BIRTHDAY) {
+  //LIFE_BIRTHDAY必须为"1995/6/15"这种字符串格式，不可为"2020-6-15"，这种格式在Safari中会报错
+  const birthDate = new Date(LIFE_BIRTHDAY);
+  const momentDate = new Date();
+  momentDate.setHours(0, 0, 0, 0); //因为new Date()出来的时间是当前的时分秒。我们需要把时分秒重置为0。使后面时间比较更精确
+  const thisYearBirthDate = new Date(
+    momentDate.getFullYear(),
+    birthDate.getMonth(),
+    birthDate.getDate()
+  );
+  const aDate = thisYearBirthDate - birthDate;
+  const bDate = momentDate - birthDate;
+  let tempAge = momentDate.getFullYear() - birthDate.getFullYear();
+  let age = null;
+  if (bDate < aDate) {
+    tempAge = tempAge - 1;
+    age = tempAge < 0 ? 0 : tempAge;
+  } else {
+    age = tempAge;
+  }
+  return age;
+
+}
+
+
+// LIFE_BIRTHDAY = nesdate.parse(LIFE_BIRTHDAY.replace('/-/g', "/"));
+// if (LIFE_BIRTHDAY) {
+//   var year = 1000 * 60 * 60 * 24 * 365;
+//   var birthday = new date(LIFE_BIRTHDAY);
+//   var age = parseint((now - birthday) / year);
+// }
+
+
+const dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+const dayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+const dayProgress = calcProgress(dayStart, dayEnd, now);
+
+let weekDay = now.getDay() === 0 ? 6 : now.getDay() - 1;
+if (isWeekStartsOnSunday) {
+  weekDay = now.getDay();
+}
+const weekStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() - weekDay);
+const weekEnd = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 7);
+const weekProgress = calcProgress(weekStart, weekEnd, now);
+
+const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+const monthProgress = calcProgress(monthStart, monthEnd, now);
+
+const yearStart = new Date(now.getFullYear(), 0, 1);
+const yearEnd = new Date(now.getFullYear() + 1, 0, 1);
+const yearProgress = calcProgress(yearStart, yearEnd, now);
+
+let age = getAge(LIFE_BIRTHDAY);
+log(age)
+const lifeStart = age
+const lifeEnd = life_expectancy
+const lifeProgress = Math.floor(lifeStart / lifeEnd * 1000) / 1000;
+// Create Widget
+const font = Font.systemFont(FONT_SIZE);
+const padding = {
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0
+}
+
+let widget = await createWidget()
+
+//#####################背景模块-设置小组件的背景#####################
+
+if (!colorMode && !ImageMode && !config.runsInWidget && changePicBg) {
+
+
+  const okTips = "您的小部件背景已准备就绪"
+  let message = "开始之前，请回到主屏幕并进入编辑模式。 滑到最右边的空白页并截图。"
+  let options = ["图片选择", "透明背景", "配置文档", "取消"]
+  let response = await generateAlert(message, options)
+  if (response == 3) return
+  if (response == 0) {
+    let img = await Photos.fromLibrary()
+    message = okTips
+    const resultOptions = ["好的"]
+    await generateAlert(message, resultOptions)
+    files.writeImage(path, img)
+  }
+  if (response == 2) {
+    Safari.openInApp(versionData['ONE-Progress'].wxurl, false);
+  }
+  if (response == 1) {
+    message = "以下是【透明背景】生成步骤，如果你没有屏幕截图请退出，并返回主屏幕长按进入编辑模式。滑动到最右边的空白页截图。然后重新运行！"
+    let exitOptions = ["继续(已有截图)", "退出(没有截图)"]
+
+    let shouldExit = await generateAlert(message, exitOptions)
+    if (shouldExit) return
+
+    // Get screenshot and determine phone size.
+    let img = await Photos.fromLibrary()
+    let height = img.size.height
+    let phone = phoneSizes()[height]
+    if (!phone) {
+      message = "您似乎选择了非iPhone屏幕截图的图像，或者不支持您的iPhone。请使用其他图像再试一次!"
+      await generateAlert(message, ["好的！我现在去截图"])
+      return
+    }
+    if (height == 2436) {
+      let files = FileManager.local()
+      let cacheName = "nk-phone-type"
+      let cachePath = files.joinPath(files.libraryDirectory(), cacheName)
+      if (files.fileExists(cachePath)) {
+        let typeString = files.readString(cachePath)
+        phone = phone[typeString]
+      } else {
+        message = "你使用什么型号的iPhone？"
+        let types = ["iPhone 12 mini", "iPhone 11 Pro, XS, or X"]
+        let typeIndex = await generateAlert(message, types)
+        let type = (typeIndex == 0) ? "mini" : "x"
+        phone = phone[type]
+        files.writeString(cachePath, type)
+      }
+    }
+    // Prompt for widget size and position.
+    message = "您想要创建什么尺寸的小部件？"
+    let sizes = ["小号", "中号", "大号"]
+    let size = await generateAlert(message, sizes)
+    let widgetSize = sizes[size]
+
+    message = "您想它在什么位置？"
+    message += (height == 1136 ? " (请注意，您的设备仅支持两行小部件，因此中间和底部选项相同。)" : "")
+
+    // Determine image crop based on phone size.
+    let crop = {
+      w: "",
+      h: "",
+      x: "",
+      y: ""
+    }
+    if (widgetSize == "小号") {
+      crop.w = phone.小号
+      crop.h = phone.小号
+      let positions = ["顶部 左边", "顶部 右边", "中间 左边", "中间 右边", "底部 左边", "底部 右边"]
+      let position = await generateAlert(message, positions)
+
+      // Convert the two words into two keys for the phone size dictionary.
+      let keys = positions[position].split(' ')
+      crop.y = phone[keys[0]]
+      crop.x = phone[keys[1]]
+
+    } else if (widgetSize == "中号") {
+      crop.w = phone.中号
+      crop.h = phone.小号
+
+      // 中号 and 大号 widgets have a fixed x-value.
+      crop.x = phone.左边
+      let positions = ["顶部", "中间", "底部"]
+      let position = await generateAlert(message, positions)
+      let key = positions[position].toLowerCase()
+      crop.y = phone[key]
+
+    } else if (widgetSize == "大号") {
+      crop.w = phone.中号
+      crop.h = phone.大号
+      crop.x = phone.左边
+      let positions = ["顶部", "底部"]
+      let position = await generateAlert(message, positions)
+
+      // 大号 widgets at the 底部 have the "中间" y-value.
+      crop.y = position ? phone.中间 : phone.顶部
+    }
+
+    // Crop image and finalize the widget.
+    let imgCrop = cropImage(img, new Rect(crop.x, crop.y, crop.w, crop.h))
+
+    message = "您的小部件背景已准备就绪，退出到桌面预览。"
+    const resultOptions = ["导出到相册", "预览组件"]
+    const exportToFiles = await generateAlert(message, resultOptions)
+    if (exportToFiles) {
+      files.writeImage(path, imgCrop)
+    } else {
+      Photos.save(imgCrop)
+    }
+  }
+
+}
+
+
+
+//#####################背景模块-设置小组件的背景#####################
+
+
+if (colorMode) {
+  widget.backgroundColor = COLOR_BAR_BACKGROUND
+} else if (ImageMode) {
+  switch (Imgstyle) {
+    case 1:
+      const blugImgs = await getImageByUrl("https://source.unsplash.com/random/800x373?" + IMAGE_SEARCH_TERMS, `_${Script.name()}-bg`, false)
+      bgImg = await blurImage(blugImgs, blurStyle, blursize)
+      widget.backgroundImage = bgImg
+      break;
+    case 2:
+      const unsplashurl = "https://source.unsplash.com/random/800x373?" + IMAGE_SEARCH_TERMS
+      const orginImgs = await getImageByUrl(unsplashurl, `_${Script.name()}-orginImgs-bg`, false)
+      bgImg = await shadowImage(orginImgs)
+      widget.backgroundImage = bgImg
+      break;
+    case 3:
+      const bingurl = "https://api.dujin.org/bing/1366.php"
+      const bingImgs = await getImageByUrl(bingurl, `_${Script.name()}-bingImgs-bg`, false)
+      bgImg = await shadowImage(bingImgs)
+      widget.backgroundImage = bgImg
+      break;
+  }
+} else {
+  widget.backgroundImage = files.readImage(path)
+}
+// 设置边距(上，左，下，右)
+widget.setPadding(padding.top, padding.left, padding.bottom, padding.right)
+
+// 设置组件
+if (!config.runsInWidget) {
+  switch (previewSize) {
+    case "small":
+      await widget.presentSmall();
+      break;
+    case "medium":
+      await widget.presentMedium();
+      break;
+    case "large":
+      await widget.presentLarge();
+      break;
+  }
+}
+Script.setWidget(widget)
+// 完成脚本
+Script.complete()
+// 预览
+
+
+//#####################内容模块-创建小组件内容#####################
+
+async function createWidget() {
+  const widget = new ListWidget();
+
+  widget.spacing = SPACER_SIZE;
+
+  function addProgress(name, progress, color) {
+    const percent = (progress * 100).toFixed(1); // 1/2 保留两位小数
+
+    const line = widget.addStack();
+    line.centerAlignContent();
+
+    const label = line.addStack();
+    label.size = new Size(LABEL_WIDTH, LINE_HEIGHT);
+    label.centerAlignContent();
+
+    const labelName = label.addText(name);
+    labelName.font = font
+
+
+
+    label.addSpacer();
+
+    const labelPercent = label.addText(percent + '%');
+    labelPercent.font = new Font('Menlo', FONT_SIZE);
+    labelPercent.font = Font.boldRoundedSystemFont(FONT_SIZE)
+    labelPercent.textOpacity = 0.6
+    line.addSpacer(SPACER_SIZE);
+
+    const barBackground = line.addStack();
+    barBackground.size = new Size(BAR_WIDTH, BAR_HEIGHT);
+    barBackground.backgroundColor = COLOR_BAR_BACKGROUND;
+    barBackground.cornerRadius = BAR_HEIGHT / 2;
+    barBackground.topAlignContent();
+    barBackground.layoutVertically();
+
+    const barProgressWidth = BAR_WIDTH * progress;
+    const barProgress = barBackground.addStack();
+    barProgress.size = new Size(barProgressWidth, BAR_HEIGHT);
+    if (params[0] !== '' && params[0] !== 'null') {
+      barProgress.backgroundColor = color;
+    } else {
+      barProgress.backgroundGradient = DEFAULT_Color;
+    }
+
+    barProgress.cornerRadius = BAR_HEIGHT / 2;
+  }
+
+
+  if (previewSize === "small") {
+    //   const widget = new ListWidget();
+    const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
+    error.font = Font.blackMonospacedSystemFont(12)
+    error.textColor = Color.white()
+    error.centerAlignText()
+
+    widget.backgroundColor = COLOR_BAR_BACKGROUND
+
+  } else if (previewSize == "large") {
+    //   const widget = new ListWidget();
+    const error = widget.addText("\u62b1\u6b49\uff0c\u8be5\u5c3a\u5bf8\u5c0f\u7ec4\u4ef6\u4f5c\u8005\u6682\u672a\u9002\u914d")
+    error.font = Font.blackMonospacedSystemFont(16)
+    error.centerAlignText()
+    const error2 = widget.addText("\u5982\u60a8\u8feb\u5207\u9700\u8981\u9002\u914d\u8be5\u5c3a\u5bf8\uff0c\u8bf7\u5c1d\u8bd5\u5728\u4f5c\u8005\u516c\u4f17\u53f7\u7559\u8a00\u53cd\u9988.")
+    error2.font = Font.systemFont(10)
+    error2.centerAlignText()
+    //   error2.textColor = Color.gray()
+    const error3 = widget.addText("\u6211\u5728\u66f0\u575b\u7b49\u4f60😎")
+    error3.font = Font.systemFont(10)
+    error3.textOpacity = 0.8
+    error3.centerAlignText()
+    widget.url = 'https://mp.weixin.qq.com/mp/homepage?__biz=MzU3MTcyMDM1NA==&hid=1&sn=95931d7607893e42afc85ede24ba9fe5&scene=18'
+    widget.backgroundColor = COLOR_BAR_BACKGROUND
+
+  } else {
+
+    addProgress(labels[0], dayProgress, getColors(0));
+    addProgress(labels[1], weekProgress, getColors(1));
+    addProgress(labels[2], monthProgress, getColors(2));
+    addProgress(labels[3], yearProgress, getColors(3));
+    addProgress(labels[4], lifeProgress, getColors(4));
+  }
+
+
+  return widget
+}
+
+//#####################背景模块-逻辑处理部分#####################
+
+async function shadowImage(img) {
+  let ctx = new DrawContext()
+  // 把画布的尺寸设置成图片的尺寸
+  ctx.size = img.size
+  // 把图片绘制到画布中
+  ctx.drawImageInRect(img, new Rect(0, 0, img.size['width'], img.size['height']))
+  // 设置绘制的图层颜色，为半透明的黑色
+  ctx.setFillColor(new Color('#000000', 0.5))
+  // 绘制图层
+  ctx.fillRect(new Rect(0, 0, img.size['width'], img.size['height']))
+
+  // 导出最终图片
+  return await ctx.getImage()
+}
+
+async function loadImage(imgUrl) {
+  let req = new Request(imgUrl)
+  let image = await req.loadImage()
+  return image
+}
+
+async function generateAlert(message, options) {
+  let alert = new Alert()
+  alert.message = message
+
+  for (const option of options) {
+    alert.addAction(option)
+  }
+
+  let response = await alert.presentAlert()
+  return response
+}
+
+// Crop an image into the specified rect.
+function cropImage(img, rect) {
+  let draw = new DrawContext()
+  draw.size = new Size(rect.width, rect.height)
+  draw.drawImageAtPoint(img, new Point(-rect.x, -rect.y))
+  return draw.getImage()
+}
+
+// **
+//  * 图片高斯模糊
+//  * @param {Image} img 
+//  * @param {string} style light/dark
+//  * @return {Image} 图片
+//  */
+async function blurImage(img, style, blur = blursize) {
+  const js = `
+ var mul_table=[512,512,456,512,328,456,335,512,405,328,271,456,388,335,292,512,454,405,364,328,298,271,496,456,420,388,360,335,312,292,273,512,482,454,428,405,383,364,345,328,312,298,284,271,259,496,475,456,437,420,404,388,374,360,347,335,323,312,302,292,282,273,265,512,497,482,468,454,441,428,417,405,394,383,373,364,354,345,337,328,320,312,305,298,291,284,278,271,265,259,507,496,485,475,465,456,446,437,428,420,412,404,396,388,381,374,367,360,354,347,341,335,329,323,318,312,307,302,297,292,287,282,278,273,269,265,261,512,505,497,489,482,475,468,461,454,447,441,435,428,422,417,411,405,399,394,389,383,378,373,368,364,359,354,350,345,341,337,332,328,324,320,316,312,309,305,301,298,294,291,287,284,281,278,274,271,268,265,262,259,257,507,501,496,491,485,480,475,470,465,460,456,451,446,442,437,433,428,424,420,416,412,408,404,400,396,392,388,385,381,377,374,370,367,363,360,357,354,350,347,344,341,338,335,332,329,326,323,320,318,315,312,310,307,304,302,299,297,294,292,289,287,285,282,280,278,275,273,271,269,267,265,263,261,259];var shg_table=[9,11,12,13,13,14,14,15,15,15,15,16,16,16,16,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,19,19,19,19,19,19,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24];function stackBlurCanvasRGB(id,top_x,top_y,width,height,radius){if(isNaN(radius)||radius<1)return;radius|=0;var canvas=document.getElementById(id);var context=canvas.getContext("2d");var imageData;try{try{imageData=context.getImageData(top_x,top_y,width,height)}catch(e){try{netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");imageData=context.getImageData(top_x,top_y,width,height)}catch(e){alert("Cannot access local image");throw new Error("unable to access local image data: "+e);return}}}catch(e){alert("Cannot access image");throw new Error("unable to access image data: "+e);}var pixels=imageData.data;var x,y,i,p,yp,yi,yw,r_sum,g_sum,b_sum,r_out_sum,g_out_sum,b_out_sum,r_in_sum,g_in_sum,b_in_sum,pr,pg,pb,rbs;var div=radius+radius+1;var w4=width<<2;var widthMinus1=width-1;var heightMinus1=height-1;var radiusPlus1=radius+1;var sumFactor=radiusPlus1*(radiusPlus1+1)/2;var stackStart=new BlurStack();var stack=stackStart;for(i=1;i<div;i++){stack=stack.next=new BlurStack();if(i==radiusPlus1)var stackEnd=stack}stack.next=stackStart;var stackIn=null;var stackOut=null;yw=yi=0;var mul_sum=mul_table[radius];var shg_sum=shg_table[radius];for(y=0;y<height;y++){r_in_sum=g_in_sum=b_in_sum=r_sum=g_sum=b_sum=0;r_out_sum=radiusPlus1*(pr=pixels[yi]);g_out_sum=radiusPlus1*(pg=pixels[yi+1]);b_out_sum=radiusPlus1*(pb=pixels[yi+2]);r_sum+=sumFactor*pr;g_sum+=sumFactor*pg;b_sum+=sumFactor*pb;stack=stackStart;for(i=0;i<radiusPlus1;i++){stack.r=pr;stack.g=pg;stack.b=pb;stack=stack.next}for(i=1;i<radiusPlus1;i++){p=yi+((widthMinus1<i?widthMinus1:i)<<2);r_sum+=(stack.r=(pr=pixels[p]))*(rbs=radiusPlus1-i);g_sum+=(stack.g=(pg=pixels[p+1]))*rbs;b_sum+=(stack.b=(pb=pixels[p+2]))*rbs;r_in_sum+=pr;g_in_sum+=pg;b_in_sum+=pb;stack=stack.next}stackIn=stackStart;stackOut=stackEnd;for(x=0;x<width;x++){pixels[yi]=(r_sum*mul_sum)>>shg_sum;pixels[yi+1]=(g_sum*mul_sum)>>shg_sum;pixels[yi+2]=(b_sum*mul_sum)>>shg_sum;r_sum-=r_out_sum;g_sum-=g_out_sum;b_sum-=b_out_sum;r_out_sum-=stackIn.r;g_out_sum-=stackIn.g;b_out_sum-=stackIn.b;p=(yw+((p=x+radius+1)<widthMinus1?p:widthMinus1))<<2;r_in_sum+=(stackIn.r=pixels[p]);g_in_sum+=(stackIn.g=pixels[p+1]);b_in_sum+=(stackIn.b=pixels[p+2]);r_sum+=r_in_sum;g_sum+=g_in_sum;b_sum+=b_in_sum;stackIn=stackIn.next;r_out_sum+=(pr=stackOut.r);g_out_sum+=(pg=stackOut.g);b_out_sum+=(pb=stackOut.b);r_in_sum-=pr;g_in_sum-=pg;b_in_sum-=pb;stackOut=stackOut.next;yi+=4}yw+=width}for(x=0;x<width;x++){g_in_sum=b_in_sum=r_in_sum=g_sum=b_sum=r_sum=0;yi=x<<2;r_out_sum=radiusPlus1*(pr=pixels[yi]);g_out_sum=radiusPlus1*(pg=pixels[yi+1]);b_out_sum=radiusPlus1*(pb=pixels[yi+2]);r_sum+=sumFactor*pr;g_sum+=sumFactor*pg;b_sum+=sumFactor*pb;stack=stackStart;for(i=0;i<radiusPlus1;i++){stack.r=pr;stack.g=pg;stack.b=pb;stack=stack.next}yp=width;for(i=1;i<=radius;i++){yi=(yp+x)<<2;r_sum+=(stack.r=(pr=pixels[yi]))*(rbs=radiusPlus1-i);g_sum+=(stack.g=(pg=pixels[yi+1]))*rbs;b_sum+=(stack.b=(pb=pixels[yi+2]))*rbs;r_in_sum+=pr;g_in_sum+=pg;b_in_sum+=pb;stack=stack.next;if(i<heightMinus1){yp+=width}}yi=x;stackIn=stackStart;stackOut=stackEnd;for(y=0;y<height;y++){p=yi<<2;pixels[p]=(r_sum*mul_sum)>>shg_sum;pixels[p+1]=(g_sum*mul_sum)>>shg_sum;pixels[p+2]=(b_sum*mul_sum)>>shg_sum;r_sum-=r_out_sum;g_sum-=g_out_sum;b_sum-=b_out_sum;r_out_sum-=stackIn.r;g_out_sum-=stackIn.g;b_out_sum-=stackIn.b;p=(x+(((p=y+radiusPlus1)<heightMinus1?p:heightMinus1)*width))<<2;r_sum+=(r_in_sum+=(stackIn.r=pixels[p]));g_sum+=(g_in_sum+=(stackIn.g=pixels[p+1]));b_sum+=(b_in_sum+=(stackIn.b=pixels[p+2]));stackIn=stackIn.next;r_out_sum+=(pr=stackOut.r);g_out_sum+=(pg=stackOut.g);b_out_sum+=(pb=stackOut.b);r_in_sum-=pr;g_in_sum-=pg;b_in_sum-=pb;stackOut=stackOut.next;yi+=width}}context.putImageData(imageData,top_x,top_y)}function BlurStack(){this.r=0;this.g=0;this.b=0;this.a=0;this.next=null}
+       // https://gist.github.com/mjackson/5311256
+     
+       function rgbToHsl(r, g, b){
+           r /= 255, g /= 255, b /= 255;
+           var max = Math.max(r, g, b), min = Math.min(r, g, b);
+           var h, s, l = (max + min) / 2;
+     
+           if(max == min){
+               h = s = 0; // achromatic
+           }else{
+               var d = max - min;
+               s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+               switch(max){
+                   case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                   case g: h = (b - r) / d + 2; break;
+                   case b: h = (r - g) / d + 4; break;
+               }
+               h /= 6;
+           }
+     
+           return [h, s, l];
+       }
+     
+       function hslToRgb(h, s, l){
+           var r, g, b;
+     
+           if(s == 0){
+               r = g = b = l; // achromatic
+           }else{
+               var hue2rgb = function hue2rgb(p, q, t){
+                   if(t < 0) t += 1;
+                   if(t > 1) t -= 1;
+                   if(t < 1/6) return p + (q - p) * 6 * t;
+                   if(t < 1/2) return q;
+                   if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                   return p;
+               }
+     
+               var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+               var p = 2 * l - q;
+               r = hue2rgb(p, q, h + 1/3);
+               g = hue2rgb(p, q, h);
+               b = hue2rgb(p, q, h - 1/3);
+           }
+     
+           return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+       }
+       
+       function lightBlur(hsl) {
+       
+         // Adjust the luminance.
+         let lumCalc = 0.35 + (0.3 / hsl[2]);
+         if (lumCalc < 1) { lumCalc = 1; }
+         else if (lumCalc > 3.3) { lumCalc = 3.3; }
+         const l = hsl[2] * lumCalc;
+         
+         // Adjust the saturation. 
+         const colorful = 2 * hsl[1] * l;
+         const s = hsl[1] * colorful * 1.5;
+         
+         return [hsl[0],s,l];
+         
+       }
+       
+       function darkBlur(hsl) {
+     
+         // Adjust the saturation. 
+         const colorful = 2 * hsl[1] * hsl[2];
+         const s = hsl[1] * (1 - hsl[2]) * 3;
+         
+         return [hsl[0],s,hsl[2]];
+         
+       }
+     
+       // Set up the canvas.
+       const img = document.getElementById("blurImg");
+       const canvas = document.getElementById("mainCanvas");
+     
+       const w = img.naturalWidth;
+       const h = img.naturalHeight;
+     
+       canvas.style.width  = w + "px";
+       canvas.style.height = h + "px";
+       canvas.width = w;
+       canvas.height = h;
+     
+       const context = canvas.getContext("2d");
+       context.clearRect( 0, 0, w, h );
+       context.drawImage( img, 0, 0 );
+       
+       // Get the image data from the context.
+       var imageData = context.getImageData(0,0,w,h);
+       var pix = imageData.data;
+       
+       var isDark = "${style}" == "dark";
+       var imageFunc = isDark ? darkBlur : lightBlur;
+     
+       for (let i=0; i < pix.length; i+=4) {
+     
+         // Convert to HSL.
+         let hsl = rgbToHsl(pix[i],pix[i+1],pix[i+2]);
+         
+         // Apply the image function.
+         hsl = imageFunc(hsl);
+       
+         // Convert back to RGB.
+         const rgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
+       
+         // Put the values back into the data.
+         pix[i] = rgb[0];
+         pix[i+1] = rgb[1];
+         pix[i+2] = rgb[2];
+     
+       }
+     
+       // Draw over the old image.
+       context.putImageData(imageData,0,0);
+     
+       // Blur the image.
+       stackBlurCanvasRGB("mainCanvas", 0, 0, w, h, ${blur});
+       
+       // Perform the additional processing for dark images.
+       if (isDark) {
+       
+         // Draw the hard light box over it.
+         context.globalCompositeOperation = "hard-light";
+         context.fillStyle = "rgba(55,55,55,0.2)";
+         context.fillRect(0, 0, w, h);
+     
+         // Draw the soft light box over it.
+         context.globalCompositeOperation = "soft-light";
+         context.fillStyle = "rgba(55,55,55,1)";
+         context.fillRect(0, 0, w, h);
+     
+         // Draw the regular box over it.
+         context.globalCompositeOperation = "source-over";
+         context.fillStyle = "rgba(55,55,55,0.4)";
+         context.fillRect(0, 0, w, h);
+       
+       // Otherwise process light images.
+       } else {
+         context.fillStyle = "rgba(255,255,255,0.4)";
+         context.fillRect(0, 0, w, h);
+       }
+     
+       // Return a base64 representation.
+       canvas.toDataURL(); 
+       `
+
+  // Convert the images and create the HTML.
+  let blurImgData = Data.fromPNG(img).toBase64String()
+  let html = `
+       <img id="blurImg" src="data:image/png;base64,${blurImgData}" />
+       <canvas id="mainCanvas" />
+       `
+
+  // Make the web view and get its return value.
+  let view = new WebView()
+  await view.loadHTML(html)
+  let returnValue = await view.evaluateJavaScript(js)
+
+  // Remove the data type from the string and convert to data.
+  let imageDataString = returnValue.slice(22)
+  let imageData = Data.fromBase64String(imageDataString)
+
+  // Convert to image and crop before returning.
+  let imageFromData = Image.fromData(imageData)
+  // return cropImage(imageFromData)
+  return imageFromData
+}
+
+async function getImageByUrl(url, cacheKey, useCache = true) {
+  const cacheFile = FileManager.local().joinPath(FileManager.local().temporaryDirectory(), cacheKey)
+  const exists = FileManager.local().fileExists(cacheFile)
+  // 判断是否有缓存
+  if (useCache && exists) {
+    return Image.fromFile(cacheFile)
+  }
+  try {
+    const req = new Request(url)
+    const img = await req.loadImage()
+    // 存储到缓存
+    FileManager.local().writeImage(cacheFile, img)
+    return img
+  } catch (e) {
+    console.error(`图片加载失败：${e}`)
+    if (exists) {
+      return Image.fromFile(cacheFile)
+    }
+    // 没有缓存+失败情况下，返回黑色背景
+    let ctx = new DrawContext()
+    ctx.size = new Size(100, 100)
+    ctx.setFillColor(Color.black())
+    ctx.fillRect(new Rect(0, 0, 100, 100))
+    return await ctx.getImage()
+  }
+}
+
+
+// Pixel sizes and positions for widgets on all supported phones.
+function phoneSizes() {
+  let phones = {
+    "2556": {
+      "models": ["14 Pro Max"],
+      "小号": 510,
+      "中号": 1092,
+      "大号": 1146,
+      "左边": 99,
+      "右边": 681,
+      "顶部": 282,
+      "中间": 918,
+      "底部": 1554,
+    },
+
+    "2556": {
+      "models": ["14 Pro"],
+      "小号": 474,
+      "中号": 1014,
+      "大号": 1062,
+      "左边": 82,
+      "右边": 622,
+      "顶部": 270,
+      "中间": 858,
+      "底部": 1446,
+    },
+    "2532": {
+      "models": ["12", "12 Pro", "14"],
+      "小号": 474,
+      "中号": 1014,
+      "大号": 1062,
+      "左边": 78,
+      "右边": 618,
+      "顶部": 231,
+      "中间": 819,
+      "底部": 1407,
+    },
+
+    "2778": {
+      "models": ["12 Pro Max", "13 Pro Max"],
+      "小号": 510,
+      "中号": 1092,
+      "大号": 1146,
+      "左边": 96,
+      "右边": 678,
+      "顶部": 246,
+      "中间": 882,
+      "底部": 1518,
+    },
+
+    "2688": {
+      "models": ["Xs Max", "11 Pro Max"],
+      "小号": 507,
+      "中号": 1080,
+      "大号": 1137,
+      "左边": 81,
+      "右边": 654,
+      "顶部": 228,
+      "中间": 858,
+      "底部": 1488
+    },
+
+    "1792": {
+      "models": ["11", "Xr"],
+      "小号": 338,
+      "中号": 720,
+      "大号": 758,
+      "左边": 54,
+      "右边": 436,
+      "顶部": 160,
+      "中间": 580,
+      "底部": 1000
+    },
+
+    "2436": {
+      x: {
+        "models": ["X", "Xs", "11 Pro"],
+        "小号": 465,
+        "中号": 987,
+        "大号": 1035,
+        "左边": 69,
+        "右边": 591,
+        "顶部": 213,
+        "中间": 783,
+        "底部": 1353
+      },
+
+      mini: {
+        "models": ["12 mini"],
+        "小号": 465,
+        "中号": 987,
+        "大号": 1035,
+        "左边": 69,
+        "右边": 591,
+        "顶部": 231,
+        "中间": 801,
+        "底部": 1371
+      }
+    },
+
+    "2208": {
+      "models": ["6+", "6s+", "7+", "8+"],
+      "小号": 471,
+      "中号": 1044,
+      "大号": 1071,
+      "左边": 99,
+      "右边": 672,
+      "顶部": 114,
+      "中间": 696,
+      "底部": 1278
+    },
+
+    "1334": {
+      "models": ["6", "6s", "7", "8", "SE2"],
+      "小号": 296,
+      "中号": 642,
+      "大号": 648,
+      "左边": 54,
+      "右边": 400,
+      "顶部": 60,
+      "中间": 412,
+      "底部": 764
+    },
+
+    "1136": {
+      "models": ["5", "5s", "5c", "SE"],
+      "小号": 282,
+      "中号": 584,
+      "大号": 622,
+      "左边": 30,
+      "右边": 332,
+      "顶部": 59,
+      "中间": 399,
+      "底部": 399
+    }
+  }
+  return phones
+}
+
+//#####################版本更新模块#####################
+
+async function getversion() {
+  const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
+  var versionData
+  try {
+    versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+    files.writeString(versionCachePath, JSON.stringify(versionData))
+    console.log(`[+]欢迎使用：${versionData.author}制作小组件`);
+    console.log("[+]遇到问题，请前往公众号：曰坛 反馈");
+    log("[+]版本信息获取成功")
+  } catch (e) {
+    versionData = JSON.parse(files.readString(versionCachePath))
+    log("[+]获取版本信息失败，使用缓存数据")
+  }
+
+  return versionData
+}
+
+// 版本比较
+function version_compare(v1, v2) {
+  // 将两个版本号拆成数组
+  var arr1 = v1.split('.'),
+    arr2 = v2.split('.');
+  var minLength = Math.min(arr1.length, arr2.length);
+  // 依次比较版本号每一位大小
+  for (var i = 0; i < minLength; i++) {
+    if (parseInt(arr1[i]) != parseInt(arr2[i])) {
+      return (parseInt(arr1[i]) > parseInt(arr2[i])) ? 1 : -1;
+    }
+  }
+  // 若前几位分隔相同，则按分隔数比较。
+  if (arr1.length == arr2.length) {
+    return 0;
+  } else {
+    return (arr1.length > arr2.length) ? 1 : -1;
+  }
+}
+
+async function updateCheck(localversion) {
+
+  let uC = versionData
+  let originversion = uC['ONE-Progress'].version
+  let status = version_compare(originversion, localversion)
+  log('[+]最新版本：' + originversion)
+  let needUpdate = false
+  if (status == 1) {
+    needUpdate = true
+    log("[+]检测到有新版本！")
+    if (!config.runsInWidget) {
+      log("[+]执行更新步骤")
+      let upd = new Alert()
+      upd.title = "检测到有新版本！"
+      upd.addDestructiveAction("暂不更新")
+      upd.addAction("立即更新")
+      upd.add
+      upd.message = uC['ONE-Progress'].notes
+      if (await upd.present() == 1) {
+        const req = new Request(uC['ONE-Progress'].cdn_scriptURL)
+        const codeString = await req.loadString()
+        files.writeString(module.filename, codeString)
+        const n = new Notification()
+        n.title = "下载更新成功"
+        n.body = "请点击左上角Done完成，重新进入脚本即可~"
+        n.schedule()
+
+      }
+      Script.complete()
+    }
+
+  } else if (status == 0) {
+    log("[+]当前版本已是最新")
+  } else {
+    const n = new Notification()
+    n.title = "作者肯定是打瞌睡啦！"
+    n.body = "哎呀！赶紧去公众号反馈吧~"
+    n.schedule()
+  }
+
+  return needUpdate
+}
+
+/********************************************************
+ ************* MAKE SURE TO COPY EVERYTHING *************
+ *******************************************************
+ ************ © 2023 Copyright Nicolas-kings ************/
