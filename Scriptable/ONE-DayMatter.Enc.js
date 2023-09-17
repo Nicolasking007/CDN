@@ -12,6 +12,7 @@
  * date       : 2023-09-17
  * github     : https://github.com/Nicolasking007/Scriptable
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
+ * info       : 脚本部分代码来源 - https://gist.github.com/Normal-Tangerine8609/081f285ae6841fd1ff4a4db0a63de66b  再次感谢
  * Changelog  :  
  *               v1.0.0 - 首次发布
  *******************************************************/
@@ -165,7 +166,7 @@ async function createWidget() {
 
 
 
-
+//参考代码 来源 https://gist.github.com/Normal-Tangerine8609/081f285ae6841fd1ff4a4db0a63de66b
 
 function setupcalendarWidget(widget, weekStartsMonday, showOnlyMonth) {
 
@@ -389,6 +390,8 @@ function getNextHolidayCountdown(holidays) {
   }
 }
 
+
+//参考代码 来源 https://gist.github.com/Normal-Tangerine8609/081f285ae6841fd1ff4a4db0a63de66b
 
 function calendar(weekStartsMonday = false) {
   const today = new Date()
