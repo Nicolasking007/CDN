@@ -1,0 +1,21 @@
+name: Sync to GitLab
+
+on:
+  push:
+    branches:
+      - master  # 更改为您的默认分支
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Push to GitLab
+      run: |
+        git remote add gitlab https://gitlab.com/Nicolasking007/CDN.git
+        git push -u gitlab HEAD:master  # 更改为您的默认分支
+      env:
+        GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
