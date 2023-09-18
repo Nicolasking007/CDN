@@ -27,4 +27,4 @@ jobs:
     - name: Push to GitLab
       run: |
         git remote add gitlab https://${{ secrets.USER_NAME}}:${{ secrets.GITLAB_TOKEN}}@gitlab.com/Nicolasking007/CDN.git
-        git push -f gitlab HEAD:master  
+        git push gitlab HEAD:master  
