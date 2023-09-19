@@ -102,7 +102,7 @@
         "Updated": "2022-03-27 17:00"
     },
     "ONE-oilprice": {
-        "version": "v2.1.1",
+        "version": "2.1.1",
         "author": "Nicolas-kings",
         "description": "支持全国所有省份的油价实时数据小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-oilprice/ONE-oilprice.Enc.js",
@@ -268,7 +268,7 @@
         "Updated": "2021-12-16 10:30"
     },
     "ONE-Download": {
-        "version": "1.1.1",
+        "version": "1.1.2",
         "author": "Nicolas-kings",
         "description": "脚本下载器",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Download/ONE-Download.Enc.js",
