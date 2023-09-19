@@ -772,7 +772,6 @@ async function updateCheck(localversion) {
             upd.title = "检测到有新版本！"
             upd.addDestructiveAction("暂不更新")
             upd.addAction("立即更新")
-            upd.add
             upd.message = uC['ONE-Forwardtime'].notes
             if (await upd.present() == 1) {
                 const req = new Request(uC['ONE-Forwardtime'].cdn_scriptURL)
