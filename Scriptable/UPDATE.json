@@ -86,7 +86,7 @@
         "Updated": "2022-05-15 18:00"
     },
     "ONE-hotcomments": {
-        "version": "2.9",
+        "version": "2.9.0",
         "author": "Nicolas-kings",
         "description": "网易云热评小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-hotcomments/ONE-hotcomments.Enc.js",
