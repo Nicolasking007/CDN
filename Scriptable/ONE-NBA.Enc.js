@@ -1668,7 +1668,7 @@ async function getImageByUrl(url, cacheKey, useCache = true) {
 // Pixel sizes and positions for widgets on all supported phones.
 function phoneSizes() {
   let phones = {
-    "2556": {
+    "2796": {
       "models": ["14 Pro Max"],
       "小号": 510,
       "中号": 1092,
@@ -1692,7 +1692,7 @@ function phoneSizes() {
       "底部": 1446,
     },
     "2532": {
-      "models": ["12", "12 Pro", "14"],
+      "models": ["12", "12 Pro", "13", "13 Pro", "14"],
       "小号": 474,
       "中号": 1014,
       "大号": 1062,
@@ -1753,7 +1753,7 @@ function phoneSizes() {
       },
 
       mini: {
-        "models": ["12 mini"],
+        "models": ["12 mini","13 mini"],
         "小号": 465,
         "中号": 987,
         "大号": 1035,
@@ -1803,7 +1803,6 @@ function phoneSizes() {
   }
   return phones
 }
-
 //#####################版本更新模块#####################
 
 async function getversion() {
