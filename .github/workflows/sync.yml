@@ -1,30 +1,26 @@
 name: Sync to GitLab
-
+ 
 on:
   push:
-    branches:
-      - master  # 更改为您的默认分支
-
+    branches: [ master ]
+ 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Use Node.js 16
-      uses: actions/setup-node@v3
+    - name: Checkout
+      uses: actions/checkout@v2
+ 
+    - name: Setup GitLab API
+      uses: jasonetco/actions-setup-git@v2
       with:
-        node-version: 16
-
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Pull from GitLab
-      run: |
-        git pull --rebase origin develop  
-      env:
-        GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-
+        gitlab_token: ${{ secrets.GITLAB_TOKEN }}
+        repository: 'Nicolasking007/CDN.git'
+        ref: main
+ 
     - name: Push to GitLab
       run: |
-        git remote add gitlab https://${{ secrets.USER_NAME}}:${{ secrets.GITLAB_TOKEN}}@gitlab.com/Nicolasking007/CDN.git
-        git push -f gitlab HEAD:master  
+        git config --global user.name "${{ secrets.GITLAB_TOKEN }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        git remote set-url origin "https://gitlab.com/Nicolasking007/CDN.git"
+        git push origin main
