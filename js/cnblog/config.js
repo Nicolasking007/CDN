@@ -110,3 +110,5 @@
 		},
 	}
 </script>
+// <!-- <script src="https://cdn.jsdelivr.net/gh/Nicolasking007/cdn@v2.1.3/js/cnblog/config.js" defer></script> -->
+<script src="https://cdn.jsdelivr.net/gh/Nicolasking007/Theme-SimpleMemory@latest/dist/simpleMemory.js" defer></script>
