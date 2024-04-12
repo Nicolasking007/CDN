@@ -1,5 +1,6 @@
 <script type="text/javascript">
 	window.cnblogsConfig = {
+		 // 基础信息
 		info: {
 			name: 'Nicolas-kings',
 			// 您的用户名
@@ -8,8 +9,11 @@
 			avatar: 'https://nkupp.com/images/avatar.png',
 			// 您的头像 URL 地址
 		},
+		// 侧边栏
 		sidebar: {
+			// 个人信息背景
 			infoBackground: 'https://s2.ax1x.com/2019/12/15/QWO0rd.jpg',
+			// 侧边栏title信息
 			titleMsg: '欢迎访问本博客~',
 			submenu: {
 				// 积分排行
@@ -35,6 +39,7 @@
 				// 最新评论
 				latestComment: true,
 			},
+			// 菜单导航
 			navList: [
                 ['首页', 'https://www.cnblogs.com/nkupp', 'icon-home'], 
                 ['github', 'https://github.com/Nicolasking007', 'icon-github'], 
@@ -42,20 +47,27 @@
             ],
 		},
 		banner: {
+			// 主页 Banner
 			home: {
-				title: '每一个不曾起舞的日子，都是对生命的辜负。',
+				// 主页 Banner 标语
+				title: 'A man who is trying to get up from the bottom of society.',
+				// 主页 Banner 图片
 				background: [
-                    "https://s2.ax1x.com/2019/12/15/QWXgT1.jpg", 
-                    "https://s2.ax1x.com/2019/12/15/QWX5lD.jpg", 
+                    "https://s2.ax1x.com/2019/12/15/QWO0rd.jpg",
                 ],
 			},
+			// 文章
 			article: {
+				// 文章页 Banner 图片
 				background: [
                     "https://s2.ax1x.com/2019/12/15/QfZ55T.jpg", 
+                    "https://s2.ax1x.com/2019/12/15/QWXgT1.jpg", 
+                    "https://s2.ax1x.com/2019/12/15/QWX5lD.jpg", 
                     "https://ae01.alicdn.com/kf/Uc27537fbd50e46709defa34c7edd7fcar.jpg", 
                 ],
 			},
 		},
+		// 代码
 		code: {
 			type: 'hljs',
 			options: {
@@ -65,20 +77,36 @@
 				},
 			},
 		},
+		// 文章评论
+		articleComment: {
+			background: {
+				enable: true,
+			}
+		},
+		// 文章内容
+		articleContent: {
+			prefixIcon: {
+				enable: true,
+			}
+		},
+		// 页脚样式		
 		footer: {
+			// 页脚标语
 			text: {
-				left: '啊哈哈哈哈哈哈哈',
+				left: '山不向我走来',
+				// 页脚标语中间图标 
 				iconFont: {
 					icon: "icon-xl",
 					color: "red",
 					fontSize: "16px",
 				},
+				right: '我便向山走去',
+
 			},
+			// 音乐播放
 			aplayer: {
-				enable: false,
+				enable: true,
 			},
 		},
 	}
 </script>
-
-
