@@ -7,27 +7,32 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-DayMatter.js
- * version    : 1.0.0
+ * version    : 1.0.1
  * author     : Nicolas-kings
  * date       : 2023-09-17
  * github     : https://github.com/Nicolasking007/Scriptable
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
  * info       : 脚本部分代码来源 - https://gist.github.com/Normal-Tangerine8609/081f285ae6841fd1ff4a4db0a63de66b  再次感谢
- * Changelog  :  
- *               v1.0.0 - 首次发布
+ * Changelog  :  v1.0.1 - 20240413 -优化处理倒数日跨年情况、锁屏小组件样式调整
+ *               v1.0.0 - 20230917 - 首次发布
  *******************************************************/
 //##############公共参数配置模块############## 
 
 
-const previewSize = (config.runsInWidget ? config.widgetFamily : "medium");
+const previewSize = (config.runsInWidget ? config.widgetFamily : "accessoryRectangular");
 
-// 定义要读取的图片文件夹路径
+/*
+* 定义要读取的图片文件夹路径
+*/
 const fm = FileManager.iCloud();
 const dir = fm.joinPath(fm.documentsDirectory(), "Cover");
 if (!fm.fileExists(dir)) fm.createDirectory(dir);
 
 
-// 小组件倒计时部分
+
+/*
+* 小组件倒计时部分
+*/
 const fuelType = "celebrate";  // love
 const symbolColor = Color.orange()
 const stationColor = Color.blue()
@@ -36,7 +41,9 @@ const secondaryColor = Color.gray()
 const dangerColor = Color.red()
 const successColor = Color.green()
 
-// 小组件日历部分
+/*
+* 小组件日历部分
+*/
 const spaceBetween = 2
 const dateTextSize = 8
 const dateSize = 18
@@ -56,12 +63,15 @@ const titleColor = Color.white()
 // Only show the days in the month or show the week leading to the first day in the month and the week leaving the last
 const showOnlyMonth = true
 
-const showcalendar = true
+// 小尺寸组件默认显示 日历信息
+const showtype = args.widgetParameter || 0
 
+// 每周起始日 默认周一
 const weekStartsMonday = true
 
-
-// 节假日信息数组
+/*
+* 节假日信息数组
+*/
 const holidays = [
   { name: "元旦", month: 1, day: 1 },
   { name: "除夕", month: 2, day: 9 },
@@ -77,8 +87,9 @@ const holidays = [
   // 继续添加更多节假日...
 ];
 
-
-// Set fuelTypeString
+/*
+* Set fuelTypeString
+*/
 const fuelTypeStringList = {
   "love": [
     "i.square", "l.square", "o.square", "v.square", "e.square", "y.square", "o.square", "u.square"
@@ -89,8 +100,10 @@ const fuelTypeStringList = {
 };
 const widget = await createWidget()
 
-// Create the widget
 
+/*
+* Create the widget
+*/
 if (!config.runsInWidget) {
   switch (previewSize) {
     case "small":
@@ -110,7 +123,9 @@ Script.complete()
 // 预览
 
 
-// Design of the widget
+/*
+* Design of the widget
+*/
 async function createWidget() {
   const widget = new ListWidget();
   const date = new Date(Date.now());
@@ -121,11 +136,12 @@ async function createWidget() {
 
   switch (previewSize) {
     case 'small':
-      if (showcalendar) {
+      if (showtype == 0) {
         setupcalendarWidget(widget, weekStartsMonday, showOnlyMonth)
-      } else {
+      } 
+      else if (showtype == 1) {
         const pumpImage = await getRandomImageAsync();
-        setupSmallWidget(widget, date, holidayInfo, weekNumber, dayOfYear, currentDateTime, pumpImage);
+        setupSmallWidget(widget, holidayInfo, weekNumber, dayOfYear, currentDateTime, pumpImage);
       }
       break;
 
@@ -140,7 +156,7 @@ async function createWidget() {
       leftStack.layoutVertically(); // 垂直布局
       leftStack.size = new Size(widget.size.width / 2, widget.size.height); // 左侧大小
       const pumpImages = await getRandomImageAsync();
-      setupSmallWidget(leftStack, currentDate, holidayInfo, weekNumber, dayOfYear, currentDateTime, pumpImages); // 调用设置小组件部分的函数
+      setupSmallWidget(leftStack, holidayInfo, weekNumber, dayOfYear, currentDateTime, pumpImages); // 调用设置小组件部分的函数
 
       horizontalStack.addSpacer(4); // 添加间隔
 
@@ -153,7 +169,7 @@ async function createWidget() {
       break;
 
     case 'accessoryRectangular':
-      setupAccessoryRectangularWidget(widget, date, holidayInfo);
+      setupAccessoryRectangularWidget_two(widget, holidayInfo);
       break;
 
     default:
@@ -166,8 +182,9 @@ async function createWidget() {
 
 
 
-//参考代码 来源 https://gist.github.com/Normal-Tangerine8609/081f285ae6841fd1ff4a4db0a63de66b
-
+/*
+* 日历小组件布局
+*/
 function setupcalendarWidget(widget, weekStartsMonday, showOnlyMonth) {
 
   // Start making the widget
@@ -231,8 +248,10 @@ function setupcalendarWidget(widget, weekStartsMonday, showOnlyMonth) {
 
 }
 
-
-function setupSmallWidget(widget, date, holidayInfo, weekNumber, dayOfYear, currentDateTime, pumpImage) {
+/*
+* 小尺寸小组件布局
+*/
+function setupSmallWidget(widget, holidayInfo, weekNumber, dayOfYear, currentDateTime, pumpImage) {
 
   // widget.setPadding(2, 1, 1, 1); // padding
   const frame = widget.addStack();
@@ -248,11 +267,10 @@ function setupSmallWidget(widget, date, holidayInfo, weekNumber, dayOfYear, curr
   // const base64Image = ""
   // const imgData = Data.fromBase64String(base64Image);
   // const pumpIcon = Image.fromData(imgData);
+  // const randomImage = getRandomImageFromFolder(imageFolderPath, imageSize);
+
 
   const imageSize = new Size(45, 45);
-
-
-  // const randomImage = getRandomImageFromFolder(imageFolderPath, imageSize);
   const pumpImageView = pumpIconStack.addImage(pumpImage);
   pumpImageView.imageSize = imageSize
   pumpIconStack.addSpacer(4);
@@ -263,16 +281,18 @@ function setupSmallWidget(widget, date, holidayInfo, weekNumber, dayOfYear, curr
   pumpStack.addSpacer();
 
   const countdownStack = pumpStack.addStack();
+  // 垂直居中对齐
   countdownStack.layoutVertically();
-  countdownStack.centerAlignContent(); // 垂直居中对齐
+  countdownStack.centerAlignContent(); 
 
-  const countdownText = countdownStack.addText(` ${date.getFullYear()}年${holidayInfo.name} `);
+  const countdownText = countdownStack.addText(` ${holidayInfo.year}年${holidayInfo.name} `);
   countdownText.textColor = symbolColor;
   countdownText.font = Font.mediumSystemFont(13);
 
   const countdownRow = countdownStack.addStack();
+  // 水平居中对齐
   //   countdownRow.layoutHorizontally();
-  //   countdownRow.centerAlignContent(); // 水平居中对齐
+  //   countdownRow.centerAlignContent(); 
 
   console.log(holidayInfo.daysLeft.toString())
   const days = countdownRow.addText(holidayInfo.daysLeft.toString());
@@ -325,8 +345,10 @@ function setupSmallWidget(widget, date, holidayInfo, weekNumber, dayOfYear, curr
 
 }
 
-
-function setupAccessoryRectangularWidget(widget, date, holidayInfo) {
+/*
+* 锁屏小组件布局
+*/
+function setupAccessoryRectangularWidget(widget, holidayInfo) {
   const titleStack = widget.addStack();
   titleStack.layoutHorizontally();
 
@@ -337,11 +359,39 @@ function setupAccessoryRectangularWidget(widget, date, holidayInfo) {
   const icon = titleStack.addImage(pumpIcon);
   icon.imageSize = new Size(25, 25);
 
-  const race = widget.addText(`${date.getFullYear()}年${holidayInfo.name}`);
+  const race = widget.addText(`${holidayInfo.year}年${holidayInfo.name}`);
   race.font = Font.boldSystemFont(14.5);
 
   const dateText = widget.addText(`剩余：${holidayInfo.daysLeft.toString()}`);
   dateText.font = Font.mediumSystemFont(14);
+
+}
+
+
+
+function setupAccessoryRectangularWidget_two(widget, holidayInfo) {
+  widget.size = new Size(100, 55); // 小组件大小
+
+  const horizontalStack = widget.addStack();
+  horizontalStack.layoutHorizontally();
+
+  // 创建左侧视图（小组件部分）
+  const leftStack = horizontalStack.addStack();
+  leftStack.layoutVertically(); // 垂直布局
+  leftStack.size = new Size(widget.size.width / 2, widget.size.height); // 左侧大小
+  const title = leftStack.addText(`${holidayInfo.year}`);
+  title.font = Font.mediumRoundedSystemFont(16);
+  const race = leftStack.addText(`${holidayInfo.name}`);
+  race.font = Font.boldSystemFont(10);
+  horizontalStack.addSpacer(4); // 添加间隔
+
+  // 创建右侧视图（日历部分）
+  const rightStack = horizontalStack.addStack();
+  rightStack.layoutVertically(); // 垂直布局
+  rightStack.size = new Size(widget.size.width / 2, widget.size.height); // 右侧大小
+  const dateText = rightStack.addText(`${holidayInfo.daysLeft.toString()}`);
+  dateText.font = Font.boldRoundedSystemFont(36);
+  dateText.backgroundColor = new Color("#000", 0)
 
 }
 
@@ -363,35 +413,54 @@ function addStationInfo(stack, stationName, priceText) {
 
 }
 
+/*
+* 计算倒数日
+*/
+
 function getNextHolidayCountdown(holidays) {
   const currentDate = new Date();
 
   let upcomingHoliday = null;
   let upcomingHolidayDate = null;
+
   for (const holiday of holidays) {
     const holidayYear = currentDate.getFullYear();
     const holidayMonth = holiday.month;
     const holidayDay = holiday.day;
     const holidayDate = new Date(holidayYear, holidayMonth - 1, holidayDay);
 
-    if (holidayDate > currentDate) {
+    if (holidayDate >= currentDate) {
       upcomingHoliday = holiday;
       upcomingHolidayDate = holidayDate;
       break;
     }
   }
 
+  if (!upcomingHoliday) {
+    // If there are no holidays left this year, find the next year's first holiday.
+    for (const holiday of holidays) {
+      const holidayYear = currentDate.getFullYear() + 1;
+      const holidayMonth = holiday.month;
+      const holidayDay = holiday.day;
+      const holidayDate = new Date(holidayYear, holidayMonth - 1, holidayDay);
+
+      if (holidayDate >= currentDate) {
+        upcomingHoliday = holiday;
+        upcomingHolidayDate = holidayDate;
+        break;
+      }
+    }
+  }
+
   if (upcomingHoliday) {
-    const timeDiff = upcomingHolidayDate.getTime() - currentDate.getTime(); // 使用 getTime() 获取毫秒时间戳
+    const timeDiff = upcomingHolidayDate.getTime() - currentDate.getTime();
     const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    return { name: upcomingHoliday.name, daysLeft: daysLeft };
+    return { name: upcomingHoliday.name, daysLeft: daysLeft, year: upcomingHolidayDate.getFullYear() };
   } else {
-    return { name: "无即将到来的节假日", daysLeft: '-' };
+    return { name: "无即将到来的节假日", daysLeft: '-', year: currentYear + 1 };
   }
 }
 
-
-//参考代码 来源 https://gist.github.com/Normal-Tangerine8609/081f285ae6841fd1ff4a4db0a63de66b
 
 function calendar(weekStartsMonday = false) {
   const today = new Date()
@@ -478,8 +547,8 @@ function getWeekNumberAndDayOfYear(date) {
 
 
 async function getRandomImage() {
-  // 支持的图片格式数组
-  const supportedFormats = ["png", "jpg", "jpeg"]; // 可以根据需要添加其他格式
+  // 支持的图片格式数组，可以根据需要添加其他格式
+  const supportedFormats = ["png", "jpg", "jpeg"]; 
   const files = fm.listContents(dir, supportedFormats);
   if (files.length === 0) {
     throw new Error("文件夹中没有符合格式的图片文件。");
