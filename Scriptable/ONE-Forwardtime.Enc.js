@@ -8,11 +8,12 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Forwardtime.js
- * version    : 1.0
+ * version    : 1.0.1
  * author     : Nicolas-kings
  * date       : 2022-05-15
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog   : v1.0 - 首次发布
+ * Changelog   : v1.0.1 - 20240413 - 替换版本更新链接 
+ *               v1.0 - 首次发布
  *                 
 ----------------------------------------------- */
 //##############公共参数配置模块############## 
@@ -62,7 +63,7 @@ const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
 // 版本号
-const localversion = '1.0.0'
+const localversion = '1.0.1'
 const versionData = await getversion() // 
 let needUpdated = await updateCheck(localversion)
 const week = await getWeekDate()
@@ -722,7 +723,7 @@ async function getversion() {
     const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
     var versionData
     try {
-        versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+        versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
         files.writeString(versionCachePath, JSON.stringify(versionData))
         console.log(`===>欢迎使用：${versionData.author}制作的小组件<===`);
         console.log("[+]遇到问题，请前往公众号：曰坛 反馈");

@@ -8,11 +8,12 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-NBA.js
- * version    : 1.9.1
+ * version    : 1.9.2
  * author     : thisisevanfox & Nicolas-kings
  * date       : 2021-05-09
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  :  v1.9.1 - 适配上游接口，剔出失效接口，新增部分配置项
+ * Changelog  :  v1.9.2 - 20240413 - 替换版本更新链接
+ *               v1.9.1 - 适配上游接口，剔出失效接口，新增部分配置项
  *               v1.9 - 修复背景报错，新增多个图片背景选项
  *               v1.8 - 压缩代码，便于复制
  *               v1.7 - 优化背景逻辑
@@ -57,7 +58,7 @@ const CURRENT_SEASON_START_YEAR = "2022";
 
 const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
-const localversion = '1.9.1'
+const localversion = '1.9.2'
 const path = files.joinPath(files.documentsDirectory(), filename)
 const versionData = await getversion()
 let needUpdated = await updateCheck(localversion)
@@ -1809,7 +1810,7 @@ async function getversion() {
   const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
   var versionData
   try {
-    versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+    versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
     files.writeString(versionCachePath, JSON.stringify(versionData))
     console.log(`===>欢迎使用：${versionData.author}制作的小组件<===`);
     console.log("[+]遇到问题，请前往公众号：曰坛 反馈");

@@ -8,12 +8,13 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-COVID_Vac.js
- * version    : 1.5
+ * version    : 1.5.1
  * author     : Nicolas-kings
  * date       : 2021-05-23
  * github     : https://github.com/Nicolasking007/Scriptable
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
- * Changelog  :  v1.5 - 修复背景报错，新增多个图片背景选项
+ * Changelog  :  v1.5.1 - 20240413 - 替换版本更新链接
+ *               v1.5 - 修复背景报错，新增多个图片背景选项
  *               v1.4 - 压缩代码，便于复制
  *               v1.3 - 支持透明背景、图片背景、纯色背景设置
  *               v1.2 - 修复小尺寸无数据的问题、部分细节优化
@@ -59,7 +60,7 @@ const padding = {
 const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
-const localversion = '1.5.0'
+const localversion = '1.5.1'
 const versionData = await getversion()
 const needUpdated = await updateCheck(localversion)
 const CVTData = await getVcT_TopData()
@@ -774,7 +775,7 @@ async function getversion() {
   const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
   var versionData
   try {
-    versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+    versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
     files.writeString(versionCachePath, JSON.stringify(versionData))
     console.log(`===>欢迎使用：${versionData.author}制作的小组件<===`);
     console.log("[+]遇到问题，请前往公众号：曰坛 反馈");

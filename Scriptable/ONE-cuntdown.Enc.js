@@ -8,11 +8,12 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-cuntdown.js
- * version    : 1.5
+ * version    : 1.5.1
  * author     : Nicolas-kings
  * date       : 2020-11-14
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog   : v1.5 - 新增多个自定义配置项、优化脚本更新逻辑
+ * Changelog   : v1.5.1 - 20240413 - 替换版本更新链接
+ *               v1.5 - 新增多个自定义配置项、优化脚本更新逻辑
  *               v1.4 - 修复背景报错，新增多个图片背景选项
  *               v1.3 - 压缩代码，提升性能 
  *               v1.2 - 优化背景逻辑
@@ -56,7 +57,7 @@ const padding = { top: 0, left: 0, bottom: 0, right: 0 }
 const filename = Script.name()
 const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
-const localversion = '1.5.0'
+const localversion = '1.5.1'
 const versionData = await getversion() // 
 const needUpdated = await updateCheck(localversion)
 const logoUrl = ''
@@ -685,7 +686,7 @@ async function getversion() {
     const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
     var versionData
     try {
-        versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+        versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
         files.writeString(versionCachePath, JSON.stringify(versionData))
         console.log(`===>欢迎使用：${versionData.author}制作的小组件<===`);
         console.log("[+]遇到问题，请前往公众号：曰坛 反馈");

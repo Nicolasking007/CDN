@@ -11,13 +11,14 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Progress.js
- * version    : 1.5
+ * version    : 1.5.1
  * author     : Nicolas-kings
  * date       : 2021-03-06
  * github     : https://github.com/Nicolasking007/Scriptable
  * desc       : 具体配置，详见微信公众号-曰(读yue)坛
  * color      : #FFA400, #FF7500, #0AA344, #4B5CC4, #B25D25
- * Changelog  :  v1.5 - 修复背景报错，新增多个图片背景选项
+ * Changelog  :  v1.5.1 - 20240413 - 替换版本更新链接
+ *               v1.5 - 修复背景报错，新增多个图片背景选项
  *               v1.4 - 压缩代码，便于复制
  *               v1.3 - 优化背景逻辑
  *               v1.2 - 优化背景图片缓存处理
@@ -78,7 +79,7 @@ const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
 
 // 更新判断
-const localversion = '1.5.0'
+const localversion = '1.5.1'
 const versionData = await getversion()
 const needUpdated = await updateCheck(localversion)
 
@@ -902,7 +903,7 @@ async function getversion() {
   const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
   var versionData
   try {
-    versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+    versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
     files.writeString(versionCachePath, JSON.stringify(versionData))
     console.log(`[+]欢迎使用：${versionData.author}制作小组件`);
     console.log("[+]遇到问题，请前往公众号：曰坛 反馈");

@@ -8,12 +8,13 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Olympic.js
- * version    : 1.3
+ * version    : 1.3.1
  * author     : Nicolas-kings
  * date       : 2021-07-24
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  : v1.3 - 修复背景报错，新增多个图片背景选项
+ * Changelog  : v1.3.1 - 20240413 - 替换版本更新链接
+ *              v1.3 - 修复背景报错，新增多个图片背景选项
  *              v1.2 - 修复榜单排名问题、增加榜单类型
  *              v1.1 - 增加配置项，可自行适配各种机型  
                 v1.0 - 首次发布            
@@ -63,7 +64,7 @@ const padding = {
 //##############公共参数配置模块-结束##############
 const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
-const localversion = '1.3.0'
+const localversion = '1.3.1'
 const path = files.joinPath(files.documentsDirectory(), filename)
 const versionData = await getversion()
 const needUpdated = await updateCheck(localversion)
@@ -788,7 +789,7 @@ async function getversion() {
     const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
     var versionData
     try {
-        versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+        versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
         files.writeString(versionCachePath, JSON.stringify(versionData))
         console.log(`[+]欢迎使用：${versionData.author}制作小组件`);
         console.log("[+]遇到问题，请前往公众号：曰坛 反馈");

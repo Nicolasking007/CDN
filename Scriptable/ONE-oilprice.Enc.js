@@ -8,12 +8,13 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-oilprice.js
- * version    : 2.1.1
+ * version    : 2.1.2
  * author     : Nicolas-kings
  * date       : 2021-03-31
  * desc       : 具体配置说明，详见微信公众号-曰(读yue)坛
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  : v2.1.1 - 适配上游接口
+ * Changelog  : v2.1.2 - 20240413 - 替换版本更新链接
+ *              v2.1.1 - 适配上游接口
  *              v2.1 - 适配中石化接口字段调整
  *              v2.0 - 新增油价数据源，默认采用中石化数据，调整展示的油价类型
  *              v1.9 - 新增自定义配置项、UI细节调整
@@ -119,7 +120,7 @@ function colorConfig() {
 //##############用户自定义参数配置模块-结束##############
 const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
-const localversion = '2.1.1'
+const localversion = '2.1.2'
 const path = files.joinPath(files.documentsDirectory(), filename)
 const versionData = await getversion()
 const needUpdated = await updateCheck(localversion)
@@ -1049,7 +1050,7 @@ async function getversion() {
   const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
   var versionData
   try {
-    versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+    versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
     files.writeString(versionCachePath, JSON.stringify(versionData))
     console.log(`[+]欢迎使用：${versionData.author}制作小组件`);
     console.log("[+]遇到问题，请前往公众号：曰坛 反馈");

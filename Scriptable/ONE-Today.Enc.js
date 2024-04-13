@@ -8,11 +8,12 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Today.js
- * version    : 1.8
+ * version    : 1.8.1
  * author     : Nicolas-kings
  * date       : 2021-04-04
  * github     : https://github.com/Nicolasking007/Scriptable
- * Changelog  : v1.8 - 修复背景报错，新增多个图片背景选项
+ * Changelog  : v1.8.1 - 20240413 - 替换版本更新链接
+ *              v1.8 - 修复背景报错，新增多个图片背景选项
  *              v1.7 - 压缩代码，便于复制
  *              v1.6 - 应某位居士之托，遂增加干支纪年法，其他未做调整
  *              v1.5 - 优化背景逻辑
@@ -61,7 +62,7 @@ const filename = `${Script.name()}.jpg`
 const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
 // 获取农历信息
-const localversion = '1.8.0'
+const localversion = '1.8.1'
 const versionData = await getversion()
 let needUpdated = await updateCheck(localversion)
 let date = new Date()
@@ -795,7 +796,7 @@ async function getversion() {
   const versionCachePath = files.joinPath(files.documentsDirectory(), "version-NK")
   var versionData
   try {
-    versionData = await new Request("https://fastly.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
+    versionData = await new Request("https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/UPDATE.json").loadJSON()
     files.writeString(versionCachePath, JSON.stringify(versionData))
     console.log(`===>欢迎使用：${versionData.author}制作的小组件<===`);
     console.log("[+]遇到问题，请前往公众号：曰坛 反馈");
