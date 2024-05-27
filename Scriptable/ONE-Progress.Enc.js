@@ -11,13 +11,14 @@
  ************ © 2023 Copyright Nicolas-kings ************/
 /********************************************************
  * script     : ONE-Progress.js
- * version    : 1.5.1
+ * version    : 1.5.2
  * author     : Nicolas-kings
  * date       : 2021-03-06
  * github     : https://github.com/Nicolasking007/Scriptable
  * desc       : 具体配置，详见微信公众号-曰(读yue)坛
  * color      : #FFA400, #FF7500, #0AA344, #4B5CC4, #B25D25
- * Changelog  :  v1.5.1 - 20240413 - 替换版本更新链接
+ * Changelog  :  v1.5.2 - 20240527 - 修复life_expectancy未赋值的报错
+ *               v1.5.1 - 20240413 - 替换版本更新链接
  *               v1.5 - 修复背景报错，新增多个图片背景选项
  *               v1.4 - 压缩代码，便于复制
  *               v1.3 - 优化背景逻辑
@@ -47,6 +48,8 @@ const Imgstyle = 1
 const IMAGE_SEARCH_TERMS = "nature,wather"
 // 在这里输入您的出生年月 格式为YYYY-MM-DD
 const LIFE_BIRTHDAY = '1995-09-30';
+// 取值全国平均年龄
+const life_expectancy = '78.2'
 // 全局字体大小
 const FONT_SIZE = 16;
 // 全局行高
@@ -79,7 +82,7 @@ const files = FileManager.local()
 const path = files.joinPath(files.documentsDirectory(), filename)
 
 // 更新判断
-const localversion = '1.5.1'
+const localversion = '1.5.2'
 const versionData = await getversion()
 const needUpdated = await updateCheck(localversion)
 
