@@ -353,5 +353,22 @@
         "notes": "\n- 替换版本更新链接,修复报错 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2024-04-13 22:00",
         "Updated": "2022-06-19 18:00"
     },
+    "ONE-healthCalendar": {
+        "version": "1.0.0",
+        "author": "Nicolas-kings",
+        "description": "健康百科小贴士组件",
+        "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-healthCalendar/ONE-healthCalendar.Enc.js",
+        "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-healthCalendar.Enc.js",
+        "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
+        "wxurl": "https://mp.weixin.qq.com/s/X0z1e11ACFKsElz0eQbKyA",
+        "path":"https://nkupp.com",
+        "name": "ONE-healthCalendar",
+        "title": "ONE-healthCalendar",
+        "images": [
+            "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg"
+        ],
+        "notes": "\n- 替换版本更新链接,修复报错 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2024-04-13 22:00",
+        "Updated": "2022-06-19 18:00"
+    },
     "copyright": "© 2022 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
 }
