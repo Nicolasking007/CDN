@@ -22,7 +22,7 @@
         "Updated": "2021-10-26 18:00"
     },
     "ONE-Progress": {
-        "version": "1.5.1",
+        "version": "1.5.2",
         "author": "Nicolas-kings",
         "description": "一个查看今天、本周、本月、今年和今生进度的小组件",
         "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-Progress/ONE-Progress.Enc.js",
@@ -34,7 +34,7 @@
         "images": [
             "https://i.loli.net/2021/03/27/pz7i8DsA3WkGaTU.jpg"
         ],
-        "notes": "\n- 修替换版本更新链接 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2024-04-13 22:00",
+        "notes": "\n- 修复life_expectancy未赋值的报错 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2024-04-13 22:00",
         "Updated": "2021-10-26 18:00"
     },
     "ONE-NBA": {
@@ -96,7 +96,8 @@
         "name": "ONE-hotcomments",
         "title": "网易云热评",
         "images": [
-            "https://i.loli.net/2021/04/04/KQARiV18gzv2cDj.jpg","https://i.loli.net/2021/03/27/WbFpYaeitnZ5Mzc.jpg"
+            "https://i.loli.net/2021/04/04/KQARiV18gzv2cDj.jpg",
+            "https://i.loli.net/2021/03/27/WbFpYaeitnZ5Mzc.jpg"
         ],
         "notes": "\n- 适配上游接口,修复接口限流问题 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 更新时间：2022-03-27 17:00",
         "Updated": "2022-03-27 17:00"
@@ -275,7 +276,7 @@
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Download.Enc.js",
         "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
         "wxurl": "https://nkupp.com",
-        "path":"Menulist",
+        "path": "Menulist",
         "name": "ONE-Download",
         "title": "ONE-Download",
         "images": [
@@ -293,7 +294,7 @@
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Quotations.Enc.js",
         "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
         "wxurl": "https://nkupp.com",
-        "path":"Quotations",
+        "path": "Quotations",
         "name": "ONE-Quotations",
         "title": "ONE-Quotations",
         "images": [
@@ -310,7 +311,7 @@
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Forwardtime.Enc.js",
         "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
         "wxurl": "https://mp.weixin.qq.com/s/Lt62ojubzBlK_9ktbTxC8Q",
-        "path":"https://nkupp.com",
+        "path": "https://nkupp.com",
         "name": "ONE-Forwardtime",
         "title": "ONE-Forwardtime",
         "images": [
@@ -327,7 +328,7 @@
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-COVID19_Datasheet.Enc.js",
         "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
         "wxurl": "https://mp.weixin.qq.com/s/Lt62ojubzBlK_9ktbTxC8Q",
-        "path":"https://nkupp.com",
+        "path": "https://nkupp.com",
         "name": "ONE-COVID19_Datasheet",
         "title": "ONE-COVID19_Datasheet",
         "images": [
@@ -344,7 +345,7 @@
         "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-Motto.Enc.js",
         "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
         "wxurl": "https://mp.weixin.qq.com/s/X0z1e11ACFKsElz0eQbKyA",
-        "path":"https://nkupp.com",
+        "path": "https://nkupp.com",
         "name": "ONE-Motto",
         "title": "ONE-Motto",
         "images": [
