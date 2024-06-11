@@ -17,7 +17,10 @@
   <a href="#jsdelivr">
     <img src="https://data.jsdelivr.com/v1/package/gh/Nicolasking007/CDN/badge" alt="jsdelivr">
   </a>
-  <a href="https://nkupp.com">
+  <a href="https://github.com/Nicolasking007/CDN/actions/workflows/Purge-jsDelivr.yml">
+    <img src="https://github.com/Nicolasking007/CDN/actions/workflows/Purge-jsDelivr.yml/badge.svg" alt="workflows">
+  </a>
+    <a href="https://nkupp.com">
     <img src="https://img.shields.io/badge/%E5%8D%9A%E5%AE%A2-Blog-brightgreen" alt="Blog">
   </a>
   <a href="#公众号">
