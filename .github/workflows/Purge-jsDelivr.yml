@@ -1,0 +1,65 @@
+name: purge-jsdelivr-cache
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Scriptable/**'
+
+jobs:
+  purge-jsdelivr-cache:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: 检出 master 分支
+        uses: actions/checkout@v3
+
+      - name: 安装 Git
+        run: |
+          sudo apt-get install git -y
+          git --version  # 输出 Git 版本以确认安装成功
+
+      - name: 确定最后一次提交变更的文件
+        id: changed_files
+        run: |
+          echo "获取最后一次提交变更的文件..."
+          git log -1 --name-only --pretty=format: > diff_output.txt || true
+          echo "Git log 结果:"
+          cat diff_output.txt  # 输出 git log 结果以进行调试
+          grep '^Scriptable/' diff_output.txt > changed_files.txt || true
+          echo "筛选后的变更文件:"
+          cat changed_files.txt || true  # 输出筛选后的文件列表进行调试
+          if [ -s changed_files.txt ]; then
+            echo "发现变更的文件:"
+            cat changed_files.txt
+            echo "changed_files=$(cat changed_files.txt | tr '\n' ' ')" >> $GITHUB_ENV
+          else
+            echo "没有发现变更的文件。"
+            echo "changed_files=" >> $GITHUB_ENV
+          fi
+
+      - name: 输出变更的文件
+        run: |
+          echo "变更的文件: ${{ env.changed_files }}"
+
+      - name: 确定需要清除的 CDN URL
+        if: env.changed_files != ''
+        id: purge_urls
+        run: |
+          baseUrl="https://cdn.jsdelivr.net/gh/${{ github.repository }}@latest"
+          urls=""
+          for f in ${{ env.changed_files }}; do
+            urls+="${baseUrl}/${f},"
+          done
+          echo "urls=${urls%,*}" >> $GITHUB_OUTPUT
+
+      - name: 输出 CDN URL
+        if: env.changed_files != ''
+        run: |
+          echo "需要清除的 CDN URL: ${{ steps.purge_urls.outputs.urls }}"
+
+      - name: 清除 CDN 缓存
+        if: env.changed_files != ''
+        uses: egad13/purge-jsdelivr-cache@v1
+        with:
+          url: ${{ steps.purge_urls.outputs.urls }}
