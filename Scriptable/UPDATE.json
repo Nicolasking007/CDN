@@ -371,5 +371,22 @@
         "notes": "\n- 替换版本更新链接,修复报错 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2024-04-13 22:00",
         "Updated": "2022-06-19 18:00"
     },
-    "copyright": "© 2022 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
+    "ONE-SuOlympic": {
+        "version": "1.0.0",
+        "author": "Nicolas-kings",
+        "description": "巴黎夏季奥林匹克运动会奖牌榜小组件",
+        "scriptURL": "https://raw.githubusercontent.com/Nicolasking007/Scriptable/main/ONE-SuOlympic/ONE-SuOlympic.Enc.js",
+        "cdn_scriptURL": "https://cdn.jsdelivr.net/gh/Nicolasking007/CDN@latest/Scriptable/ONE-SuOlympic.Enc.js",
+        "thumb": "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg",
+        "wxurl": "https://mp.weixin.qq.com/s/mRRVjs8tGahSSUanid4q4g",
+        "name": "ONE-Olympic",
+        "title": "ONE-Olympic",
+        "images": [
+            "https://i.loli.net/2021/07/24/sfr1aeEKlyRnIu4.jpg"
+        ],
+        "notice": "本届奥运会暨第33届夏季奥林匹克运动会结束\n\n我们2028年洛杉矶奥运会见 Good Luck！",
+        "notes": "\n- 替换版本更新链接 \n- 使用中若发现问题，请前往公众号曰坛反馈\n- 发布时间：2024-07-27 22:00",
+        "Updated": "2021-12-16 10:30"
+    },
+    "copyright": "© 2024 Copyright Nicolas-kings - 不允许基于该数据私自改编，修改任何作品等，进行上述操作前请先与我取得联系，谢谢！"
 }
